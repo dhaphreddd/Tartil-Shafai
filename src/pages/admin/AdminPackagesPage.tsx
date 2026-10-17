@@ -517,6 +517,77 @@ export default function AdminPackagesPage() {
     }
   };
 
+  const handleExportData = () => {
+    try {
+      const raw = localStorage.getItem('tartil_curriculum_layers_v2');
+      const parsed = raw ? JSON.parse(raw) : {};
+      const layersList = Object.values(parsed);
+      const dataToExport = layersList.length > 0 ? layersList : layers;
+
+      const exportObj = {
+        layers: dataToExport,
+        volumes: [],
+        packages: [],
+      };
+      const jsonStr = JSON.stringify(exportObj, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tartil-packages-fixture.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert('Gagal mengekspor data: ' + err.message);
+    }
+  };
+
+  const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        const content = event.target?.result as string;
+        const parsed = JSON.parse(content);
+        const layersToImport = parsed.layers || (Array.isArray(parsed) ? parsed : Object.values(parsed));
+        if (!Array.isArray(layersToImport)) {
+          alert('Format file JSON tidak valid. Pastikan berisi array "layers".');
+          return;
+        }
+        for (const layer of layersToImport) {
+          await CurriculumService.saveLayer1(layer);
+        }
+        await loadData();
+        alert(`Berhasil mengimpor ${layersToImport.length} data Jilid / Layer!`);
+      } catch (err: any) {
+        alert('Gagal mengimpor file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
+
+  const handleSyncToCloud = async () => {
+    if (!layers || layers.length === 0) {
+      alert('Tidak ada data layer untuk disinkronkan ke cloud.');
+      return;
+    }
+    setSaving(true);
+    try {
+      for (const l of layers) {
+        await CurriculumService.saveLayer1(l);
+      }
+      alert('Berhasil menyinkronkan data ke Firestore Cloud!');
+    } catch (err: any) {
+      alert('Gagal sinkronisasi ke cloud: ' + err.message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <div className="min-h-screen pb-32 transition-colors" style={{ backgroundColor: 'var(--color-bg)' }}>
       {/* Top Navbar */}
@@ -568,26 +639,59 @@ export default function AdminPackagesPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <button
+              type="button"
+              onClick={handleExportData}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[12px] uppercase tracking-wider font-semibold border transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer shadow-2xs"
+              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+              title="Download backup data JSON (bisa disalin ke tartil-packages-fixture.json)"
+            >
+              <span className="material-symbols-outlined text-[16px]">download</span>
+              Ekspor JSON
+            </button>
+
+            <label
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[12px] uppercase tracking-wider font-semibold border transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer shadow-2xs"
+              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+              title="Import data dari file backup JSON"
+            >
+              <span className="material-symbols-outlined text-[16px]">upload</span>
+              Impor JSON
+              <input type="file" accept=".json" onChange={handleImportData} className="hidden" />
+            </label>
+
+            <button
+              type="button"
+              onClick={handleSyncToCloud}
+              disabled={saving}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[12px] uppercase tracking-wider font-semibold border transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer shadow-2xs"
+              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+              title="Kirim dan sinkronkan data lokal ke Firebase Firestore"
+            >
+              <span className="material-symbols-outlined text-[16px]">cloud_sync</span>
+              {saving ? 'Syncing...' : 'Sync Cloud'}
+            </button>
+
             <button
               type="button"
               onClick={() => setIsSurahNameModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[12px] uppercase tracking-widest font-semibold border transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[12px] uppercase tracking-wider font-semibold border transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer shadow-2xs"
               style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               title="Atur transliterasi standar Indonesia atau kustomisasi penamaan surat"
             >
               <span className="material-symbols-outlined text-[16px]">edit_note</span>
-              Kustomisasi Nama Surat
+              Nama Surat
             </button>
 
             <button
               type="button"
               onClick={handleOpenCreateL1}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[12px] uppercase tracking-widest font-semibold transition-opacity hover:opacity-85 shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] uppercase tracking-wider font-semibold transition-opacity hover:opacity-85 shadow-sm cursor-pointer"
               style={{ backgroundColor: 'var(--color-text)', color: 'var(--color-bg)' }}
             >
               <span className="material-symbols-outlined text-[16px]">add</span>
-              Tambah Layer 1 (Koleksi / Jilid)
+              Tambah Jilid
             </button>
           </div>
         </div>

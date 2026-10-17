@@ -12,18 +12,18 @@ service cloud.firestore {
     }
 
     match /curriculum_layers/{layerId} {
-      // Public can read published layers or admin can read all
-      allow read: if resource.data.isPublished == true || isAdmin();
+      // Public can read curriculum layers, only admin can write
+      allow read: if true;
       allow write: if isAdmin();
     }
 
     match /volumes/{volumeId} {
-      allow read: if resource.data.isPublished == true || isAdmin();
+      allow read: if true;
       allow write: if isAdmin();
     }
 
     match /packages/{packageId} {
-      allow read: if resource.data.isPublished == true || isAdmin();
+      allow read: if true;
       allow write: if isAdmin();
     }
 

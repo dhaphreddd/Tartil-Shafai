@@ -11,7 +11,7 @@
  */
 
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, Navigate, useRouteError, Link } from 'react-router-dom';
 
 import MainLayout from '@/layouts/MainLayout';
 import AdminGuard from '@/components/AdminGuard';
@@ -28,6 +28,47 @@ const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 const AdminLoginPage = lazy(() => import('@/pages/admin/AdminLoginPage'));
 const AdminPackagesPage = lazy(() => import('@/pages/admin/AdminPackagesPage'));
 const AdminPackageFormPage = lazy(() => import('@/pages/admin/AdminPackageFormPage'));
+
+function RouteErrorBoundary() {
+  const error: any = useRouteError();
+  const isChunkError =
+    error?.message?.includes('dynamically imported module') ||
+    error?.message?.includes('Failed to fetch') ||
+    error?.name === 'ChunkLoadError';
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[50vh] px-4 text-center py-12">
+      <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mb-4">
+        <span className="material-symbols-outlined text-amber-600 text-[32px]">
+          {isChunkError ? 'update' : 'error_outline'}
+        </span>
+      </div>
+      <h2 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>
+        {isChunkError ? 'Pembaruan Aplikasi Tersedia' : 'Terjadi Kendala Memuat Halaman'}
+      </h2>
+      <p className="text-sm max-w-md mb-6" style={{ color: 'var(--color-text-muted)' }}>
+        {isChunkError
+          ? 'Versi aplikasi telah diperbarui di server. Silakan muat ulang halaman untuk memperbarui tampilan.'
+          : error?.message || 'Silakan muat ulang halaman atau kembali ke beranda.'}
+      </p>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => window.location.reload()}
+          className="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-amber-600 text-white hover:bg-amber-700 transition-colors shadow-sm cursor-pointer"
+        >
+          Muat Ulang Halaman
+        </button>
+        <Link
+          to="/"
+          className="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-colors"
+          style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+        >
+          Kembali ke Beranda
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 function PageLoader() {
   return (
@@ -47,6 +88,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
         index: true,
