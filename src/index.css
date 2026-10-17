@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+/* ============================================
+   TARTIL SHAFA'I — DESIGN SYSTEM
+   Based on Stitch "Serene Digital Mus-haf"
+   ============================================ */
+
+/* ---------- THEME: CSS Custom Properties ---------- */
+
+@theme {
+  /* ---------- Light Mode Colors ---------- */
+  --color-bg: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F2EC;
+  --color-surface-container: #f0eded;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-high: #eae7e7;
+  --color-border: #E7E3D9;
+  --color-border-strong: #d1c5b4;
+  --color-primary: #9A7738;
+  --color-primary-hover: #80632F;
+  --color-primary-container: #916f31;
+  --color-primary-dim: #76571a;
+  --color-primary-fixed: #ffdeaa;
+  --color-primary-fixed-dim: #eac079;
+  --color-on-primary: #ffffff;
+  --color-text: #202020;
+  --color-text-secondary: #6F6F6F;
+  --color-text-muted: #969696;
+  --color-on-surface-variant: #4e4639;
+  --color-outline: #807667;
+  --color-secondary: #5e5e5e;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* ---------- Dark Mode Colors (referenced via class) ---------- */
+  --color-dark-bg: #111111;
+  --color-dark-surface: #181818;
+  --color-dark-surface-elevated: #202020;
+  --color-dark-border: #2A2A2A;
+  --color-dark-primary: #C6A15B;
+  --color-dark-primary-hover: #D5B96F;
+  --color-dark-text: #F5F5F5;
+  --color-dark-text-secondary: #B1B1B1;
+  --color-dark-text-muted: #777777;
+
+  /* ---------- Typography ---------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "KFGQPC_Hafs", "Noto Naskh Arabic", serif;
+
+  /* ---------- Font sizes ---------- */
+  --text-display-hero: 40px;
+  --text-display-hero--line-height: 48px;
+  --text-display-hero--letter-spacing: -0.02em;
+  --text-display-hero--font-weight: 600;
+
+  --text-display-hero-mobile: 28px;
+  --text-display-hero-mobile--line-height: 36px;
+  --text-display-hero-mobile--letter-spacing: -0.01em;
+  --text-display-hero-mobile--font-weight: 600;
+
+  --text-headline-lg: 30px;
+  --text-headline-lg--line-height: 38px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-md: 22px;
+  --text-headline-md--line-height: 30px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-headline-sm: 18px;
+  --text-headline-sm--line-height: 26px;
+  --text-headline-sm--font-weight: 600;
+
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 15px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+
+  --text-label-lg: 14px;
+  --text-label-lg--line-height: 20px;
+  --text-label-lg--font-weight: 500;
+
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.04em;
+  --text-label-md--font-weight: 500;
+
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.06em;
+  --text-label-sm--font-weight: 600;
+
+  /* ---------- Spacing ---------- */
+  --spacing: 0.25rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --spacing-gutter: 1rem;
+  --spacing-gutter-tablet: 1.5rem;
+  --spacing-gutter-desktop: 2rem;
+  --spacing-margin: 1rem;
+  --spacing-margin-tablet: 2rem;
+  --spacing-margin-desktop: 3rem;
+
+  /* ---------- Container / Max-Width Sizes ---------- */
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+
+  --max-width-xs: 20rem;
+  --max-width-sm: 24rem;
+  --max-width-md: 28rem;
+  --max-width-lg: 32rem;
+  --max-width-xl: 36rem;
+  --max-width-2xl: 42rem;
+  --max-width-3xl: 48rem;
+  --max-width-4xl: 56rem;
+  --max-width-5xl: 64rem;
+  --max-width-6xl: 72rem;
+  --max-width-7xl: 80rem;
+
+  /* ---------- Border Radius ---------- */
+  --radius-sm: 0.125rem;
+  --radius-DEFAULT: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-overlay: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-md);
+  line-height: var(--text-body-md--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background-color: var(--color-primary-fixed);
+  color: var(--color-primary-dim);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+html.dark,
+.dark {
+  --color-bg: #111111;
+  --color-surface: #181818;
+  --color-surface-subtle: #202020;
+  --color-surface-container: #1d1d1d;
+  --color-surface-container-low: #151515;
+  --color-surface-container-high: #262626;
+  --color-border: #2A2A2A;
+  --color-border-strong: #3A3A3A;
+  --color-primary: #D4AF37;
+  --color-primary-hover: #E5C158;
+  --color-on-primary: #111111;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #B8B8B8;
+  --color-text-muted: #808080;
+}
+
+.dark body,
+html.dark body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.dark ::selection,
+html.dark ::selection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* High Contrast Quran Typography */
+.quran-ayah-text {
+  color: var(--color-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark .quran-ayah-text,
+.dark .quran-ayah-text {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.ayah-end-marker {
+  color: var(--color-primary);
+}
+
+html.dark .ayah-end-marker,
+.dark .ayah-end-marker {
+  color: #D4AF37 !important;
+  text-shadow: 0 0 1px rgba(212, 175, 55, 0.3);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Material Symbols helper */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* Hide scrollbar */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modern thin scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(150, 150, 150, 0.3);
+  border-radius: 9999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+/* RTL direction and typographic optimization for Arabic text */
+[dir="rtl"], .rtl {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+/* ============================================
+   COMPONENT-LEVEL DARK OVERRIDES
+   ============================================ */
+
+/* Surfaces */
+.dark .surface-card {
+  background-color: var(--color-dark-surface);
+  border-color: var(--color-dark-border);
+}
+
+.dark .surface-elevated {
+  background-color: var(--color-dark-surface-elevated);
+}
+
+/* Text */
+.dark .text-primary-adaptive {
+  color: var(--color-dark-primary);
+}
+
+.dark .text-secondary-adaptive {
+  color: var(--color-dark-text-secondary);
+}
+
+.dark .text-muted-adaptive {
+  color: var(--color-dark-text-muted);
+}
+
+/* Borders */
+.dark .border-adaptive {
+  border-color: var(--color-dark-border);
+}
+
+/* Shadows for dark mode */
+.dark .shadow-overlay-adaptive {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

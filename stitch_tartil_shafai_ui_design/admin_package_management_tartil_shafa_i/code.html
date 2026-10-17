@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Naskh+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"outline":"#807667","secondary-container":"#e1dfdf","primary-fixed-dim":"#eac079","on-error-container":"#93000a","surface":"#fcf9f8","secondary-fixed-dim":"#c7c6c6","dark-surface-elevated":"#202020","primary":"#76571a","light-primary-hover":"#80632F","on-secondary":"#ffffff","dark-text-secondary":"#B1B1B1","inverse-primary":"#eac079","surface-tint":"#78591d","dark-surface":"#181818","surface-container-highest":"#e5e2e1","error-container":"#ffdad6","inverse-on-surface":"#f3f0ef","tertiary-fixed-dim":"#e6c184","dark-primary-hover":"#D5B96F","surface-container-high":"#eae7e7","on-tertiary-fixed-variant":"#5c4211","background":"#fcf9f8","light-primary":"#9A7738","surface-variant":"#e5e2e1","dark-bg":"#111111","light-text":"#202020","tertiary-fixed":"#ffdeaa","light-text-muted":"#969696","on-background":"#1b1c1c","light-text-secondary":"#6F6F6F","on-tertiary-fixed":"#271900","dark-primary":"#C6A15B","primary-fixed":"#ffdeaa","light-bg":"#FAFAF7","tertiary-container":"#8e703a","surface-dim":"#dcd9d9","secondary":"#5e5e5e","on-surface-variant":"#4e4639","secondary-fixed":"#e4e2e2","tertiary":"#735725","on-error":"#ffffff","error":"#ba1a1a","surface-bright":"#fcf9f8","on-secondary-fixed":"#1b1c1c","dark-border":"#2A2A2A","on-secondary-fixed-variant":"#464747","surface-container":"#f0eded","on-tertiary":"#ffffff","on-secondary-container":"#626263","dark-text":"#F5F5F5","outline-variant":"#d1c5b4","light-surface-subtle":"#F4F2EC","on-primary-container":"#fffbff","on-tertiary-container":"#fffbff","dark-text-muted":"#777777","on-primary":"#ffffff","on-primary-fixed-variant":"#5e4204","light-border":"#E7E3D9","inverse-surface":"#303030","primary-container":"#916f31","surface-container-low":"#f6f3f2","on-surface":"#1b1c1c","light-surface":"#FFFFFF","surface-container-lowest":"#ffffff","on-primary-fixed":"#271900"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"2.5rem","space-xs":"0.25rem","margin-desktop":"3rem","gutter-desktop":"2rem","gutter":"1rem","gutter-tablet":"1.5rem","space-sm":"0.5rem","margin":"1rem","margin-tablet":"2rem","space-md":"1rem","space-lg":"1.5rem"},"fontFamily":{"quran-body-mobile":["Noto Naskh Arabic"],"quran-display":["Noto Naskh Arabic"],"quran-body":["Noto Naskh Arabic"],"headline-lg":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"label-lg":["Inter"],"body-lg":["Inter"],"display-hero":["Inter"],"headline-md":["Inter"],"label-sm":["Inter"],"display-hero-mobile":["Inter"],"quran-display-mobile":["Noto Naskh Arabic"],"label-md":["Inter"],"body-sm":["Inter"]},"fontSize":{"quran-body-mobile":["24px",{"lineHeight":"56px","fontWeight":"400"}],"quran-display":["38px",{"lineHeight":"84px","fontWeight":"400"}],"quran-body":["30px",{"lineHeight":"72px","fontWeight":"400"}],"headline-lg":["30px",{"lineHeight":"38px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"500"}],"body-lg":["17px",{"lineHeight":"26px","fontWeight":"400"}],"display-hero":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"600"}],"display-hero-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"quran-display-mobile":["28px",{"lineHeight":"64px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-light-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1280px] mx-auto px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #9a7738
+- Font: inter
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UERFa6M_zJK62eieUep4iU6zufMtkTkKDMkiCOeGy-dMzBwXW_--47WovZrIa0oyothVSU3TSGVGfTgqh8RaJSImrec_I0RCoQhe1lDW99sXk3hk8iHILFcVKL8-VkiXs7ks4Dbe9JdIAPVtB9Pj7a--t5ton6WriUIVp7rADzs5VR6KdTA3PSPmRCJyBF720SQqsaesLdbSTg4Hrpo0dL3jrbiiKOeBRC2vMOvhi9wv2HNS82h60-IZI"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Tartil Shafa'i</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Admin</span></div><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded px-3 py-1.5"><a class="px-3 py-1.5 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a aria-current="page" class="transition-colors bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded px-3 py-1.5" data-path="paket" href="#">Paket</a><a class="px-3 py-1.5 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="pengaturan" href="#">Pengaturan</a></nav></div><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-low hover:bg-surface-container hover:text-on-surface font-label-md text-label-md text-on-surface-variant transition-colors" href="/" target="_blank"><span class="material-symbols-outlined text-[16px]">open_in_new</span>Lihat Web Publik</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="max-w-[1280px] mx-auto px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Top Utility Context / Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-secondary mb-1">
+<span>Admin</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-label-md text-label-md">Paket</span>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Manajemen Paket Maqra'</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+          Total 40 Paket
+        </span>
+</div>
+</div>
+<!-- Primary Quick Actions -->
+<div class="flex items-center gap-space-sm">
+<button class="inline-flex items-center justify-center gap-1.5 h-10 px-4 rounded bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Ekspor</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1.5 h-10 px-5 rounded bg-primary-container hover:bg-light-primary text-on-primary-container font-label-lg text-label-lg transition-colors shadow-sm" id="btn-tambah-paket">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Tambah Paket</span>
+</button>
+</div>
+</div>
+<!-- Operational Metric Bento Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Terpublikasi</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-0.5">40</p>
+<p class="font-label-sm text-label-sm text-secondary mt-1">Siap dibaca di portal santri</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Jilid Aktif</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-0.5">Jilid 1</p>
+<p class="font-label-sm text-label-sm text-secondary mt-1">Kurikulum Standar Tahsin</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Draft / Menunggu</p>
+<p class="font-headline-md text-headline-md text-secondary mt-0.5">0</p>
+<p class="font-label-sm text-label-sm text-secondary mt-1">Semua materi tervalidasi</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">pending_actions</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Total Ayat Diuji</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-0.5">384</p>
+<p class="font-label-sm text-label-sm text-secondary mt-1">Rentang 3–15 ayat/paket</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">format_list_numbered</span>
+</div>
+</div>
+</div>
+<!-- Main Work Table Container -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<!-- Toolbar: Search + Jilid Pills -->
+<div class="p-space-md bg-surface-container-lowest flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input with Leading Icon -->
+<div class="relative w-full lg:w-96">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-secondary">search</span>
+<input class="w-full h-11 pl-10 pr-9 rounded bg-surface-container-low hover:bg-surface-container text-body-md font-body-md text-on-surface placeholder:text-secondary focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="table-search" placeholder="Cari nomor paket, surat, atau jilid..." type="text"/>
+<button class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-on-surface" id="clear-search">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Segmented Tabs / Jilid Filter -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 scrollbar-none" id="filter-pills">
+<button class="filter-btn active inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary-container font-semibold transition-all shrink-0" data-filter="all">
+<span>Semua</span>
+<span class="text-[11px] opacity-80">(40)</span>
+</button>
+<button class="filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all shrink-0" data-filter="jilid-1">
+<span>Jilid 1</span>
+<span class="text-[11px] opacity-70">(40)</span>
+</button>
+<button class="filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all shrink-0" data-filter="jilid-2">
+<span>Jilid 2</span>
+<span class="text-[11px] opacity-70">(0)</span>
+</button>
+<button class="filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all shrink-0" data-filter="draft">
+<span>Draft</span>
+<span class="text-[11px] opacity-70">(0)</span>
+</button>
+</div>
+</div>
+<!-- Table Canvas -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md" id="packages-table">
+<thead class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-3 px-4 w-16 text-center" scope="col">No</th>
+<th class="py-3 px-4 w-28" scope="col">Paket</th>
+<th class="py-3 px-6" scope="col">Nama Surat</th>
+<th class="py-3 px-4 w-36" scope="col">Ayat</th>
+<th class="py-3 px-4 w-32" scope="col">Status</th>
+<th class="py-3 px-6 w-44 text-right" scope="col">Tindakan</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent font-body-md text-body-md text-on-surface" id="table-body">
+<!-- Row 1 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">01</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Ghafir</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">غَافِر</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-40</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              39–42
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">02</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Al-Ahzab</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">الأَحْزَاب</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-33</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              38–48
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">03</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Al-Ahqaf</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">الأَحْقَاف</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-46</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              13–17
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">04</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Ali 'Imran</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">آل عِمْرَان</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-3</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              186–200
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">05</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Al-Hasyr</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">الحَشْر</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-59</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              21–24
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">06</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">An-Nur</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">النُّور</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-24</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              35–38
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">07</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Al-Furqan</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">الفُرْقَان</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-25</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              63–77
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">08</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Yasin</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">يس</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-36</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              1–12
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 9 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">09</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Az-Zumar</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">الزُّمَر</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-39</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              53–61
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 10 -->
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 text-center font-label-lg text-label-lg font-semibold text-primary">10</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">Jilid 1</span>
+</td>
+<td class="py-3.5 px-6">
+<div class="flex items-baseline gap-3">
+<span class="font-semibold text-on-surface">Luqman</span>
+<span class="font-quran-body text-quran-body text-secondary leading-none">لُقْمَان</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat ke-31</span>
+</div>
+</td>
+<td class="py-3.5 px-4 font-label-lg text-label-lg text-on-surface-variant font-medium">
+              12–19
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#EBF5EE] text-[#276749]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#276749]"></span>
+                Published
+              </span>
+</td>
+<td class="py-3.5 px-6 text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Buka Reader">
+<span class="material-symbols-outlined text-[19px]">visibility</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-primary transition-colors" title="Sunting Paket">
+<span class="material-symbols-outlined text-[19px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" title="Opsi Lanjutan">
+<span class="material-symbols-outlined text-[19px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State Container (Hidden by default) -->
+<div class="hidden py-16 px-4 text-center" id="empty-state">
+<div class="w-12 h-12 rounded-full bg-surface-container mx-auto flex items-center justify-center text-secondary mb-3">
+<span class="material-symbols-outlined text-[24px]">search_off</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Tidak ada paket ditemukan</p>
+<p class="font-body-md text-body-md text-secondary mt-1">Coba sesuaikan kata kunci pencarian atau ganti filter jilid.</p>
+<button class="mt-4 px-4 py-2 rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="btn-reset-filter">
+        Reset Pencarian
+      </button>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="p-space-md bg-surface-container-low/50 flex flex-col sm:flex-row items-center justify-between gap-space-md font-label-md text-label-md text-secondary">
+<div class="flex items-center gap-2">
+<span>Menampilkan <strong class="text-on-surface font-medium">1–10</strong> dari <strong class="text-on-surface font-medium">40</strong> Paket</span>
+</div>
+<!-- Pagination Nav Controls -->
+<nav aria-label="Pagination" class="flex items-center gap-1">
+<button class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container disabled:opacity-30 disabled:pointer-events-none" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-semibold">1</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container text-on-surface transition-colors">2</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container text-on-surface transition-colors">3</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container text-on-surface transition-colors">4</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+<!-- Quick Add / Edit Modal Drawer Component -->
+<div class="fixed inset-0 bg-dark-bg/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200" id="modal-backdrop">
+<div class="fixed inset-y-0 right-0 w-full max-w-lg bg-surface-container-lowest shadow-2xl p-space-lg flex flex-col justify-between overflow-y-auto">
+<div>
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Tambah Paket Maqra' Baru</h2>
+<p class="font-label-md text-label-md text-secondary mt-0.5">Lengkapi formulir jilid dan batasan ayat maqra'.</p>
+</div>
+<button class="p-2 rounded-lg hover:bg-surface-container text-secondary hover:text-on-surface" id="modal-close">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="space-y-space-md font-body-md text-body-md" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Nomor Urut Paket</label>
+<input class="w-full h-10 px-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none" type="text" value="41"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Tingkat / Jilid</label>
+<select class="w-full h-10 px-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none">
+<option value="1">Jilid 1 (Dasar &amp; Menengah)</option>
+<option value="2">Jilid 2 (Lanjutan)</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Pilihan Surat Al-Qur'an</label>
+<select class="w-full h-10 px-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none">
+<option value="40">40. Ghafir (غَافِر)</option>
+<option value="33">33. Al-Ahzab (الأَحْزَاب)</option>
+<option value="46">46. Al-Ahqaf (الأَحْقَاف)</option>
+<option value="3">3. Ali 'Imran (آل عِمْرَان)</option>
+<option value="59">59. Al-Hasyr (الحَشْر)</option>
+<option value="24">24. An-Nur (النُّور)</option>
+<option value="25">25. Al-Furqan (الفُرْقَان)</option>
+<option value="36">36. Yasin (يس)</option>
+<option value="39">39. Az-Zumar (الزُّمَر)</option>
+<option value="31">31. Luqman (لُقْمَان)</option>
+<option value="18">18. Al-Kahf (الكَهْف)</option>
+<option value="55">55. Ar-Rahman (الرَّحْمَن)</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Ayat Mulai</label>
+<input class="w-full h-10 px-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none" placeholder="Contoh: 1" type="number"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Ayat Selesai</label>
+<input class="w-full h-10 px-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none" placeholder="Contoh: 10" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Catatan Tajwid / Waqaf Khusus (Opsional)</label>
+<textarea class="w-full p-3 rounded bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none resize-none" placeholder="Fokus tanda waqaf lazim dan mad jaiz munfashil..." rows="3"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 font-medium">Status Publikasi</label>
+<div class="flex items-center gap-space-md pt-1">
+<label class="inline-flex items-center gap-2 cursor-pointer font-label-md text-label-md">
+<input checked="" class="text-primary focus:ring-primary" name="modal_status" type="radio" value="published"/>
+<span>Publikasikan Langsung</span>
+</label>
+<label class="inline-flex items-center gap-2 cursor-pointer font-label-md text-label-md text-secondary">
+<input class="text-primary focus:ring-primary" name="modal_status" type="radio" value="draft"/>
+<span>Simpan sebagai Draft</span>
+</label>
+</div>
+</div>
+</form>
+</div>
+<div class="pt-space-md flex items-center justify-end gap-space-sm">
+<button class="px-4 py-2 rounded bg-surface-container-low text-secondary hover:bg-surface-container font-label-lg text-label-lg transition-colors" id="modal-cancel">
+          Batal
+        </button>
+<button class="px-5 py-2 rounded bg-primary-container text-on-primary-container hover:bg-light-primary font-label-lg text-label-lg transition-colors font-medium" id="modal-save">
+          Simpan Paket
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initPackageManager() {
+    const searchInput = document.getElementById('table-search');
+    const clearBtn = document.getElementById('clear-search');
+    const tableBody = document.getElementById('table-body');
+    const rows = tableBody.querySelectorAll('tr.table-row');
+    const emptyState = document.getElementById('empty-state');
+    const filterButtons = document.querySelectorAll('#filter-pills .filter-btn');
+    const resetFilterBtn = document.getElementById('btn-reset-filter');
+
+    // Drawer / Modal triggers
+    const btnTambah = document.getElementById('btn-tambah-paket');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalClose = document.getElementById('modal-close');
+    const modalCancel = document.getElementById('modal-cancel');
+    const modalSave = document.getElementById('modal-save');
+
+    let currentFilter = 'all';
+
+    function openModal() {
+      modalBackdrop.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        modalBackdrop.classList.remove('opacity-0');
+      });
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.add('opacity-0');
+      setTimeout(() => {
+        modalBackdrop.classList.add('hidden');
+      }, 200);
+    }
+
+    btnTambah.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+    modalCancel.addEventListener('click', closeModal);
+    modalSave.addEventListener('click', () => {
+      // Feedback pulse
+      closeModal();
+    });
+
+    // Close on escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalBackdrop.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Close on clicking outer backdrop
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closeModal();
+      }
+    });
+
+    function applyFilterAndSearch() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      clearBtn.classList.toggle('hidden', query.length === 0);
+
+      rows.forEach((row) => {
+        const rowText = row.innerText.toLowerCase();
+        const matchesSearch = query === '' || rowText.includes(query);
+
+        // Filter pills logic
+        let matchesFilter = true;
+        if (currentFilter === 'jilid-1') {
+          matchesFilter = rowText.includes('jilid 1');
+        } else if (currentFilter === 'jilid-2') {
+          matchesFilter = false; // None in 1st page
+        } else if (currentFilter === 'draft') {
+          matchesFilter = rowText.includes('draft');
+        }
+
+        if (matchesSearch && matchesFilter) {
+          row.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        tableBody.classList.add('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        tableBody.classList.remove('hidden');
+      }
+    }
+
+    searchInput.addEventListener('input', applyFilterAndSearch);
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      applyFilterAndSearch();
+      searchInput.focus();
+    });
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+          b.classList.add('bg-surface-container-low', 'text-secondary');
+        });
+        btn.classList.add('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+        btn.classList.remove('bg-surface-container-low', 'text-secondary');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilterAndSearch();
+      });
+    });
+
+    resetFilterBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      currentFilter = 'all';
+      filterButtons.forEach((b) => {
+        const isAll = b.getAttribute('data-filter') === 'all';
+        b.classList.toggle('bg-primary-container', isAll);
+        b.classList.toggle('text-on-primary-container', isAll);
+        b.classList.toggle('font-semibold', isAll);
+        b.classList.toggle('bg-surface-container-low', !isAll);
+        b.classList.toggle('text-secondary', !isAll);
+      });
+      applyFilterAndSearch();
+    });
+  })();
+</script></div></main><footer class="w-full bg-surface-container-lowest py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="max-w-[1280px] mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-md text-label-md text-secondary"><p>© 2024 Tartil Shafa'i. Hak Cipta Dilindungi.</p><p class="font-label-sm text-label-sm text-light-text-muted">Portal Administrasi Maqra' &amp; Kurikulum</p></div></footer></body></html>

@@ -1,0 +1,95 @@
+{
+  "surahId": 64,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "pageNumber": 556,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ"
+    },
+    {
+      "ayahNumber": 2,
+      "pageNumber": 556,
+      "glyphCode": "ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ"
+    },
+    {
+      "ayahNumber": 3,
+      "pageNumber": 556,
+      "glyphCode": "ﭲ ﭳ ﭴ ﭵ ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ ﭼ"
+    },
+    {
+      "ayahNumber": 4,
+      "pageNumber": 556,
+      "glyphCode": "ﭽ ﭾ ﭿ ﮀ ﮁ ﮂ ﮃ ﮄ ﮅ ﮆ ﮇ ﮈ ﮉ ﮊ ﮋ ﮌ"
+    },
+    {
+      "ayahNumber": 5,
+      "pageNumber": 556,
+      "glyphCode": "ﮍ ﮎ ﮏ ﮐ ﮑ ﮒ ﮓ ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ"
+    },
+    {
+      "ayahNumber": 6,
+      "pageNumber": 556,
+      "glyphCode": "ﮛ ﮜ ﮝ ﮞ ﮟ ﮠ ﮡ ﮢ ﮣ ﮤ ﮥ ﮦ ﮧ ﮨ ﮩ ﮪ ﮫ ﮬ ﮭ"
+    },
+    {
+      "ayahNumber": 7,
+      "pageNumber": 556,
+      "glyphCode": "ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗ ﯘ ﯙ ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ ﯡ ﯢ ﯣ"
+    },
+    {
+      "ayahNumber": 8,
+      "pageNumber": 556,
+      "glyphCode": "ﯤ ﯥ ﯦ ﯧ ﯨ ﯩ ﯪ ﯫ ﯬ ﯭ ﯮ ﯯ"
+    },
+    {
+      "ayahNumber": 9,
+      "pageNumber": 556,
+      "glyphCode": "ﯰ ﯱ ﯲ ﯳ ﯴ ﯵ ﯶ ﯷ ﯸ ﯹ ﯺ ﯻ ﯼ ﯽ ﯾ ﯿ ﰀ ﰁ ﰂ ﰃ ﰄ ﰅ ﰆ ﰇ ﰈ ﰉ ﰊ ﰋ ﰌ ﰍ ﰎ"
+    },
+    {
+      "ayahNumber": 10,
+      "pageNumber": 557,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ"
+    },
+    {
+      "ayahNumber": 11,
+      "pageNumber": 557,
+      "glyphCode": "ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ"
+    },
+    {
+      "ayahNumber": 12,
+      "pageNumber": 557,
+      "glyphCode": "ﭱ ﭲ ﭳ ﭴ ﭵ ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ ﭼ ﭽ"
+    },
+    {
+      "ayahNumber": 13,
+      "pageNumber": 557,
+      "glyphCode": "ﭾ ﭿ ﮀ ﮁ ﮂ ﮃ ﮄ ﮅ ﮆ ﮇ ﮈ"
+    },
+    {
+      "ayahNumber": 14,
+      "pageNumber": 557,
+      "glyphCode": "ﮉ ﮊ ﮋ ﮌ ﮍ ﮎ ﮏ ﮐ ﮑ ﮒ ﮓ ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ ﮛ ﮜ"
+    },
+    {
+      "ayahNumber": 15,
+      "pageNumber": 557,
+      "glyphCode": "ﮝ ﮞ ﮟ ﮠ ﮡ ﮢ ﮣ ﮤ ﮥ ﮦ"
+    },
+    {
+      "ayahNumber": 16,
+      "pageNumber": 557,
+      "glyphCode": "ﮧ ﮨ ﮩ ﮪ ﮫ ﮬ ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗ ﯘ ﯙ"
+    },
+    {
+      "ayahNumber": 17,
+      "pageNumber": 557,
+      "glyphCode": "ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ ﯡ ﯢ ﯣ ﯤ ﯥ ﯦ ﯧ"
+    },
+    {
+      "ayahNumber": 18,
+      "pageNumber": 557,
+      "glyphCode": "ﯨ ﯩ ﯪ ﯫ ﯬ ﯭ"
+    }
+  ]
+}

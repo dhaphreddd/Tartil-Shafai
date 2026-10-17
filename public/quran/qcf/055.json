@@ -1,0 +1,395 @@
+{
+  "surahId": 55,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "pageNumber": 531,
+      "glyphCode": "ﭷ ﭸ"
+    },
+    {
+      "ayahNumber": 2,
+      "pageNumber": 531,
+      "glyphCode": "ﭹ ﭺ ﭻ"
+    },
+    {
+      "ayahNumber": 3,
+      "pageNumber": 531,
+      "glyphCode": "ﭼ ﭽ ﭾ"
+    },
+    {
+      "ayahNumber": 4,
+      "pageNumber": 531,
+      "glyphCode": "ﭿ ﮀ ﮁ"
+    },
+    {
+      "ayahNumber": 5,
+      "pageNumber": 531,
+      "glyphCode": "ﮂ ﮃ ﮄ ﮅ"
+    },
+    {
+      "ayahNumber": 6,
+      "pageNumber": 531,
+      "glyphCode": "ﮆ ﮇ ﮈ ﮉ"
+    },
+    {
+      "ayahNumber": 7,
+      "pageNumber": 531,
+      "glyphCode": "ﮊ ﮋ ﮌ ﮍ ﮎ"
+    },
+    {
+      "ayahNumber": 8,
+      "pageNumber": 531,
+      "glyphCode": "ﮏ ﮐ ﮑ ﮒ ﮓ"
+    },
+    {
+      "ayahNumber": 9,
+      "pageNumber": 531,
+      "glyphCode": "ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ"
+    },
+    {
+      "ayahNumber": 10,
+      "pageNumber": 531,
+      "glyphCode": "ﮛ ﮜ ﮝ ﮞ"
+    },
+    {
+      "ayahNumber": 11,
+      "pageNumber": 531,
+      "glyphCode": "ﮟ ﮠ ﮡ ﮢ ﮣ ﮤ"
+    },
+    {
+      "ayahNumber": 12,
+      "pageNumber": 531,
+      "glyphCode": "ﮥ ﮦ ﮧ ﮨ ﮩ"
+    },
+    {
+      "ayahNumber": 13,
+      "pageNumber": 531,
+      "glyphCode": "ﮪ ﮫ ﮬ ﮭ ﮮ"
+    },
+    {
+      "ayahNumber": 14,
+      "pageNumber": 531,
+      "glyphCode": "ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ"
+    },
+    {
+      "ayahNumber": 15,
+      "pageNumber": 531,
+      "glyphCode": "ﯖ ﯗ ﯘ ﯙ ﯚ ﯛ ﯜ"
+    },
+    {
+      "ayahNumber": 16,
+      "pageNumber": 531,
+      "glyphCode": "ﯝ ﯞ ﯟ ﯠ ﯡ"
+    },
+    {
+      "ayahNumber": 17,
+      "pageNumber": 532,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ"
+    },
+    {
+      "ayahNumber": 18,
+      "pageNumber": 532,
+      "glyphCode": "ﭖ ﭗ ﭘ ﭙ ﭚ"
+    },
+    {
+      "ayahNumber": 19,
+      "pageNumber": 532,
+      "glyphCode": "ﭛ ﭜ ﭝ ﭞ"
+    },
+    {
+      "ayahNumber": 20,
+      "pageNumber": 532,
+      "glyphCode": "ﭟ ﭠ ﭡ ﭢ ﭣ"
+    },
+    {
+      "ayahNumber": 21,
+      "pageNumber": 532,
+      "glyphCode": "ﭤ ﭥ ﭦ ﭧ ﭨ"
+    },
+    {
+      "ayahNumber": 22,
+      "pageNumber": 532,
+      "glyphCode": "ﭩ ﭪ ﭫ ﭬ ﭭ"
+    },
+    {
+      "ayahNumber": 23,
+      "pageNumber": 532,
+      "glyphCode": "ﭮ ﭯ ﭰ ﭱ ﭲ"
+    },
+    {
+      "ayahNumber": 24,
+      "pageNumber": 532,
+      "glyphCode": "ﭳ ﭴ ﭵ ﭶ ﭷ ﭸ ﭹ"
+    },
+    {
+      "ayahNumber": 25,
+      "pageNumber": 532,
+      "glyphCode": "ﭺ ﭻ ﭼ ﭽ ﭾ"
+    },
+    {
+      "ayahNumber": 26,
+      "pageNumber": 532,
+      "glyphCode": "ﭿ ﮀ ﮁ ﮂ ﮃ"
+    },
+    {
+      "ayahNumber": 27,
+      "pageNumber": 532,
+      "glyphCode": "ﮄ ﮅ ﮆ ﮇ ﮈ ﮉ ﮊ"
+    },
+    {
+      "ayahNumber": 28,
+      "pageNumber": 532,
+      "glyphCode": "ﮋ ﮌ ﮍ ﮎ ﮏ"
+    },
+    {
+      "ayahNumber": 29,
+      "pageNumber": 532,
+      "glyphCode": "ﮐ ﮑ ﮒ ﮓ ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ ﮛ"
+    },
+    {
+      "ayahNumber": 30,
+      "pageNumber": 532,
+      "glyphCode": "ﮜ ﮝ ﮞ ﮟ ﮠ"
+    },
+    {
+      "ayahNumber": 31,
+      "pageNumber": 532,
+      "glyphCode": "ﮡ ﮢ ﮣ ﮤ ﮥ"
+    },
+    {
+      "ayahNumber": 32,
+      "pageNumber": 532,
+      "glyphCode": "ﮦ ﮧ ﮨ ﮩ ﮪ"
+    },
+    {
+      "ayahNumber": 33,
+      "pageNumber": 532,
+      "glyphCode": "ﮫ ﮬ ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗ ﯘ ﯙ ﯚ ﯛ ﯜ ﯝ"
+    },
+    {
+      "ayahNumber": 34,
+      "pageNumber": 532,
+      "glyphCode": "ﯞ ﯟ ﯠ ﯡ ﯢ"
+    },
+    {
+      "ayahNumber": 35,
+      "pageNumber": 532,
+      "glyphCode": "ﯣ ﯤ ﯥ ﯦ ﯧ ﯨ ﯩ ﯪ ﯫ"
+    },
+    {
+      "ayahNumber": 36,
+      "pageNumber": 532,
+      "glyphCode": "ﯬ ﯭ ﯮ ﯯ ﯰ"
+    },
+    {
+      "ayahNumber": 37,
+      "pageNumber": 532,
+      "glyphCode": "ﯱ ﯲ ﯳ ﯴ ﯵ ﯶ ﯷ"
+    },
+    {
+      "ayahNumber": 38,
+      "pageNumber": 532,
+      "glyphCode": "ﯸ ﯹ ﯺ ﯻ ﯼ"
+    },
+    {
+      "ayahNumber": 39,
+      "pageNumber": 532,
+      "glyphCode": "ﯽ ﯾ ﯿ ﰀ ﰁ ﰂ ﰃ ﰄ ﰅ"
+    },
+    {
+      "ayahNumber": 40,
+      "pageNumber": 532,
+      "glyphCode": "ﰆ ﰇ ﰈ ﰉ ﰊ"
+    },
+    {
+      "ayahNumber": 41,
+      "pageNumber": 533,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ"
+    },
+    {
+      "ayahNumber": 42,
+      "pageNumber": 533,
+      "glyphCode": "ﭘ ﭙ ﭚ ﭛ ﭜ"
+    },
+    {
+      "ayahNumber": 43,
+      "pageNumber": 533,
+      "glyphCode": "ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ"
+    },
+    {
+      "ayahNumber": 44,
+      "pageNumber": 533,
+      "glyphCode": "ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ"
+    },
+    {
+      "ayahNumber": 45,
+      "pageNumber": 533,
+      "glyphCode": "ﭪ ﭫ ﭬ ﭭ ﭮ"
+    },
+    {
+      "ayahNumber": 46,
+      "pageNumber": 533,
+      "glyphCode": "ﭯ ﭰ ﭱ ﭲ ﭳ ﭴ"
+    },
+    {
+      "ayahNumber": 47,
+      "pageNumber": 533,
+      "glyphCode": "ﭵ ﭶ ﭷ ﭸ ﭹ"
+    },
+    {
+      "ayahNumber": 48,
+      "pageNumber": 533,
+      "glyphCode": "ﭺ ﭻ ﭼ"
+    },
+    {
+      "ayahNumber": 49,
+      "pageNumber": 533,
+      "glyphCode": "ﭽ ﭾ ﭿ ﮀ ﮁ"
+    },
+    {
+      "ayahNumber": 50,
+      "pageNumber": 533,
+      "glyphCode": "ﮂ ﮃ ﮄ ﮅ"
+    },
+    {
+      "ayahNumber": 51,
+      "pageNumber": 533,
+      "glyphCode": "ﮆ ﮇ ﮈ ﮉ ﮊ"
+    },
+    {
+      "ayahNumber": 52,
+      "pageNumber": 533,
+      "glyphCode": "ﮋ ﮌ ﮍ ﮎ ﮏ ﮐ"
+    },
+    {
+      "ayahNumber": 53,
+      "pageNumber": 533,
+      "glyphCode": "ﮑ ﮒ ﮓ ﮔ ﮕ"
+    },
+    {
+      "ayahNumber": 54,
+      "pageNumber": 533,
+      "glyphCode": "ﮖ ﮗ ﮘ ﮙ ﮚ ﮛ ﮜ ﮝ ﮞ ﮟ ﮠ"
+    },
+    {
+      "ayahNumber": 55,
+      "pageNumber": 533,
+      "glyphCode": "ﮡ ﮢ ﮣ ﮤ ﮥ"
+    },
+    {
+      "ayahNumber": 56,
+      "pageNumber": 533,
+      "glyphCode": "ﮦ ﮧ ﮨ ﮩ ﮪ ﮫ ﮬ ﮭ ﮮ ﮯ"
+    },
+    {
+      "ayahNumber": 57,
+      "pageNumber": 533,
+      "glyphCode": "ﮰ ﮱ ﯓ ﯔ ﯕ"
+    },
+    {
+      "ayahNumber": 58,
+      "pageNumber": 533,
+      "glyphCode": "ﯖ ﯗ ﯘ ﯙ"
+    },
+    {
+      "ayahNumber": 59,
+      "pageNumber": 533,
+      "glyphCode": "ﯚ ﯛ ﯜ ﯝ ﯞ"
+    },
+    {
+      "ayahNumber": 60,
+      "pageNumber": 533,
+      "glyphCode": "ﯟ ﯠ ﯡ ﯢ ﯣ ﯤ"
+    },
+    {
+      "ayahNumber": 61,
+      "pageNumber": 533,
+      "glyphCode": "ﯥ ﯦ ﯧ ﯨ ﯩ"
+    },
+    {
+      "ayahNumber": 62,
+      "pageNumber": 533,
+      "glyphCode": "ﯪ ﯫ ﯬ ﯭ"
+    },
+    {
+      "ayahNumber": 63,
+      "pageNumber": 533,
+      "glyphCode": "ﯮ ﯯ ﯰ ﯱ ﯲ"
+    },
+    {
+      "ayahNumber": 64,
+      "pageNumber": 533,
+      "glyphCode": "ﯳ ﯴ"
+    },
+    {
+      "ayahNumber": 65,
+      "pageNumber": 533,
+      "glyphCode": "ﯵ ﯶ ﯷ ﯸ ﯹ"
+    },
+    {
+      "ayahNumber": 66,
+      "pageNumber": 533,
+      "glyphCode": "ﯺ ﯻ ﯼ ﯽ"
+    },
+    {
+      "ayahNumber": 67,
+      "pageNumber": 533,
+      "glyphCode": "ﯾ ﯿ ﰀ ﰁ ﰂ"
+    },
+    {
+      "ayahNumber": 68,
+      "pageNumber": 534,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ"
+    },
+    {
+      "ayahNumber": 69,
+      "pageNumber": 534,
+      "glyphCode": "ﭖ ﭗ ﭘ ﭙ ﭚ"
+    },
+    {
+      "ayahNumber": 70,
+      "pageNumber": 534,
+      "glyphCode": "ﭛ ﭜ ﭝ ﭞ"
+    },
+    {
+      "ayahNumber": 71,
+      "pageNumber": 534,
+      "glyphCode": "ﭟ ﭠ ﭡ ﭢ ﭣ"
+    },
+    {
+      "ayahNumber": 72,
+      "pageNumber": 534,
+      "glyphCode": "ﭤ ﭥ ﭦ ﭧ ﭨ"
+    },
+    {
+      "ayahNumber": 73,
+      "pageNumber": 534,
+      "glyphCode": "ﭩ ﭪ ﭫ ﭬ ﭭ"
+    },
+    {
+      "ayahNumber": 74,
+      "pageNumber": 534,
+      "glyphCode": "ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ ﭴ"
+    },
+    {
+      "ayahNumber": 75,
+      "pageNumber": 534,
+      "glyphCode": "ﭵ ﭶ ﭷ ﭸ ﭹ"
+    },
+    {
+      "ayahNumber": 76,
+      "pageNumber": 534,
+      "glyphCode": "ﭺ ﭻ ﭼ ﭽ ﭾ ﭿ ﮀ"
+    },
+    {
+      "ayahNumber": 77,
+      "pageNumber": 534,
+      "glyphCode": "ﮁ ﮂ ﮃ ﮄ ﮅ"
+    },
+    {
+      "ayahNumber": 78,
+      "pageNumber": 534,
+      "glyphCode": "ﮆ ﮇ ﮈ ﮉ ﮊ ﮋ ﮌ"
+    }
+  ]
+}

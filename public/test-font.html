@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Font Test</title>
+  <style>
+    @font-face {
+      font-family: 'Test_LPMQ';
+      src: url('/fonts/lpmq/lpmq.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Test_KFGQPC';
+      src: url('/fonts/kfgqpc/kfgqpc-hafs.otf') format('opentype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Test_Omar';
+      src: url('/fonts/omar-naskh/omar-naskh.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    body {
+      padding: 50px;
+      text-align: right;
+    }
+
+    h2 {
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .quran-text {
+      font-size: 40px;
+      line-height: 2.2;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+
+    .system { font-family: Arial, "Traditional Arabic", "Scheherazade New", serif; }
+    .lpmq { font-family: 'Test_LPMQ', serif; }
+    .kfgqpc { font-family: 'Test_KFGQPC', serif; }
+    .omar { font-family: 'Test_Omar', serif; }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>System Arabic (Fallback)</h2>
+    <div class="quran-text system">مَنْ عَمِلَ سَيِّئَةً فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا ۖ وَمَنْ عَمِلَ صَالِحًا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌ فَأُولَٰئِكَ يَدْخُلُونَ الْجَنَّةَ يُرْزَقُونَ فِيهَا بِغَيْرِ حِسَابٍ ﴿٤٠﴾</div>
+  </div>
+  <div>
+    <h2>LPMQ Isep Misbah</h2>
+    <div class="quran-text lpmq">مَنْ عَمِلَ سَيِّئَةً فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا ۖ وَمَنْ عَمِلَ صَالِحًا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌ فَأُولَٰئِكَ يَدْخُلُونَ الْجَنَّةَ يُرْزَقُونَ فِيهَا بِغَيْرِ حِسَابٍ ﴿٤٠﴾</div>
+  </div>
+  <div>
+    <h2>KFGQPC Hafs</h2>
+    <div class="quran-text kfgqpc">مَنْ عَمِلَ سَيِّئَةً فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا ۖ وَمَنْ عَمِلَ صَالِحًا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌ فَأُولَٰئِكَ يَدْخُلُونَ الْجَنَّةَ يُرْزَقُونَ فِيهَا بِغَيْرِ حِسَابٍ ﴿٤٠﴾</div>
+  </div>
+  <div>
+    <h2>Omar Naskh</h2>
+    <div class="quran-text omar">مَنْ عَمِلَ سَيِّئَةً فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا ۖ وَمَنْ عَمِلَ صَالِحًا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌ فَأُولَٰئِكَ يَدْخُلُونَ الْجَنَّةَ يُرْزَقُونَ فِيهَا بِغَيْرِ حِسَابٍ ﴿٤٠﴾</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Tanzil Quran Text
+Source: Tanzil Project (https://tanzil.net/)
+URL: https://tanzil.net/download/
+Text Type: Uthmani
+Version: 1.1 (or latest at time of fetch)
+License: https://tanzil.net/docs/Text_License
+Date Imported: 2026-09-28T07:19:18.291Z
+
+Terms of Use: Permission is granted to copy and distribute verbatim copies of this Quran text, but changing the text is not allowed.

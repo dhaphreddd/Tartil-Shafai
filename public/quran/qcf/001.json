@@ -1,0 +1,40 @@
+{
+  "surahId": 1,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "pageNumber": 1,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ"
+    },
+    {
+      "ayahNumber": 2,
+      "pageNumber": 1,
+      "glyphCode": "ﭖ ﭗ ﭘ ﭙ ﭚ"
+    },
+    {
+      "ayahNumber": 3,
+      "pageNumber": 1,
+      "glyphCode": "ﭛ ﭜ ﭝ"
+    },
+    {
+      "ayahNumber": 4,
+      "pageNumber": 1,
+      "glyphCode": "ﭞ ﭟ ﭠ ﭡ"
+    },
+    {
+      "ayahNumber": 5,
+      "pageNumber": 1,
+      "glyphCode": "ﭢ ﭣ ﭤ ﭥ ﭦ"
+    },
+    {
+      "ayahNumber": 6,
+      "pageNumber": 1,
+      "glyphCode": "ﭧ ﭨ ﭩ ﭪ"
+    },
+    {
+      "ayahNumber": 7,
+      "pageNumber": 1,
+      "glyphCode": "ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ ﭴ"
+    }
+  ]
+}

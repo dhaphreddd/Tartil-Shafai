@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-background": "#1b1c1c",
+          "dark-primary-hover": "#D5B96F",
+          "on-secondary-fixed-variant": "#464747",
+          "light-primary-hover": "#80632F",
+          "secondary-fixed": "#e4e2e2",
+          "primary-fixed": "#ffdeaa",
+          "dark-border": "#2A2A2A",
+          "error": "#ba1a1a",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#5e5e5e",
+          "on-secondary": "#ffffff",
+          "light-surface-subtle": "#F4F2EC",
+          "error-container": "#ffdad6",
+          "on-primary": "#ffffff",
+          "surface-dim": "#dcd9d9",
+          "on-primary-container": "#fffbff",
+          "primary-container": "#916f31",
+          "on-secondary-fixed": "#1b1c1c",
+          "light-surface": "#FFFFFF",
+          "surface-container-low": "#f6f3f2",
+          "on-primary-fixed-variant": "#5e4204",
+          "surface-container-high": "#eae7e7",
+          "primary-fixed-dim": "#eac079",
+          "light-border": "#E7E3D9",
+          "on-tertiary-fixed": "#271900",
+          "on-error-container": "#93000a",
+          "dark-primary": "#C6A15B",
+          "outline-variant": "#d1c5b4",
+          "primary": "#76571a",
+          "dark-text": "#F5F5F5",
+          "surface-tint": "#78591d",
+          "light-primary": "#9A7738",
+          "on-surface": "#1b1c1c",
+          "tertiary": "#735725",
+          "surface-container": "#f0eded",
+          "surface-bright": "#fcf9f8",
+          "dark-text-muted": "#777777",
+          "inverse-on-surface": "#f3f0ef",
+          "light-bg": "#FAFAF7",
+          "light-text": "#202020",
+          "dark-text-secondary": "#B1B1B1",
+          "surface-variant": "#e5e2e1",
+          "inverse-surface": "#303030",
+          "on-tertiary-fixed-variant": "#5c4211",
+          "tertiary-fixed": "#ffdeaa",
+          "tertiary-fixed-dim": "#e6c184",
+          "on-primary-fixed": "#271900",
+          "tertiary-container": "#8e703a",
+          "on-secondary-container": "#626263",
+          "surface": "#fcf9f8",
+          "on-tertiary-container": "#fffbff",
+          "inverse-primary": "#eac079",
+          "background": "#fcf9f8",
+          "dark-surface-elevated": "#202020",
+          "on-tertiary": "#ffffff",
+          "outline": "#807667",
+          "on-surface-variant": "#4e4639",
+          "dark-surface": "#181818",
+          "light-text-muted": "#969696",
+          "light-text-secondary": "#6F6F6F",
+          "secondary-fixed-dim": "#c7c6c6",
+          "surface-container-highest": "#e5e2e1",
+          "dark-bg": "#111111",
+          "on-error": "#ffffff",
+          "secondary-container": "#e1dfdf"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-tablet": "1.5rem",
+          "space-sm": "0.5rem",
+          "margin-desktop": "3rem",
+          "margin": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "2.5rem",
+          "space-lg": "1.5rem",
+          "gutter-desktop": "2rem",
+          "margin-tablet": "2rem",
+          "space-md": "1rem",
+          "gutter": "1rem"
+        },
+        "fontFamily": {
+          "quran-display": ["Noto Naskh Arabic"],
+          "display-hero": ["Inter"],
+          "body-sm": ["Inter"],
+          "body-md": ["Inter"],
+          "headline-md": ["Inter"],
+          "headline-lg": ["Inter"],
+          "headline-sm": ["Inter"],
+          "body-lg": ["Inter"],
+          "quran-body": ["Noto Naskh Arabic"],
+          "label-sm": ["Inter"],
+          "quran-display-mobile": ["Noto Naskh Arabic"],
+          "label-lg": ["Inter"],
+          "label-md": ["Inter"],
+          "display-hero-mobile": ["Inter"],
+          "quran-body-mobile": ["Noto Naskh Arabic"]
+        },
+        "fontSize": {
+          "quran-display": ["38px", {"lineHeight": "84px", "fontWeight": "400"}],
+          "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+          "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+          "body-lg": ["17px", {"lineHeight": "26px", "fontWeight": "400"}],
+          "quran-body": ["30px", {"lineHeight": "72px", "fontWeight": "400"}],
+          "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600"}],
+          "quran-display-mobile": ["28px", {"lineHeight": "64px", "fontWeight": "400"}],
+          "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+          "display-hero-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "quran-body-mobile": ["24px", {"lineHeight": "56px", "fontWeight": "400"}]
+        }
+      }
+    }
+  }</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 w-full z-50 bg-light-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-[1120px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="jilid-1" href="#"><img alt="Brand logo. - Primary color: #9a7738
+- Font: inter
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UERFa6M_zJK62eieUep4iU6zufMtkTkKDMkiCOeGy-dMzBwXW_--47WovZrIa0oyothVSU3TSGVGfTgqh8RaJSImrec_I0RCoQhe1lDW99sXk3hk8iHILFcVKL8-VkiXs7ks4Dbe9JdIAPVtB9Pj7a--t5ton6WriUIVp7rADzs5VR6KdTA3PSPmRCJyBF720SQqsaesLdbSTg4Hrpo0dL3jrbiiKOeBRC2vMOvhi9wv2HNS82h60-IZI"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold">Tartil Shafa'i</span><span class="font-label-sm text-label-sm text-light-primary uppercase tracking-widest">Panduan Maqra'</span></div></a><nav class="hidden md:flex items-center gap-space-xs p-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-medium rounded-lg"><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-medium rounded-lg" data-path="jilid-1" href="#">Jilid 1</a><a class="px-space-md py-space-sm text-on-surface-variant font-label-lg text-label-lg transition-colors hover:bg-surface-container hover:text-on-surface rounded-lg" data-path="jilid-2" href="#">Jilid 2</a><a class="px-space-md py-space-sm text-on-surface-variant font-label-lg text-label-lg transition-colors hover:bg-surface-container hover:text-on-surface rounded-lg" data-path="cari" href="#">Cari</a></nav></div><div class="flex items-center gap-space-sm"><div class="hidden lg:flex items-center gap-space-sm px-space-md py-space-xs bg-light-surface-subtle text-on-surface-variant rounded-lg cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px] text-light-text-secondary">search</span><span class="font-body-sm text-body-sm text-light-text-muted">Cari surat atau maqra'...</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface text-light-text-secondary">⌘K</span></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle tema tampilan" class="w-10 h-10 flex items-center justify-center rounded-lg text-light-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><button aria-label="Pengaturan bacaan" class="w-10 h-10 flex items-center justify-center rounded-lg text-light-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">settings</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<div class="w-full max-w-[1100px] mx-auto px-gutter-desktop py-space-lg flex flex-col gap-space-lg">
+<!-- Breadcrumb & Volume Switcher Header -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<a class="inline-flex items-center gap-space-xs text-secondary hover:text-light-primary transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="">Beranda</span>
+</a>
+<!-- Jilid Segmented Switcher -->
+<div class="flex items-center p-1 bg-surface-container-low rounded-xl">
+<button class="px-space-md py-1.5 rounded-lg bg-light-primary text-on-primary font-label-lg text-label-lg shadow-sm" type="button">
+            Jilid 1 (40 Paket)
+          </button>
+<button class="px-space-md py-1.5 rounded-lg text-secondary hover:text-on-surface transition-colors font-label-lg text-label-lg" type="button">
+            Jilid 2 (Paket Lanjutan)
+          </button>
+</div>
+</div>
+<!-- Title & Subtitle -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pt-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-light-primary block mb-1">Daftar Kurasi Maqra'</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+            Jilid 1 — Fondasi &amp; Tilawah Tartil
+          </h1>
+<p class="font-body-md text-body-md text-secondary mt-1 max-w-2xl">
+            Koleksi 40 Paket Maqra' pilihan untuk pemantapan makhraj, kelancaran nafas, dan pemahaman waqaf ibtida'.
+          </p>
+</div>
+<!-- Metric Indicator Card -->
+<div class="hidden lg:flex items-center gap-space-md bg-light-surface-subtle px-space-md py-space-sm rounded-xl">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-light-primary">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Target Selesai</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">40 / 40 Maqra'</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Search & Range Filters Toolbar -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md pt-space-xs">
+<!-- Search Input -->
+<div class="relative flex-1 max-w-lg">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-light-text-secondary pointer-events-none">search</span>
+<input class="w-full h-11 pl-11 pr-10 bg-light-surface rounded-xl text-on-surface font-body-sm text-body-sm placeholder:text-light-text-muted focus:outline-none focus:bg-light-surface-subtle transition-colors shadow-sm" id="maqraSearchInput" placeholder="Cari nomor paket, nama surat, atau ayat... (misal: Ghafir, 01, 39-42)" type="text">
+<button class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-light-text-secondary hover:text-on-surface" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Quick Range Segment Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0" id="filterPillsContainer">
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary-container transition-all" data-filter="all" type="button">
+          Semua (40)
+        </button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all" data-filter="1-10" type="button">
+          Paket 01–10
+        </button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all" data-filter="11-20" type="button">
+          Paket 11–20
+        </button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all" data-filter="21-30" type="button">
+          Paket 21–30
+        </button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all" data-filter="31-40" type="button">
+          Paket 31–40
+        </button>
+</div>
+</div>
+<!-- Package List Table Container -->
+<div class="w-full bg-light-surface rounded-xl overflow-hidden shadow-sm flex flex-col">
+<!-- Table Header (Desktop only) -->
+<div class="hidden md:grid grid-cols-12 items-center px-space-lg py-space-sm bg-surface-container-low font-label-sm text-label-sm text-secondary tracking-wider uppercase">
+<div class="col-span-1">No.</div>
+<div class="col-span-4">Surat &amp; Transliterasi</div>
+<div class="col-span-3 text-right pr-6">Surah (Arab)</div>
+<div class="col-span-2">Rentang &amp; Volume</div>
+<div class="col-span-2 text-right">Aksi</div>
+</div>
+<!-- Rows Stream -->
+<div class="flex flex-col" id="packageListRows">
+<!-- Row 01 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 hover:bg-light-surface-subtle transition-colors" data-path="reader/01" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              01
+            </span>
+<span class="md:hidden inline-flex items-center px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+              Terakhir Dibuka
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Ghafir</span><span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Terakhir Dibuka</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">يَقَوْمِ إِنَّمَا هَٰذِهِ...</span><span class="text-light-text-secondary text-[12px] italic">(Yā qawmi innamā hāżihi...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">غَافِر</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 39–42</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">4 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 02 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 bg-surface-container-lowest hover:bg-light-surface-subtle transition-colors" data-path="reader/02" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              02
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Al-Ahzab</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">مَّا كَانَ عَلَى ٱلنَّبِىِّ...</span><span class="text-light-text-secondary text-[12px] italic">(Mā kāna 'alan-nabiyyi...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">الأَحْزَاب</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 38–48</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">11 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 03 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 hover:bg-light-surface-subtle transition-colors" data-path="reader/03" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              03
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Al-Ahqaf</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">إِنَّ ٱلَّذِينَ قَالُواْ رَبُّنَا...</span><span class="text-light-text-secondary text-[12px] italic">(Innal-lażīna qālū rabbunallāhu...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">الأَحْقَاف</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 13–17</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">5 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 04 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 bg-surface-container-lowest hover:bg-light-surface-subtle transition-colors" data-path="reader/04" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              04
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Ali Imran</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">۞ لَتُبْلَوُنَّ فِىٓ أَمْوَٰلِكُمْ...</span><span class="text-light-text-secondary text-[12px] italic">(Latublawunna fī amwālikum...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">آلِ عِمْرَان</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 186–200</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">15 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 05 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 hover:bg-light-surface-subtle transition-colors" data-path="reader/05" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              05
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Al-Hasyr</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">لَوْ أَنزَلْنَا هَٰذَا ٱلْقُرْءَانَ...</span><span class="text-light-text-secondary text-[12px] italic">(Law anzalnā hāżal-qur'āna...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">الحَشْر</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 21–24</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">4 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 06 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 bg-surface-container-lowest hover:bg-light-surface-subtle transition-colors" data-path="reader/06" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              06
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. An-Nur</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">۞ ٱللَّهُ نُورُ ٱلسَّمَٰوَٰتِ...</span><span class="text-light-text-secondary text-[12px] italic">(Allāhu nūrus-samāwāti...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">النُّوْر</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 35–38</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">4 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 07 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 hover:bg-light-surface-subtle transition-colors" data-path="reader/07" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              07
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Maryam</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">كٓهيعٓصٓ ۝ ذِكْرُ رَحْمَتِ...</span><span class="text-light-text-secondary text-[12px] italic">(Kāf Hā Yā 'Aīn Sād...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">مَرْيَم</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 1–15</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">15 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 08 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 bg-surface-container-lowest hover:bg-light-surface-subtle transition-colors" data-path="reader/08" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              08
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Al-Kahf</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ...</span><span class="text-light-text-secondary text-[12px] italic">(Innal-lażīna āmanū...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">الكَهْف</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 107–110</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">4 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 09 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 hover:bg-light-surface-subtle transition-colors" data-path="reader/09" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              09
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Al-An'am</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">۞ قُلْ تَعَالَوْاْ أَتْلُ...</span><span class="text-light-text-secondary text-[12px] italic">(Qul ta'ālaw atlu...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">الأَنْعَام</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 151–153</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">3 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Row 10 -->
+<a class="group grid grid-cols-1 md:grid-cols-12 items-center px-space-md md:px-space-lg py-3.5 bg-surface-container-lowest hover:bg-light-surface-subtle transition-colors" data-path="reader/10" href="#">
+<div class="md:col-span-1 flex items-center justify-between md:justify-start mb-1 md:mb-0">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-label-md text-label-md font-semibold text-light-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+              10
+            </span>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center gap-0.5"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface group-hover:text-light-primary transition-colors">QS. Yunus</span></div><div class="flex items-baseline gap-1.5 text-secondary text-body-sm"><span class="font-quran-body text-light-primary text-[16px]" dir="rtl">يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم...</span><span class="text-light-text-secondary text-[12px] italic">(Yā ayyuhan-nāsu qad jā'atkum...)</span></div></div>
+<div class="md:col-span-3 text-left md:text-right md:pr-6 my-1 md:my-0">
+<span class="font-quran-body text-2xl text-on-surface font-normal" dir="rtl">يُوْنُس</span>
+</div>
+<div class="md:col-span-2 flex items-center md:flex-col md:items-start justify-between md:justify-center text-secondary">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Ayat 57–60</span>
+<span class="font-label-sm text-label-sm text-light-text-secondary">4 Ayat</span>
+</div>
+<div class="md:col-span-2 flex items-center justify-end pt-2 md:pt-0">
+<span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-light-primary group-hover:text-light-primary-hover transition-colors font-medium">
+<span class="">Buka Reader</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Pagination & Summary Footer -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md py-space-sm px-space-xs text-secondary">
+<div class="font-body-sm text-body-sm">
+        Menampilkan <span class="font-medium text-on-surface">1–10</span> dari <span class="font-medium text-on-surface">40</span> Paket Maqra'
+      </div>
+<div class="flex items-center gap-1">
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-light-text-muted bg-surface-container-low cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center font-label-md text-label-md font-semibold bg-primary-container text-on-primary-container" type="button">
+          1
+        </button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center font-label-md text-label-md hover:bg-surface-container text-on-surface transition-colors" type="button">
+          2
+        </button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center font-label-md text-label-md hover:bg-surface-container text-on-surface transition-colors" type="button">
+          3
+        </button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center font-label-md text-label-md hover:bg-surface-container text-on-surface transition-colors" type="button">
+          4
+        </button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Serene Guidance Card Note -->
+<div class="mt-space-sm p-space-md rounded-xl bg-light-surface-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-light-primary text-[22px] mt-0.5">tips_and_updates</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Petunjuk Tilawah Fondasi</span>
+<p class="font-body-sm text-body-sm text-secondary">
+            Mulailah tiap maqra' dengan membaca istiadzah dan perhatikan tanda saktah serta waqaf lazim yang ditandai khusus dalam mushaf pembaca.
+          </p>
+</div>
+</div>
+<a class="shrink-0 font-label-md text-label-md text-light-primary font-medium hover:text-light-primary-hover transition-colors" data-path="pedoman-tajwid" href="#">
+        Pelajari Pedoman Waqaf →
+      </a>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    const searchInput = document.getElementById('maqraSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const filterPills = document.querySelectorAll('#filterPillsContainer button');
+    const rows = document.querySelectorAll('#packageListRows > a');
+
+    if (searchInput && clearBtn) {
+      searchInput.addEventListener('input', function (e) {
+        const val = e.target.value.toLowerCase().trim();
+        if (val.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+
+        rows.forEach(row => {
+          const rowText = row.innerText.toLowerCase();
+          if (rowText.includes(val)) {
+            row.style.display = 'grid';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+
+      clearBtn.addEventListener('click', function () {
+        searchInput.value = '';
+        clearBtn.classList.add('hidden');
+        rows.forEach(row => { row.style.display = 'grid'; });
+        searchInput.focus();
+      });
+    }
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function () {
+        filterPills.forEach(p => {
+          p.className = 'px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-low text-secondary hover:bg-surface-container hover:text-on-surface transition-all';
+        });
+        this.className = 'px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary-container transition-all';
+      });
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-low mt-space-xl py-space-xl"><div class="max-w-[1120px] mx-auto px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-lg text-center md:text-left"><div class="flex flex-col gap-space-xs"><span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Tartil Shafa'i</span><p class="font-body-sm text-body-sm text-light-text-secondary max-w-md">Platform digital mutqin tilawah dan panduan maqra' tartil Al-Qur'an dengan mushaf terkurasi.</p></div><div class="flex flex-wrap items-center justify-center gap-space-lg"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-light-primary transition-colors" data-path="pedoman-tajwid" href="#">Pedoman Tajwid</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-light-primary transition-colors" data-path="indeks-maqra" href="#">Indeks Maqra'</a><a class="font-body-sm text-body-sm text-light-primary-hover transition-colors" data-path="tentang-metode" href="#">Tentang Metode</a></div></div><div class="max-w-[1120px] mx-auto px-gutter-desktop mt-space-lg pt-space-md text-center text-on-surface-variant font-label-sm text-label-sm">© 2025 Tartil Shafa'i. Hak Cipta Dilindungi Undang-Undang.</div></footer>
+
+</body></html>
