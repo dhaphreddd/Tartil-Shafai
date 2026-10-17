@@ -1,0 +1,45 @@
+{
+  "surahId": 94,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "pageNumber": 596,
+      "glyphCode": "ﮥ ﮦ ﮧ ﮨ ﮩ"
+    },
+    {
+      "ayahNumber": 2,
+      "pageNumber": 596,
+      "glyphCode": "ﮪ ﮫ ﮬ ﮭ"
+    },
+    {
+      "ayahNumber": 3,
+      "pageNumber": 596,
+      "glyphCode": "ﮮ ﮯ ﮰ ﮱ"
+    },
+    {
+      "ayahNumber": 4,
+      "pageNumber": 596,
+      "glyphCode": "ﯓ ﯔ ﯕ ﯖ"
+    },
+    {
+      "ayahNumber": 5,
+      "pageNumber": 596,
+      "glyphCode": "ﯗ ﯘ ﯙ ﯚ ﯛ"
+    },
+    {
+      "ayahNumber": 6,
+      "pageNumber": 596,
+      "glyphCode": "ﯜ ﯝ ﯞ ﯟ ﯠ"
+    },
+    {
+      "ayahNumber": 7,
+      "pageNumber": 596,
+      "glyphCode": "ﯡ ﯢ ﯣ ﯤ"
+    },
+    {
+      "ayahNumber": 8,
+      "pageNumber": 596,
+      "glyphCode": "ﯥ ﯦ ﯧ ﯨ"
+    }
+  ]
+}

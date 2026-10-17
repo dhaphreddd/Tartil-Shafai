@@ -1,0 +1,30 @@
+{
+  "surahId": 97,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "pageNumber": 598,
+      "glyphCode": "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ"
+    },
+    {
+      "ayahNumber": 2,
+      "pageNumber": 598,
+      "glyphCode": "ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ"
+    },
+    {
+      "ayahNumber": 3,
+      "pageNumber": 598,
+      "glyphCode": "ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ"
+    },
+    {
+      "ayahNumber": 4,
+      "pageNumber": 598,
+      "glyphCode": "ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ"
+    },
+    {
+      "ayahNumber": 5,
+      "pageNumber": 598,
+      "glyphCode": "ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ"
+    }
+  ]
+}
