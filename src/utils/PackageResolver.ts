@@ -71,7 +71,7 @@ export class PackageResolver {
           return {
             ...a,
             surahId: sec.surahId,
-            pageNumber: a.pageNumber || enriched?.pageNumber,
+            pageNumber: enriched?.pageNumber || a.pageNumber,
             glyphCode: a.glyphCode || enriched?.glyphCode,
           };
         });
