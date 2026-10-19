@@ -97,22 +97,33 @@ export default function ReaderSettingsPopover({
   if (!isOpen) return null;
 
   return (
-    <div
-      ref={popoverRef}
-      role="dialog"
-      aria-label="Pengaturan Tampilan Bacaan"
-      className="absolute right-0 top-full mt-2 z-40 w-[calc(100vw-32px)] sm:w-[350px] max-w-[360px] rounded-2xl border shadow-2xl transition-all animate-fade-in flex flex-col max-h-[85vh] overflow-y-auto"
-      style={{
-        backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
-        borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
-        color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
-      }}
-    >
-      {/* Header */}
+    <>
+      {/* Mobile Backdrop Overlay */}
       <div
-        className="px-4 py-3 border-b flex items-center justify-between"
-        style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
+        className="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-[55] sm:hidden animate-fade-in"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      <div
+        ref={popoverRef}
+        role="dialog"
+        aria-label="Pengaturan Tampilan Bacaan"
+        className="fixed inset-x-0 bottom-0 z-[60] w-full max-w-lg mx-auto rounded-t-3xl border-t shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto sm:max-h-[85vh] sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[350px] sm:max-w-[360px] sm:rounded-2xl sm:border sm:shadow-2xl animate-fade-in"
+        style={{
+          backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
+          borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+          color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
+        }}
       >
+        {/* Mobile Grab Handle */}
+        <div className="w-10 h-1 rounded-full bg-black/20 dark:bg-white/20 mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
+
+        {/* Header */}
+        <div
+          className="px-4 py-3 border-b flex items-center justify-between"
+          style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
+        >
         <div className="flex items-center gap-2">
           <span
             className="material-symbols-outlined text-[18px]"
@@ -419,7 +430,7 @@ export default function ReaderSettingsPopover({
 
       {/* Footer */}
       <div
-        className="px-4 py-2.5 border-t flex items-center justify-between"
+        className="px-4 py-3 sm:py-2.5 border-t flex items-center justify-between pb-6 sm:pb-2.5 shrink-0"
         style={{
           borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
           backgroundColor: isDark
@@ -430,19 +441,19 @@ export default function ReaderSettingsPopover({
         <button
           type="button"
           onClick={onReset}
-          className="flex items-center gap-1 text-[11px] font-medium transition-colors hover:underline"
+          className="flex items-center gap-1 text-[12px] sm:text-[11px] font-medium transition-colors hover:underline cursor-pointer"
           style={{
             color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)',
           }}
         >
-          <span className="material-symbols-outlined text-[14px]">restart_alt</span>
+          <span className="material-symbols-outlined text-[16px] sm:text-[14px]">restart_alt</span>
           <span>Reset Standar</span>
         </button>
 
         <button
           type="button"
           onClick={onClose}
-          className="px-3 py-1 rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90"
+          className="px-4 py-1.5 sm:px-3 sm:py-1 rounded-xl sm:rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
           style={{
             backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
             color: 'var(--color-on-primary)',
@@ -452,5 +463,6 @@ export default function ReaderSettingsPopover({
         </button>
       </div>
     </div>
-  );
+  </>
+);
 }
