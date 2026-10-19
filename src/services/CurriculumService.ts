@@ -223,12 +223,17 @@ export class CurriculumService {
       console.error(err);
     }
 
-    // Defer persistent Firestore streaming connection until browser idle
-    if (typeof window !== 'undefined') {
-      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
-      idleFn(() => {
-        this.initRealtime();
-      });
+    // Defer persistent Firestore streaming connection until critical render completes
+    const isAdminPath = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin');
+    if (isAdminPath) {
+      this.initRealtime();
+    } else if (typeof window !== 'undefined') {
+      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 10000));
+      setTimeout(() => {
+        idleFn(() => {
+          this.initRealtime();
+        });
+      }, 6000);
     } else {
       this.initRealtime();
     }

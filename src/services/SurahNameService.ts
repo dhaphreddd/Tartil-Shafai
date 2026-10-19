@@ -364,10 +364,17 @@ export class SurahNameService {
   }
 }
 
-// Inisialisasi otomatis jika di lingkungan browser saat idle
+// Inisialisasi otomatis jika di lingkungan browser: langsung untuk admin, atau tunda untuk pembaca umum
 if (typeof window !== 'undefined') {
-  const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
-  idleFn(() => {
+  const isAdminPath = window.location.pathname.startsWith('/admin');
+  if (isAdminPath) {
     SurahNameService.initRealtime();
-  });
+  } else {
+    const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 10000));
+    setTimeout(() => {
+      idleFn(() => {
+        SurahNameService.initRealtime();
+      });
+    }, 6000);
+  }
 }

@@ -69,14 +69,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    if (isAdminPath) {
+    const hasStoredAuth = typeof window !== 'undefined' && (() => {
+      try {
+        for (let i = 0; i < localStorage.length; i++) {
+          if (localStorage.key(i)?.startsWith('firebase:authUser:')) return true;
+        }
+      } catch {}
+      return false;
+    })();
+
+    if (isAdminPath || hasStoredAuth) {
       initAuth();
     } else {
       setLoading(false);
-      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
-      idleFn(() => {
+      // Untuk pengunjung umum tanpa sesi, tunda hingga ada interaksi pengguna atau setelah fase LCP
+      let timer: any = null;
+      const onUserInteraction = () => {
+        cleanup();
         initAuth();
-      });
+      };
+      const cleanup = () => {
+        if (timer) clearTimeout(timer);
+        window.removeEventListener('pointerdown', onUserInteraction);
+        window.removeEventListener('keydown', onUserInteraction);
+      };
+      window.addEventListener('pointerdown', onUserInteraction, { once: true, passive: true });
+      window.addEventListener('keydown', onUserInteraction, { once: true, passive: true });
+      timer = setTimeout(() => {
+        cleanup();
+        initAuth();
+      }, 10000);
+
+      return () => {
+        cleanup();
+        if (unsubscribe) unsubscribe();
+      };
     }
 
     return () => {

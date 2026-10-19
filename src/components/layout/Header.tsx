@@ -46,7 +46,7 @@ export default function Header() {
           id="nav-logo"
         >
           <img
-            src={`${import.meta.env.BASE_URL}logo-128.png`}
+            src={`${import.meta.env.BASE_URL}logo-64.png`}
             alt="Logo Jalsah Qur'aniyyah Shafa'i"
             className="w-8 h-8 md:w-9 md:h-9 object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
             width="36"
