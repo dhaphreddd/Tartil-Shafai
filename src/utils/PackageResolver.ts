@@ -87,13 +87,22 @@ export class PackageResolver {
 
         sectionAyahs = sec.customAyahs.map((a) => {
           const enriched = datasetMap.get(a.ayahNumber);
-          const rawPage = enriched?.pageNumber || a.pageNumber;
-          const finalPage = sanitizeMushafV1Page(sec.surahId, a.ayahNumber, rawPage);
+          const rawV1Page = a.pageNumberV1 || enriched?.pageNumberV1 || a.pageNumber;
+          const finalV1Page = sanitizeMushafV1Page(sec.surahId, a.ayahNumber, rawV1Page);
+          const rawV2Page = a.pageNumberV2 || enriched?.pageNumberV2 || enriched?.pageNumber || a.pageNumber;
+
           return {
             ...a,
             surahId: sec.surahId,
-            pageNumber: finalPage,
-            glyphCode: a.glyphCode || enriched?.glyphCode,
+            // V1 fields
+            glyphCodeV1: a.glyphCodeV1 || enriched?.glyphCodeV1 || a.glyphCode,
+            pageNumberV1: finalV1Page,
+            // V2 fields
+            glyphCodeV2: a.glyphCodeV2 || enriched?.glyphCodeV2 || enriched?.glyphCode,
+            pageNumberV2: rawV2Page,
+            // Default active fields (V2 is default)
+            glyphCode: enriched?.glyphCodeV2 || a.glyphCodeV2 || enriched?.glyphCode || a.glyphCode,
+            pageNumber: rawV2Page,
           };
         });
       } else {
@@ -106,7 +115,8 @@ export class PackageResolver {
         sectionAyahs = fetched.map((a) => ({
           ...a,
           surahId: sec.surahId,
-          pageNumber: sanitizeMushafV1Page(sec.surahId, a.ayahNumber, a.pageNumber),
+          pageNumberV1: sanitizeMushafV1Page(sec.surahId, a.ayahNumber, a.pageNumberV1 || a.pageNumber),
+          pageNumberV2: a.pageNumberV2 || a.pageNumber,
         }));
       }
 

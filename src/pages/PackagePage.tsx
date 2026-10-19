@@ -17,7 +17,7 @@ export default function PackagePage() {
   const { effective } = useTheme();
   const isDark = effective === 'dark';
   const { isAdmin } = useAuth();
-  const { settings, setFontSize, setLineHeight, resetDefaults } = useReaderSettings();
+  const { settings, setFont, setFontSize, setLineHeight, resetDefaults } = useReaderSettings();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -247,6 +247,8 @@ export default function PackagePage() {
               lineHeight={settings.arabicLineHeight}
               setLineHeight={setLineHeight}
               onReset={resetDefaults}
+              currentFont={settings.quranFont}
+              setFont={setFont}
             />
           </div>
         </div>

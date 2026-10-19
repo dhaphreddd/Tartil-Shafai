@@ -8,9 +8,18 @@ export function useReaderSettings() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        let font: QuranFont = 'qcf-v2';
+        if (parsed.quranFont === 'qcf-v1' || parsed.quranFont === 'qcf-v2') {
+          font = parsed.quranFont;
+        } else if (parsed.quranFont === 'qcf') {
+          font = 'qcf-v2';
+        } else if (parsed.quranFont === 'kfgqpc' || parsed.quranFont === 'system-fallback') {
+          font = parsed.quranFont;
+        }
+
         return {
           theme: parsed.theme || 'system',
-          quranFont: 'qcf',
+          quranFont: font,
           arabicFontSize: parsed.arabicFontSize || 32,
           arabicLineHeight: parsed.arabicLineHeight || 2.2,
         };
@@ -20,7 +29,7 @@ export function useReaderSettings() {
     }
     return {
       theme: 'system',
-      quranFont: 'qcf',
+      quranFont: 'qcf-v2',
       arabicFontSize: 32,
       arabicLineHeight: 2.2,
     };
@@ -40,7 +49,7 @@ export function useReaderSettings() {
       ...s,
       arabicFontSize: 32,
       arabicLineHeight: 2.2,
-      quranFont: 'qcf',
+      quranFont: 'qcf-v2',
     }));
   };
 

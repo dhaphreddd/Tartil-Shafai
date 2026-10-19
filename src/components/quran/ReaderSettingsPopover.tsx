@@ -13,7 +13,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import type { ThemeMode } from '@/core/types';
+import type { ThemeMode, QuranFont } from '@/core/types';
 
 interface ReaderSettingsPopoverProps {
   isOpen: boolean;
@@ -24,6 +24,8 @@ interface ReaderSettingsPopoverProps {
   lineHeight: number;
   setLineHeight: (height: number) => void;
   onReset: () => void;
+  currentFont?: QuranFont;
+  setFont?: (font: QuranFont) => void;
 }
 
 const LINE_HEIGHT_OPTIONS = [
@@ -54,6 +56,8 @@ export default function ReaderSettingsPopover({
   lineHeight,
   setLineHeight,
   onReset,
+  currentFont,
+  setFont,
 }: ReaderSettingsPopoverProps) {
   const { mode, setMode, effective } = useTheme();
   const isDark = effective === 'dark';
@@ -131,6 +135,101 @@ export default function ReaderSettingsPopover({
 
       {/* Body */}
       <div className="p-4 space-y-5">
+        {/* Versi Font Mushaf */}
+        {setFont && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-semibold">Versi Font Mushaf</label>
+              <span
+                className="px-2 py-0.5 rounded text-[11px] font-semibold"
+                style={{
+                  backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
+                  color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+                }}
+              >
+                {currentFont === 'qcf-v1' ? 'V1 Klasik' : 'V2 Quran.com'}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => setFont('qcf-v2')}
+                className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
+                style={{
+                  backgroundColor:
+                    currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
+                      ? isDark
+                        ? 'var(--color-dark-surface-elevated)'
+                        : 'var(--color-surface-subtle)'
+                      : 'transparent',
+                  borderColor:
+                    currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
+                      ? isDark
+                        ? 'var(--color-dark-primary)'
+                        : 'var(--color-primary)'
+                      : isDark
+                        ? 'var(--color-dark-border)'
+                        : 'var(--color-border)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold">V2 (Quran.com)</span>
+                  {(currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf') && (
+                    <span
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                    />
+                  )}
+                </div>
+                <p
+                  className="text-[11px] leading-tight"
+                  style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                >
+                  Modern & standar Quran.com
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setFont('qcf-v1')}
+                className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
+                style={{
+                  backgroundColor:
+                    currentFont === 'qcf-v1'
+                      ? isDark
+                        ? 'var(--color-dark-surface-elevated)'
+                        : 'var(--color-surface-subtle)'
+                      : 'transparent',
+                  borderColor:
+                    currentFont === 'qcf-v1'
+                      ? isDark
+                        ? 'var(--color-dark-primary)'
+                        : 'var(--color-primary)'
+                      : isDark
+                        ? 'var(--color-dark-border)'
+                        : 'var(--color-border)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold">V1 (Klasik)</span>
+                  {currentFont === 'qcf-v1' && (
+                    <span
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                    />
+                  )}
+                </div>
+                <p
+                  className="text-[11px] leading-tight"
+                  style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                >
+                  Cetakan klasik 1421H
+                </p>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Font Size */}
         <div>
           <div className="flex items-center justify-between mb-2">

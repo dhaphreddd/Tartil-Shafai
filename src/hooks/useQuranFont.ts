@@ -11,9 +11,14 @@ export function useQuranFont(selectedFont: QuranFont) {
     let mounted = true;
 
     async function load() {
-      // If system fallback or qcf, switch immediately
-      if (selectedFont === 'system-fallback' || selectedFont === 'qcf') {
-        setActiveFont(selectedFont);
+      // If system fallback, qcf-v1, qcf-v2, or legacy qcf, switch immediately
+      if (
+        selectedFont === 'system-fallback' ||
+        selectedFont === 'qcf' ||
+        selectedFont === 'qcf-v1' ||
+        selectedFont === 'qcf-v2'
+      ) {
+        setActiveFont(selectedFont === 'qcf' ? 'qcf-v2' : selectedFont);
         setLoading(false);
         setError(false);
         return;
@@ -21,7 +26,7 @@ export function useQuranFont(selectedFont: QuranFont) {
 
       const fontMeta = fonts[selectedFont];
       if (!fontMeta) {
-        setActiveFont('qcf');
+        setActiveFont('qcf-v2');
         return;
       }
 

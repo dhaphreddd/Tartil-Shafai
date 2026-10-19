@@ -16,6 +16,10 @@ export interface Ayah {
   text: string;
   pageNumber?: number;
   glyphCode?: string;
+  pageNumberV1?: number;
+  pageNumberV2?: number;
+  glyphCodeV1?: string;
+  glyphCodeV2?: string;
   surahId?: number;
 }
 
@@ -130,7 +134,7 @@ export type ThemeMode = 'system' | 'light' | 'dark';
 
 // ---------- Font Types ----------
 
-export type QuranFont = 'qcf' | 'kfgqpc' | 'system-fallback';
+export type QuranFont = 'qcf-v2' | 'qcf-v1' | 'qcf' | 'kfgqpc' | 'system-fallback';
 
 export interface QuranFontOption {
   id: QuranFont;

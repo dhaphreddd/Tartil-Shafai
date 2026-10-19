@@ -2,9 +2,11 @@
  * Tartil Shafa'i — Settings Page
  */
 
+import { useEffect } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useReaderSettings } from '@/hooks/useReaderSettings';
 import { QURAN_FONT_OPTIONS } from '@/core/fonts';
+import { loadQCFPageFont } from '@/utils/FontManager';
 import type { ThemeMode } from '@/core/types';
 
 const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: string }[] = [
@@ -17,6 +19,11 @@ export default function SettingsPage() {
   const { mode, setMode, effective } = useTheme();
   const { settings, setFont, setFontSize, setLineHeight } = useReaderSettings();
   const isDark = effective === 'dark';
+
+  useEffect(() => {
+    loadQCFPageFont(1, 'v1');
+    loadQCFPageFont(1, 'v2');
+  }, []);
 
   return (
     <div className="max-w-2xl mx-auto px-4 md:px-8 lg:px-12 py-12 animate-fade-in">
@@ -101,7 +108,9 @@ export default function SettingsPage() {
         </h2>
         <div className="flex flex-col gap-3">
           {QURAN_FONT_OPTIONS.map((font) => {
-            const isSelected = settings.quranFont === font.id;
+            const isSelected =
+              settings.quranFont === font.id ||
+              (settings.quranFont === 'qcf' && font.id === 'qcf-v2');
             return (
               <button
                 key={font.id}
@@ -155,7 +164,7 @@ export default function SettingsPage() {
                   className="text-[22px]"
                   style={{
                     color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
-                    fontFamily: font.id === 'qcf' ? 'QCF_BSML, serif' : font.fontFamily,
+                    fontFamily: font.fontFamily,
                   }}
                 >
                   {font.sampleText}

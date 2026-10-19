@@ -16,19 +16,37 @@ const LINE_HEIGHT_STORAGE_KEY = 'tartil-arabic-line-height';
  */
 export const QURAN_FONT_OPTIONS: QuranFontOption[] = [
   {
-    id: 'qcf',
-    name: 'QSV / QCF Glyph (Mushaf Madinah)',
-    description: 'Font resmi Mushaf Madinah sesuai Quran.com',
+    id: 'qcf-v2',
+    name: 'Mushaf Madinah V2 (Standar Quran.com)',
+    description: 'Font resmi Mushaf Madinah edisi baru (vektor halus, standar Quran.com)',
     sampleText: 'ﭑ ﭒ ﭓ ﭔ ﭕ',
-    fontFamily: '"QCF_BSML", "p1", serif',
+    fontFamily: '"p1-v2", "p1", serif',
+  },
+  {
+    id: 'qcf-v1',
+    name: 'Mushaf Madinah V1 (Klasik)',
+    description: 'Font resmi Mushaf Madinah cetakan klasik Utsman Thaha',
+    sampleText: 'ﭑ ﭒ ﭓ ﭔ ﭕ',
+    fontFamily: '"p1-v1", "QCF_BSML", serif',
   },
 ];
 
 /**
- * Get the stored font preference, or default to 'qcf'.
+ * Get the stored font preference, or default to 'qcf-v2'.
  */
 export function getStoredFont(): QuranFont {
-  return 'qcf';
+  try {
+    const stored = localStorage.getItem(FONT_STORAGE_KEY);
+    if (stored === 'qcf-v1' || stored === 'qcf-v2') {
+      return stored;
+    }
+    if (stored === 'qcf') {
+      return 'qcf-v2';
+    }
+  } catch {
+    // localStorage not available
+  }
+  return 'qcf-v2';
 }
 
 export function storeFont(font: QuranFont): void {

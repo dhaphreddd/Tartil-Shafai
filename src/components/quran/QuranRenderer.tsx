@@ -24,12 +24,14 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
   }
 
   // If font is QCF glyph font, use QCFRenderer
-  if (activeFont === 'qcf') {
+  if (activeFont === 'qcf-v2' || activeFont === 'qcf-v1' || activeFont === 'qcf') {
+    const version = activeFont === 'qcf-v1' ? 'v1' : 'v2';
     return (
       <QCFRenderer
         ayahs={ayahs}
         fontSize={fontSize}
         lineHeight={lineHeight}
+        version={version}
       />
     );
   }

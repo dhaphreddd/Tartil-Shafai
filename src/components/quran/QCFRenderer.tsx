@@ -6,12 +6,14 @@ interface QCFRendererProps {
   ayahs: Ayah[];
   fontSize?: number;
   lineHeight?: number;
+  version?: 'v1' | 'v2';
 }
 
 export const QCFRenderer: React.FC<QCFRendererProps> = ({
   ayahs,
   fontSize = 34,
   lineHeight = 2.4,
+  version = 'v2',
 }) => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
@@ -21,12 +23,17 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
       const pageNumbers = Array.from(
         new Set(
           ayahs
-            .map(a => a.pageNumber)
+            .map((a) => {
+              if (version === 'v1') {
+                return a.pageNumberV1 || a.pageNumber;
+              }
+              return a.pageNumberV2 || a.pageNumber;
+            })
             .filter((p): p is number => typeof p === 'number' && p > 0)
         )
       );
 
-      await Promise.all(pageNumbers.map(page => loadQCFPageFont(page)));
+      await Promise.all(pageNumbers.map((page) => loadQCFPageFont(page, version)));
       if (isMounted) setFontsLoaded(true);
     }
 
@@ -34,7 +41,7 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [ayahs]);
+  }, [ayahs, version]);
 
   if (!ayahs || ayahs.length === 0) {
     return <div className="text-center p-8 opacity-60">Tidak ada ayat untuk ditampilkan.</div>;
@@ -53,22 +60,31 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
       }}
     >
       {ayahs.map((ayah, idx) => {
-        const pageNumber = ayah.pageNumber;
+        const pageNumber =
+          version === 'v1'
+            ? (ayah.pageNumberV1 || ayah.pageNumber)
+            : (ayah.pageNumberV2 || ayah.pageNumber);
+
+        const glyph =
+          version === 'v1'
+            ? (ayah.glyphCodeV1 || ayah.glyphCode)
+            : (ayah.glyphCodeV2 || ayah.glyphCode);
+
         const pagePad = pageNumber ? String(pageNumber).padStart(3, '0') : '';
         const fontList = pageNumber
-          ? `"p${pageNumber}", "QCF_P${pagePad}", "KFGQPC_Hafs", serif`
+          ? `"p${pageNumber}-${version}", "p${pageNumber}", "QCF_P${pagePad}", "KFGQPC_Hafs", serif`
           : '"KFGQPC_Hafs", serif';
-        const hasGlyph = Boolean(ayah.glyphCode);
+        const hasGlyph = Boolean(glyph);
 
         return (
-          <React.Fragment key={`${ayah.surahId || 's'}-${ayah.ayahNumber}-${idx}`}>
+          <React.Fragment key={`${ayah.surahId || 's'}-${ayah.ayahNumber}-${idx}-${version}`}>
             <span
               className="quran-ayah-text inline transition-colors dark:text-white"
               style={{
                 fontFamily: hasGlyph ? fontList : '"KFGQPC_Hafs", "Noto Naskh Arabic", serif',
               }}
             >
-              {hasGlyph ? ayah.glyphCode : ayah.text}
+              {hasGlyph ? glyph : ayah.text}
             </span>
             {idx < ayahs.length - 1 && ' '}
           </React.Fragment>

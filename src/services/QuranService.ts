@@ -93,7 +93,7 @@ export async function resolveAyahRange(
 
     while (hasMore) {
       // Panggil langsung endpoint verses Quran.com dengan filter from & to dan per_page yang memadai
-      const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?from=${startAyah}&to=${endAyah}&page=${page}&per_page=${perPage}&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1,v1_page`;
+      const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?from=${startAyah}&to=${endAyah}&page=${page}&per_page=${perPage}&words=true&word_fields=code_v1,code_v2,text_uthmani,v1_page,v2_page&fields=text_uthmani,verse_number,page_number,code_v1,code_v2,v1_page,v2_page`;
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com verses API`);
       const data = await res.json();
@@ -111,10 +111,12 @@ export async function resolveAyahRange(
 
     if (allVerses.length > 0) {
       const ayahs: Ayah[] = allVerses.map((v: any) => {
-        // Ambil code_v1 langsung dari verse atau gabungkan dari words
-        const glyphText =
+        const glyphV1 =
           v.code_v1 ||
           (Array.isArray(v.words) ? v.words.map((w: any) => w.code_v1).filter(Boolean).join(' ') : undefined);
+        const glyphV2 =
+          v.code_v2 ||
+          (Array.isArray(v.words) ? v.words.map((w: any) => w.code_v2).filter(Boolean).join(' ') : undefined);
 
         const rawClean =
           v.verse_number === 1 && surahId !== 1
@@ -122,17 +124,25 @@ export async function resolveAyahRange(
             : v.text_uthmani;
         const cleanText = typeof rawClean === 'string' ? rawClean.trim() : rawClean;
 
-        // CRITICAL FIX: Mushaf Madinah V1 font requires v1_page (not v.page_number which uses V2 layout)
-        const correctPage =
+        const pageV1 =
           v.v1_page ||
           (Array.isArray(v.words) && v.words[0]?.v1_page) ||
+          v.page_number;
+        const pageV2 =
+          v.v2_page ||
+          (Array.isArray(v.words) && v.words[0]?.v2_page) ||
           v.page_number;
 
         return {
           ayahNumber: v.verse_number,
           text: cleanText,
-          pageNumber: correctPage,
-          glyphCode: glyphText,
+          // Default to V2 (matching modern Quran.com)
+          pageNumber: pageV2,
+          glyphCode: glyphV2 || glyphV1,
+          pageNumberV1: pageV1,
+          pageNumberV2: pageV2,
+          glyphCodeV1: glyphV1,
+          glyphCodeV2: glyphV2,
         };
       });
 
@@ -172,7 +182,7 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
 
   try {
     // Quran.com API pagination (max per_page=300 mencakup seluruh surat)
-    const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?per_page=300&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1,v1_page`;
+    const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?per_page=300&words=true&word_fields=code_v1,code_v2,text_uthmani,v1_page,v2_page&fields=text_uthmani,verse_number,page_number,code_v1,code_v2,v1_page,v2_page`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com API`);
     const data = await res.json();
@@ -180,21 +190,31 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
     if (Array.isArray(data.verses)) {
       const meta = (await getSurahsMetadata()).find((s) => s.id === surahId);
       const ayahs: Ayah[] = data.verses.map((v: any) => {
-        const glyphText =
+        const glyphV1 =
           v.code_v1 ||
           (Array.isArray(v.words) ? v.words.map((w: any) => w.code_v1).filter(Boolean).join(' ') : undefined);
+        const glyphV2 =
+          v.code_v2 ||
+          (Array.isArray(v.words) ? v.words.map((w: any) => w.code_v2).filter(Boolean).join(' ') : undefined);
 
-        // CRITICAL FIX: Mushaf Madinah V1 font requires v1_page
-        const correctPage =
+        const pageV1 =
           v.v1_page ||
           (Array.isArray(v.words) && v.words[0]?.v1_page) ||
+          v.page_number;
+        const pageV2 =
+          v.v2_page ||
+          (Array.isArray(v.words) && v.words[0]?.v2_page) ||
           v.page_number;
 
         return {
           ayahNumber: v.verse_number,
           text: v.text_uthmani,
-          pageNumber: correctPage,
-          glyphCode: glyphText,
+          pageNumber: pageV2,
+          glyphCode: glyphV2 || glyphV1,
+          pageNumberV1: pageV1,
+          pageNumberV2: pageV2,
+          glyphCodeV1: glyphV1,
+          glyphCodeV2: glyphV2,
         };
       });
 
