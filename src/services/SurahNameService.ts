@@ -6,9 +6,6 @@
  * dan persisten (disimpan ke LocalStorage dan disinkronkan ke Firestore).
  */
 
-import { db } from '../config/firebase';
-import { doc, setDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
-
 const LOCAL_STORAGE_KEY = 'tartil_custom_surah_names';
 const FIRESTORE_SETTINGS_COLLECTION = 'app_settings';
 const FIRESTORE_SURAH_DOC = 'surah_names';
@@ -204,7 +201,7 @@ export class SurahNameService {
   /**
    * Inisialisasi realtime listener dari Firestore & storage event
    */
-  static initRealtime() {
+  static async initRealtime(): Promise<void> {
     if (isRealtimeInitialized) return;
     isRealtimeInitialized = true;
 
@@ -222,6 +219,10 @@ export class SurahNameService {
     }
 
     try {
+      const [{ db }, { doc, onSnapshot }] = await Promise.all([
+        import('../config/firebase'),
+        import('firebase/firestore'),
+      ]);
       const docRef = doc(db, FIRESTORE_SETTINGS_COLLECTION, FIRESTORE_SURAH_DOC);
       firestoreUnsub = onSnapshot(
         docRef,
@@ -317,6 +318,10 @@ export class SurahNameService {
     notifySubscribers();
 
     try {
+      const [{ db }, { doc, setDoc, serverTimestamp }] = await Promise.all([
+        import('../config/firebase'),
+        import('firebase/firestore'),
+      ]);
       const docRef = doc(db, FIRESTORE_SETTINGS_COLLECTION, FIRESTORE_SURAH_DOC);
       await setDoc(
         docRef,

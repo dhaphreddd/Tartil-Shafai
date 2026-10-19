@@ -1,7 +1,13 @@
-import { db } from '../config/firebase';
-import { collection, doc, getDocs, setDoc, deleteDoc, serverTimestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
 import type { Layer1Card, Layer2Card, Layer3Item } from '@/core/types';
 import fixtureData from '../data/tartil-packages-fixture.json';
+
+async function getFirestoreService() {
+  const [{ db }, firestore] = await Promise.all([
+    import('../config/firebase'),
+    import('firebase/firestore'),
+  ]);
+  return { db, ...firestore };
+}
 
 const LOCAL_STORAGE_KEY = 'tartil_curriculum_layers_v2';
 const COLLECTION_NAME = 'curriculum_layers';
@@ -159,7 +165,7 @@ export class CurriculumService {
   /**
    * Initialize Firestore realtime listener & cross-tab events.
    */
-  private static initRealtime(): void {
+  private static async initRealtime(): Promise<void> {
     if (this.isInitialized) return;
     this.isInitialized = true;
 
@@ -181,10 +187,11 @@ export class CurriculumService {
 
     // Listen to Firestore real-time snapshots
     try {
+      const { db, collection, query, orderBy, onSnapshot } = await getFirestoreService();
       const q = query(collection(db, COLLECTION_NAME), orderBy('order', 'asc'));
       this.firestoreUnsub = onSnapshot(
         q,
-        (snapshot) => {
+        (snapshot: any) => {
           this.firestoreDocsMap.clear();
           for (const docSnap of snapshot.docs) {
             const data = { id: docSnap.id, ...docSnap.data() } as Layer1Card;
@@ -192,7 +199,7 @@ export class CurriculumService {
           }
           this.notifySubscribers();
         },
-        (error) => {
+        (error: any) => {
           console.warn('[CurriculumService] Firestore realtime listener warning, falling back to local:', error);
         }
       );
@@ -441,6 +448,7 @@ export class CurriculumService {
 
     // Save in Firestore cloud
     try {
+      const { db, doc, setDoc, serverTimestamp } = await getFirestoreService();
       const docRef = doc(db, COLLECTION_NAME, clean.id);
       await setDoc(docRef, {
         ...clean,
@@ -471,6 +479,7 @@ export class CurriculumService {
     }
 
     try {
+      const { db, doc, setDoc, deleteDoc, serverTimestamp } = await getFirestoreService();
       const docRef = doc(db, COLLECTION_NAME, layer1Id);
       await setDoc(docRef, { isDeleted: true, updatedAt: serverTimestamp() }, { merge: true });
       await deleteDoc(docRef);
@@ -627,6 +636,7 @@ export class CurriculumService {
     }
 
     try {
+      const { db, collection, query, getDocs, deleteDoc } = await getFirestoreService();
       const q = query(collection(db, COLLECTION_NAME));
       const snap = await getDocs(q);
       for (const d of snap.docs) {
