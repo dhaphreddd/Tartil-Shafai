@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 const __dirname = import.meta.dirname
 
-const base = process.env.BASE_URL || (process.env.NODE_ENV === 'production' ? '/Tartil-Shafai/' : '/')
+const base = process.env.BASE_URL || '/'
 
 // https://vite.dev/config/
 export default defineConfig({
