@@ -21,11 +21,15 @@ export default function HomePage() {
   const isDark = effective === 'dark';
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [layers, setLayers] = useState<Layer1Card[]>([]);
-  const [pinnedPackages, setPinnedPackages] = useState<Layer3Item[]>([]);
+  const initialLayers = useMemo(() => CurriculumService.getInitialPublishedLayers(), []);
+  const initialAllPackages = useMemo(() => CurriculumService.flattenPublishedItems(initialLayers), [initialLayers]);
+  const initialPinned = useMemo(() => CurriculumService.filterPinnedItems(initialLayers), [initialLayers]);
+
+  const [layers, setLayers] = useState<Layer1Card[]>(initialLayers);
+  const [pinnedPackages, setPinnedPackages] = useState<Layer3Item[]>(initialPinned);
   const [surahs, setSurahs] = useState<SurahMetadata[]>([]);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
-  const [allPackages, setAllPackages] = useState<Layer3Item[]>([]);
+  const [allPackages, setAllPackages] = useState<Layer3Item[]>(initialAllPackages);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 

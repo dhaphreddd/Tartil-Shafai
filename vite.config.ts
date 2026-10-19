@@ -17,6 +17,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'script-defer',
       includeAssets: ['favicon.svg', 'icons/*.png'],
       manifest: {
         name: "Tartil Shafa'i",

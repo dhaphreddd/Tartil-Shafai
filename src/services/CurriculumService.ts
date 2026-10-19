@@ -280,6 +280,14 @@ export class CurriculumService {
   }
 
   /**
+   * Get synchronously the initial published layers from cache/fixture to enable instant first paint.
+   */
+  static getInitialPublishedLayers(): Layer1Card[] {
+    const current = this.cachedLayers || this.mergeLayers();
+    return this.filterPublishedLayers(current);
+  }
+
+  /**
    * Subscribe to published layers in real-time.
    */
   static subscribeToPublishedLayers(callback: (layers: Layer1Card[]) => void): () => void {
