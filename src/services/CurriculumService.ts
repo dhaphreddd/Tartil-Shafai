@@ -51,6 +51,52 @@ function saveLocalCache(layers: Layer1Card[]) {
   }
 }
 
+function healAyahPage(surahId?: number, ayah?: { ayahNumber: number; pageNumber?: number }) {
+  if (!surahId || !ayah) return;
+  if (surahId === 87) {
+    if (ayah.ayahNumber >= 1 && ayah.ayahNumber <= 15 && ayah.pageNumber !== 591) {
+      ayah.pageNumber = 591;
+    } else if (ayah.ayahNumber >= 16 && ayah.ayahNumber <= 19 && ayah.pageNumber !== 592) {
+      ayah.pageNumber = 592;
+    }
+  } else if (surahId === 88) {
+    if (ayah.ayahNumber >= 1 && ayah.ayahNumber <= 26 && ayah.pageNumber !== 592) {
+      ayah.pageNumber = 592;
+    }
+  } else if (surahId === 93) {
+    if (ayah.ayahNumber >= 1 && ayah.ayahNumber <= 11 && ayah.pageNumber !== 596) {
+      ayah.pageNumber = 596;
+    }
+  } else if (surahId === 5 && ayah.ayahNumber === 77 && ayah.pageNumber !== 121) {
+    ayah.pageNumber = 121;
+  } else if (surahId === 55 && (ayah.ayahNumber === 17 || ayah.ayahNumber === 18) && ayah.pageNumber !== 532) {
+    ayah.pageNumber = 532;
+  }
+}
+
+function healAyahPages(layers: Layer1Card[]): void {
+  for (const l1 of layers) {
+    for (const l2 of l1.cards || []) {
+      for (const item of l2.items || []) {
+        if (Array.isArray(item.customAyahs)) {
+          for (const a of item.customAyahs) {
+            healAyahPage(item.surahId, a);
+          }
+        }
+        if (Array.isArray(item.sections)) {
+          for (const sec of item.sections) {
+            if (Array.isArray(sec.customAyahs)) {
+              for (const a of sec.customAyahs) {
+                healAyahPage(sec.surahId, a);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 export class CurriculumService {
   private static cachedLayers: Layer1Card[] | null = null;
   private static listeners = new Set<(layers: Layer1Card[]) => void>();
@@ -90,6 +136,7 @@ export class CurriculumService {
     }
 
     const result = Array.from(layerMap.values()).sort((a, b) => (a.order || 0) - (b.order || 0));
+    healAyahPages(result);
     this.cachedLayers = result;
     saveLocalCache(result);
     return result;

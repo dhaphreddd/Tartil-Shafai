@@ -93,7 +93,7 @@ export async function resolveAyahRange(
 
     while (hasMore) {
       // Panggil langsung endpoint verses Quran.com dengan filter from & to dan per_page yang memadai
-      const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?from=${startAyah}&to=${endAyah}&page=${page}&per_page=${perPage}&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1`;
+      const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?from=${startAyah}&to=${endAyah}&page=${page}&per_page=${perPage}&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1,v1_page`;
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com verses API`);
       const data = await res.json();
@@ -122,10 +122,16 @@ export async function resolveAyahRange(
             : v.text_uthmani;
         const cleanText = typeof rawClean === 'string' ? rawClean.trim() : rawClean;
 
+        // CRITICAL FIX: Mushaf Madinah V1 font requires v1_page (not v.page_number which uses V2 layout)
+        const correctPage =
+          v.v1_page ||
+          (Array.isArray(v.words) && v.words[0]?.v1_page) ||
+          v.page_number;
+
         return {
           ayahNumber: v.verse_number,
           text: cleanText,
-          pageNumber: v.page_number,
+          pageNumber: correctPage,
           glyphCode: glyphText,
         };
       });
@@ -166,7 +172,7 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
 
   try {
     // Quran.com API pagination (max per_page=300 mencakup seluruh surat)
-    const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?per_page=300&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1`;
+    const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?per_page=300&words=true&word_fields=code_v1,text_uthmani,v1_page&fields=text_uthmani,verse_number,page_number,code_v1,v1_page`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com API`);
     const data = await res.json();
@@ -178,10 +184,16 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
           v.code_v1 ||
           (Array.isArray(v.words) ? v.words.map((w: any) => w.code_v1).filter(Boolean).join(' ') : undefined);
 
+        // CRITICAL FIX: Mushaf Madinah V1 font requires v1_page
+        const correctPage =
+          v.v1_page ||
+          (Array.isArray(v.words) && v.words[0]?.v1_page) ||
+          v.page_number;
+
         return {
           ayahNumber: v.verse_number,
           text: v.text_uthmani,
-          pageNumber: v.page_number,
+          pageNumber: correctPage,
           glyphCode: glyphText,
         };
       });

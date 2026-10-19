@@ -16,6 +16,25 @@ export interface ResolvedPackage {
   sections: ResolvedSection[];
 }
 
+function sanitizeMushafV1Page(surahId: number, ayahNumber: number, currentPage?: number): number {
+  if (surahId === 87) {
+    return ayahNumber <= 15 ? 591 : 592;
+  }
+  if (surahId === 88) {
+    return 592;
+  }
+  if (surahId === 93) {
+    return 596;
+  }
+  if (surahId === 5 && ayahNumber === 77) {
+    return 121;
+  }
+  if (surahId === 55 && (ayahNumber === 17 || ayahNumber === 18)) {
+    return 532;
+  }
+  return currentPage || 1;
+}
+
 export class PackageResolver {
   /**
    * Resolves a Tartil package into a full context object including ayahs and metadata
@@ -68,10 +87,12 @@ export class PackageResolver {
 
         sectionAyahs = sec.customAyahs.map((a) => {
           const enriched = datasetMap.get(a.ayahNumber);
+          const rawPage = enriched?.pageNumber || a.pageNumber;
+          const finalPage = sanitizeMushafV1Page(sec.surahId, a.ayahNumber, rawPage);
           return {
             ...a,
             surahId: sec.surahId,
-            pageNumber: enriched?.pageNumber || a.pageNumber,
+            pageNumber: finalPage,
             glyphCode: a.glyphCode || enriched?.glyphCode,
           };
         });
@@ -85,6 +106,7 @@ export class PackageResolver {
         sectionAyahs = fetched.map((a) => ({
           ...a,
           surahId: sec.surahId,
+          pageNumber: sanitizeMushafV1Page(sec.surahId, a.ayahNumber, a.pageNumber),
         }));
       }
 
