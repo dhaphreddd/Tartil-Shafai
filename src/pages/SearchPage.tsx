@@ -298,6 +298,24 @@ export default function SearchPage() {
                       >
                         {item.title || `Materi ${item.order}`}
                       </span>
+                      {item.isPinned && (
+                        <span
+                          className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.2 rounded-full"
+                          style={{
+                            backgroundColor: isDark ? 'rgba(217, 119, 6, 0.2)' : 'rgba(217, 119, 6, 0.12)',
+                            color: '#d97706',
+                          }}
+                          title="Disematkan di Beranda Utama"
+                        >
+                          <span
+                            className="material-symbols-outlined text-[12px]"
+                            style={{ fontVariationSettings: "'FILL' 1" }}
+                          >
+                            push_pin
+                          </span>
+                          <span>Disematkan</span>
+                        </span>
+                      )}
                       {parentLayer && (
                         <span
                           className="text-xs font-medium"

@@ -1,17 +1,16 @@
 /**
  * Tartil Shafa'i — Quran Reading Settings Popover
  *
- * Modeled after Quran.com's reader settings popover
- * (https://quran.com/al-baqarah?readingMode=arabic&startingVerse=11).
- *
- * Clean floating dropdown popover anchored directly below the "Tampilan" button:
- * - NO dark backdrop overlay (page remains 100% visible)
- * - NO body scroll lock (user can freely scroll verses while adjusting)
- * - Live real-time adjustment of font size and line height
+ * Modeled after Quran.com's reader settings:
+ * - Desktop: Clean floating dropdown popover anchored directly below the "Tampilan" button
+ * - Mobile: True bottom-sheet modal rendered via React Portal directly into document.body
+ *   (bypasses any parent transform, animation, or clipping issues)
+ * - Live real-time adjustment of font (Mushaf V1 vs V2), font size, line height, and theme
  * - Click-outside and Escape key detection
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 import type { ThemeMode, QuranFont } from '@/core/types';
 
@@ -63,7 +62,33 @@ export default function ReaderSettingsPopover({
   const isDark = effective === 'dark';
   const popoverRef = useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside (without blocking clicks or scrolling on the page)
+  // Responsive mobile state (< 640px)
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 640;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Body scroll lock on mobile while drawer is active
+  useEffect(() => {
+    if (!isOpen || !isMobile) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, isMobile]);
+
+  // Click outside and Escape key handler
   useEffect(() => {
     if (!isOpen) return;
 
@@ -96,373 +121,417 @@ export default function ReaderSettingsPopover({
 
   if (!isOpen) return null;
 
-  return (
-    <>
-      {/* Mobile Backdrop Overlay */}
-      <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-[55] sm:hidden animate-fade-in"
+  const renderHeader = () => (
+    <div
+      className="px-4 py-3 border-b flex items-center justify-between shrink-0"
+      style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
+    >
+      <div className="flex items-center gap-2">
+        <span
+          className="material-symbols-outlined text-[18px]"
+          style={{ color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+        >
+          tune
+        </span>
+        <span className="font-semibold text-sm">Tampilan Bacaan</span>
+      </div>
+
+      <button
+        type="button"
         onClick={onClose}
-        aria-hidden="true"
-      />
-
-      <div
-        ref={popoverRef}
-        role="dialog"
-        aria-label="Pengaturan Tampilan Bacaan"
-        className="fixed inset-x-0 bottom-0 z-[60] w-full max-w-lg mx-auto rounded-t-3xl border-t shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto sm:max-h-[85vh] sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[350px] sm:max-w-[360px] sm:rounded-2xl sm:border sm:shadow-2xl animate-fade-in"
-        style={{
-          backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
-          borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
-          color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
-        }}
+        className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-black/5 dark:hover:bg-white/10 cursor-pointer"
+        aria-label="Tutup pengaturan"
       >
-        {/* Mobile Grab Handle */}
-        <div className="w-10 h-1 rounded-full bg-black/20 dark:bg-white/20 mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
+        <span className="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+  );
 
-        {/* Header */}
-        <div
-          className="px-4 py-3 border-b flex items-center justify-between"
-          style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
-        >
-        <div className="flex items-center gap-2">
-          <span
-            className="material-symbols-outlined text-[18px]"
-            style={{ color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
-          >
-            tune
-          </span>
-          <span className="font-semibold text-sm">Tampilan Bacaan</span>
-        </div>
-
-        <button
-          type="button"
-          onClick={onClose}
-          className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-black/5 dark:hover:bg-white/10"
-          aria-label="Tutup pengaturan"
-        >
-          <span className="material-symbols-outlined text-[18px]">close</span>
-        </button>
-      </div>
-
-      {/* Body */}
-      <div className="p-4 space-y-5">
-        {/* Versi Font Mushaf */}
-        {setFont && (
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-semibold">Versi Font Mushaf</label>
-              <span
-                className="px-2 py-0.5 rounded text-[11px] font-semibold"
-                style={{
-                  backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
-                  color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
-                }}
-              >
-                {currentFont === 'qcf-v1' ? 'V1 Klasik' : 'V2 Quran.com'}
-              </span>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => setFont('qcf-v2')}
-                className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
-                style={{
-                  backgroundColor:
-                    currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
-                      ? isDark
-                        ? 'var(--color-dark-surface-elevated)'
-                        : 'var(--color-surface-subtle)'
-                      : 'transparent',
-                  borderColor:
-                    currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
-                      ? isDark
-                        ? 'var(--color-dark-primary)'
-                        : 'var(--color-primary)'
-                      : isDark
-                        ? 'var(--color-dark-border)'
-                        : 'var(--color-border)',
-                }}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold">V2 (Quran.com)</span>
-                  {(currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf') && (
-                    <span
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
-                    />
-                  )}
-                </div>
-                <p
-                  className="text-[11px] leading-tight"
-                  style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
-                >
-                  Modern & standar Quran.com
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setFont('qcf-v1')}
-                className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
-                style={{
-                  backgroundColor:
-                    currentFont === 'qcf-v1'
-                      ? isDark
-                        ? 'var(--color-dark-surface-elevated)'
-                        : 'var(--color-surface-subtle)'
-                      : 'transparent',
-                  borderColor:
-                    currentFont === 'qcf-v1'
-                      ? isDark
-                        ? 'var(--color-dark-primary)'
-                        : 'var(--color-primary)'
-                      : isDark
-                        ? 'var(--color-dark-border)'
-                        : 'var(--color-border)',
-                }}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold">V1 (Klasik)</span>
-                  {currentFont === 'qcf-v1' && (
-                    <span
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
-                    />
-                  )}
-                </div>
-                <p
-                  className="text-[11px] leading-tight"
-                  style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
-                >
-                  Cetakan klasik 1421H
-                </p>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Font Size */}
+  const renderBody = () => (
+    <div className="p-4 space-y-5">
+      {/* Versi Font Mushaf */}
+      {setFont && (
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-xs font-semibold">Ukuran Huruf Al-Qur'an</label>
+            <label className="text-xs font-semibold">Versi Font Mushaf</label>
             <span
-              className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono"
+              className="px-2 py-0.5 rounded text-[11px] font-semibold"
               style={{
                 backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
                 color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
               }}
             >
-              {fontSize} px
+              {currentFont === 'qcf-v1' ? 'V1 Klasik' : 'V2 Quran.com'}
             </span>
           </div>
-
-          <div className="flex items-center gap-2 mb-2.5">
+          <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
-              onClick={() => setFontSize(Math.max(22, fontSize - 2))}
-              className="w-8 h-8 rounded-lg flex items-center justify-center border transition-colors hover:bg-black/5 dark:hover:bg-white/5"
-              style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
-              aria-label="Perkecil huruf"
-            >
-              <span className="material-symbols-outlined text-[16px]">remove</span>
-            </button>
-
-            <input
-              type="range"
-              min="22"
-              max="54"
-              step="2"
-              value={fontSize}
-              onChange={(e) => setFontSize(Number(e.target.value))}
-              className="flex-1 accent-amber-600 cursor-pointer h-2 rounded-lg"
-              aria-label="Pilih ukuran huruf"
-            />
-
-            <button
-              type="button"
-              onClick={() => setFontSize(Math.min(54, fontSize + 2))}
-              className="w-8 h-8 rounded-lg flex items-center justify-center border transition-colors hover:bg-black/5 dark:hover:bg-white/5"
-              style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
-              aria-label="Perbesar huruf"
-            >
-              <span className="material-symbols-outlined text-[16px]">add</span>
-            </button>
-          </div>
-
-          {/* Quick Presets */}
-          <div className="grid grid-cols-4 gap-1">
-            {FONT_PRESETS.map((p) => {
-              const isSelected = fontSize === p.size;
-              return (
-                <button
-                  key={p.size}
-                  type="button"
-                  onClick={() => setFontSize(p.size)}
-                  className="py-1 rounded text-[11px] font-medium border transition-colors"
-                  style={{
-                    backgroundColor: isSelected
-                      ? isDark
-                        ? 'var(--color-dark-primary)'
-                        : 'var(--color-primary)'
-                      : 'transparent',
-                    color: isSelected
-                      ? '#ffffff'
-                      : isDark
-                        ? 'var(--color-dark-text-secondary)'
-                        : 'var(--color-text-secondary)',
-                    borderColor: isSelected
-                      ? 'transparent'
-                      : isDark
-                        ? 'var(--color-dark-border)'
-                        : 'var(--color-border)',
-                  }}
-                >
-                  {p.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Line Height */}
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-xs font-semibold">Jarak Baris</label>
-            <span
-              className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono"
+              onClick={() => setFont('qcf-v2')}
+              className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
               style={{
-                backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
-                color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+                backgroundColor:
+                  currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
+                    ? isDark
+                      ? 'var(--color-dark-surface-elevated)'
+                      : 'var(--color-surface-subtle)'
+                    : 'transparent',
+                borderColor:
+                  currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf'
+                    ? isDark
+                      ? 'var(--color-dark-primary)'
+                      : 'var(--color-primary)'
+                    : isDark
+                      ? 'var(--color-dark-border)'
+                      : 'var(--color-border)',
               }}
             >
-              {lineHeight}x
-            </span>
-          </div>
-
-          <div className="grid grid-cols-3 gap-1.5">
-            {LINE_HEIGHT_OPTIONS.map((opt) => {
-              const isSelected = Math.abs(lineHeight - opt.value) < 0.05;
-              return (
-                <button
-                  key={opt.value}
-                  type="button"
-                  onClick={() => setLineHeight(opt.value)}
-                  className="py-1.5 px-2 rounded-lg border text-center transition-all flex flex-col items-center justify-center"
-                  style={{
-                    backgroundColor: isSelected
-                      ? isDark
-                        ? 'var(--color-dark-primary)'
-                        : 'var(--color-primary)'
-                      : isDark
-                        ? 'var(--color-dark-surface-elevated)'
-                        : 'var(--color-surface-subtle)',
-                    color: isSelected
-                      ? '#ffffff'
-                      : isDark
-                        ? 'var(--color-dark-text)'
-                        : 'var(--color-text)',
-                    borderColor: isSelected
-                      ? 'transparent'
-                      : isDark
-                        ? 'var(--color-dark-border)'
-                        : 'var(--color-border)',
-                  }}
-                >
-                  <span className="text-xs font-semibold">{opt.label}</span>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-bold">V2 (Quran.com)</span>
+                {(currentFont === 'qcf-v2' || !currentFont || currentFont === 'qcf') && (
                   <span
-                    className="text-[10px]"
-                    style={{
-                      color: isSelected
-                        ? '#ffffff'
-                        : isDark
-                          ? 'var(--color-dark-text-muted)'
-                          : 'var(--color-text-muted)',
-                    }}
-                  >
-                    {opt.description}
-                  </span>
-                </button>
-              );
-            })}
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                  />
+                )}
+              </div>
+              <p
+                className="text-[11px] leading-tight"
+                style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+              >
+                Modern & standar Quran.com
+              </p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setFont('qcf-v1')}
+              className="p-2.5 rounded-xl border text-left transition-all cursor-pointer"
+              style={{
+                backgroundColor:
+                  currentFont === 'qcf-v1'
+                    ? isDark
+                      ? 'var(--color-dark-surface-elevated)'
+                      : 'var(--color-surface-subtle)'
+                    : 'transparent',
+                borderColor:
+                  currentFont === 'qcf-v1'
+                    ? isDark
+                      ? 'var(--color-dark-primary)'
+                      : 'var(--color-primary)'
+                    : isDark
+                      ? 'var(--color-dark-border)'
+                      : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-bold">V1 (Klasik)</span>
+                {currentFont === 'qcf-v1' && (
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                  />
+                )}
+              </div>
+              <p
+                className="text-[11px] leading-tight"
+                style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+              >
+                Cetakan klasik 1421H
+              </p>
+            </button>
           </div>
         </div>
+      )}
 
-        {/* Visual Theme Selection */}
-        <div>
-          <label className="text-xs font-semibold block mb-2">Tema Tampilan</label>
-          <div className="grid grid-cols-3 gap-1.5">
-            {THEME_OPTIONS.map((opt) => {
-              const isSelected = mode === opt.mode;
-              return (
-                <button
-                  key={opt.mode}
-                  type="button"
-                  onClick={() => setMode(opt.mode)}
-                  className="py-1.5 px-2 rounded-lg border text-center transition-all flex items-center justify-center gap-1.5"
-                  style={{
-                    backgroundColor: isSelected
-                      ? isDark
-                        ? 'var(--color-dark-primary)'
-                        : 'var(--color-primary)'
-                      : isDark
-                        ? 'var(--color-dark-surface-elevated)'
-                        : 'var(--color-surface-subtle)',
-                    color: isSelected
-                      ? '#ffffff'
-                      : isDark
-                        ? 'var(--color-dark-text)'
-                        : 'var(--color-text)',
-                    borderColor: isSelected
-                      ? 'transparent'
-                      : isDark
-                        ? 'var(--color-dark-border)'
-                        : 'var(--color-border)',
-                  }}
-                >
-                  <span className="material-symbols-outlined text-[16px]">{opt.icon}</span>
-                  <span className="text-xs font-medium">{opt.label}</span>
-                </button>
-              );
-            })}
-          </div>
+      {/* Font Size */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-xs font-semibold">Ukuran Huruf Al-Qur'an</label>
+          <span
+            className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono"
+            style={{
+              backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
+              color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+            }}
+          >
+            {fontSize} px
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 mb-2.5">
+          <button
+            type="button"
+            onClick={() => setFontSize(Math.max(22, fontSize - 2))}
+            className="w-8 h-8 rounded-lg flex items-center justify-center border transition-colors hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+            style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
+            aria-label="Perkecil huruf"
+          >
+            <span className="material-symbols-outlined text-[16px]">remove</span>
+          </button>
+
+          <input
+            type="range"
+            min="22"
+            max="54"
+            step="2"
+            value={fontSize}
+            onChange={(e) => setFontSize(Number(e.target.value))}
+            className="flex-1 accent-amber-600 cursor-pointer h-2 rounded-lg"
+            aria-label="Pilih ukuran huruf"
+          />
+
+          <button
+            type="button"
+            onClick={() => setFontSize(Math.min(54, fontSize + 2))}
+            className="w-8 h-8 rounded-lg flex items-center justify-center border transition-colors hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+            style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}
+            aria-label="Perbesar huruf"
+          >
+            <span className="material-symbols-outlined text-[16px]">add</span>
+          </button>
+        </div>
+
+        {/* Quick Presets */}
+        <div className="grid grid-cols-4 gap-1">
+          {FONT_PRESETS.map((p) => {
+            const isSelected = fontSize === p.size;
+            return (
+              <button
+                key={p.size}
+                type="button"
+                onClick={() => setFontSize(p.size)}
+                className="py-1 rounded text-[11px] font-medium border transition-colors cursor-pointer"
+                style={{
+                  backgroundColor: isSelected
+                    ? isDark
+                      ? 'var(--color-dark-primary)'
+                      : 'var(--color-primary)'
+                    : 'transparent',
+                  color: isSelected
+                    ? '#ffffff'
+                    : isDark
+                      ? 'var(--color-dark-text-secondary)'
+                      : 'var(--color-text-secondary)',
+                  borderColor: isSelected
+                    ? 'transparent'
+                    : isDark
+                      ? 'var(--color-dark-border)'
+                      : 'var(--color-border)',
+                }}
+              >
+                {p.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Footer */}
-      <div
-        className="px-4 py-3 sm:py-2.5 border-t flex items-center justify-between pb-6 sm:pb-2.5 shrink-0"
-        style={{
-          borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
-          backgroundColor: isDark
-            ? 'var(--color-dark-surface-elevated)'
-            : 'var(--color-surface-subtle)',
-        }}
-      >
-        <button
-          type="button"
-          onClick={onReset}
-          className="flex items-center gap-1 text-[12px] sm:text-[11px] font-medium transition-colors hover:underline cursor-pointer"
-          style={{
-            color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)',
-          }}
-        >
-          <span className="material-symbols-outlined text-[16px] sm:text-[14px]">restart_alt</span>
-          <span>Reset Standar</span>
-        </button>
+      {/* Line Height */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-xs font-semibold">Jarak Baris</label>
+          <span
+            className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono"
+            style={{
+              backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
+              color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+            }}
+          >
+            {lineHeight}x
+          </span>
+        </div>
 
-        <button
-          type="button"
-          onClick={onClose}
-          className="px-4 py-1.5 sm:px-3 sm:py-1 rounded-xl sm:rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
-          style={{
-            backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
-            color: 'var(--color-on-primary)',
-          }}
-        >
-          Tutup
-        </button>
+        <div className="grid grid-cols-3 gap-1.5">
+          {LINE_HEIGHT_OPTIONS.map((opt) => {
+            const isSelected = Math.abs(lineHeight - opt.value) < 0.05;
+            return (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setLineHeight(opt.value)}
+                className="py-1.5 px-2 rounded-lg border text-center transition-all flex flex-col items-center justify-center cursor-pointer"
+                style={{
+                  backgroundColor: isSelected
+                    ? isDark
+                      ? 'var(--color-dark-primary)'
+                      : 'var(--color-primary)'
+                    : isDark
+                      ? 'var(--color-dark-surface-elevated)'
+                      : 'var(--color-surface-subtle)',
+                  color: isSelected
+                    ? '#ffffff'
+                    : isDark
+                      ? 'var(--color-dark-text)'
+                      : 'var(--color-text)',
+                  borderColor: isSelected
+                    ? 'transparent'
+                    : isDark
+                      ? 'var(--color-dark-border)'
+                      : 'var(--color-border)',
+                }}
+              >
+                <span className="text-xs font-semibold">{opt.label}</span>
+                <span
+                  className="text-[10px]"
+                  style={{
+                    color: isSelected
+                      ? '#ffffff'
+                      : isDark
+                        ? 'var(--color-dark-text-muted)'
+                        : 'var(--color-text-muted)',
+                  }}
+                >
+                  {opt.description}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Visual Theme Selection */}
+      <div>
+        <label className="text-xs font-semibold block mb-2">Tema Tampilan</label>
+        <div className="grid grid-cols-3 gap-1.5">
+          {THEME_OPTIONS.map((opt) => {
+            const isSelected = mode === opt.mode;
+            return (
+              <button
+                key={opt.mode}
+                type="button"
+                onClick={() => setMode(opt.mode)}
+                className="py-1.5 px-2 rounded-lg border text-center transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                style={{
+                  backgroundColor: isSelected
+                    ? isDark
+                      ? 'var(--color-dark-primary)'
+                      : 'var(--color-primary)'
+                    : isDark
+                      ? 'var(--color-dark-surface-elevated)'
+                      : 'var(--color-surface-subtle)',
+                  color: isSelected
+                    ? '#ffffff'
+                    : isDark
+                      ? 'var(--color-dark-text)'
+                      : 'var(--color-text)',
+                  borderColor: isSelected
+                    ? 'transparent'
+                    : isDark
+                      ? 'var(--color-dark-border)'
+                      : 'var(--color-border)',
+                }}
+              >
+                <span className="material-symbols-outlined text-[16px]">{opt.icon}</span>
+                <span className="text-xs font-medium">{opt.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
-  </>
-);
+  );
+
+  const renderFooter = (forMobile: boolean) => (
+    <div
+      className={`px-4 py-3 sm:py-2.5 border-t flex items-center justify-between shrink-0 ${forMobile ? 'pb-7' : 'pb-2.5'}`}
+      style={{
+        borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+        backgroundColor: isDark
+          ? 'var(--color-dark-surface-elevated)'
+          : 'var(--color-surface-subtle)',
+      }}
+    >
+      <button
+        type="button"
+        onClick={onReset}
+        className="flex items-center gap-1 text-[12px] sm:text-[11px] font-medium transition-colors hover:underline cursor-pointer"
+        style={{
+          color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)',
+        }}
+      >
+        <span className="material-symbols-outlined text-[16px] sm:text-[14px]">restart_alt</span>
+        <span>Reset Standar</span>
+      </button>
+
+      <button
+        type="button"
+        onClick={onClose}
+        className="px-4 py-1.5 sm:px-3 sm:py-1 rounded-xl sm:rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
+        style={{
+          backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+          color: 'var(--color-on-primary)',
+        }}
+      >
+        Tutup
+      </button>
+    </div>
+  );
+
+  // MOBILE VIEW: Render via React Portal into document.body
+  if (isMobile) {
+    if (typeof document === 'undefined') return null;
+
+    return createPortal(
+      <div className="relative z-[99999]">
+        {/* Mobile Backdrop Overlay */}
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-[99998] animate-fade-in"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+
+        {/* Mobile Bottom Sheet Drawer */}
+        <div
+          ref={popoverRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Pengaturan Tampilan Bacaan"
+          className="fixed inset-x-0 bottom-0 z-[99999] w-full max-w-lg mx-auto rounded-t-3xl border-t shadow-2xl flex flex-col max-h-[85vh] overflow-hidden animate-slide-up"
+          style={{
+            backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
+            borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+            color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
+          }}
+        >
+          {/* Mobile Grab Handle */}
+          <div className="w-10 h-1 rounded-full bg-black/20 dark:bg-white/20 mx-auto mt-2.5 mb-1 shrink-0" />
+
+          {renderHeader()}
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto flex-1">
+            {renderBody()}
+          </div>
+
+          {renderFooter(true)}
+        </div>
+      </div>,
+      document.body
+    );
+  }
+
+  // DESKTOP VIEW: Anchored floating popover dropdown
+  return (
+    <div
+      ref={popoverRef}
+      role="dialog"
+      aria-label="Pengaturan Tampilan Bacaan"
+      className="absolute right-0 top-full mt-2 w-[350px] max-w-[360px] rounded-2xl border shadow-2xl z-50 flex flex-col max-h-[85vh] overflow-hidden animate-fade-in"
+      style={{
+        backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
+        borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+        color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
+      }}
+    >
+      {renderHeader()}
+
+      {/* Scrollable Body */}
+      <div className="overflow-y-auto flex-1">
+        {renderBody()}
+      </div>
+
+      {renderFooter(false)}
+    </div>
+  );
 }

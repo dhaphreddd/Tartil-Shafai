@@ -6,24 +6,59 @@ import type { Layer1Card, Layer3Item, SurahMetadata } from '@/core/types';
 import { formatSurahsTitle, formatSurahsArabic } from '@/utils/PackageTitleFormatter';
 import { useTheme } from '@/contexts/ThemeContext';
 
+interface CachedVolumeState {
+  currentLayer: Layer1Card | null;
+  allLayers: Layer1Card[];
+  surahs: SurahMetadata[];
+  snippets: Record<string, string>;
+  scrollY?: number;
+}
+
+const volumeStateCache = new Map<string, CachedVolumeState>();
+
 export default function VolumePage() {
   const { volumeId } = useParams<{ volumeId: string }>();
   const { effective } = useTheme();
   const isDark = effective === 'dark';
 
-  const [allLayers, setAllLayers] = useState<Layer1Card[]>([]);
-  const [currentLayer, setCurrentLayer] = useState<Layer1Card | null>(null);
-  const [surahs, setSurahs] = useState<SurahMetadata[]>([]);
-  const [snippets, setSnippets] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(true);
+  const targetId = volumeId || '1';
+  const cached = volumeStateCache.get(targetId);
+
+  const [allLayers, setAllLayers] = useState<Layer1Card[]>(() => cached?.allLayers || []);
+  const [currentLayer, setCurrentLayer] = useState<Layer1Card | null>(() => cached?.currentLayer || null);
+  const [surahs, setSurahs] = useState<SurahMetadata[]>(() => cached?.surahs || []);
+  const [snippets, setSnippets] = useState<Record<string, string>>(() => cached?.snippets || {});
+  const [loading, setLoading] = useState(() => !cached);
   const [error, setError] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLayer2Id, setSelectedLayer2Id] = useState<string>('all');
 
+  // Restore scroll position when returning
+  useEffect(() => {
+    if (cached?.scrollY && cached.scrollY > 0) {
+      const targetScroll = cached.scrollY;
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: targetScroll, behavior: 'instant' });
+      });
+    }
+  }, [targetId]);
+
+  // Record scroll position before unmount
+  useEffect(() => {
+    return () => {
+      const item = volumeStateCache.get(targetId);
+      if (item) {
+        item.scrollY = window.scrollY;
+      }
+    };
+  }, [targetId]);
+
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
+    if (!volumeStateCache.has(targetId)) {
+      setLoading(true);
+    }
     setError(null);
 
     getSurahsMetadata().then((surahMeta) => {
@@ -35,11 +70,11 @@ export default function VolumePage() {
       setAllLayers(layers);
 
       // Find active layer by ID or alias
-      const targetId = volumeId || 'j1';
-      let found = layers.find((l) => l.id === targetId || l.id.toLowerCase() === targetId.toLowerCase());
+      const searchId = volumeId || 'j1';
+      let found = layers.find((l) => l.id === searchId || l.id.toLowerCase() === searchId.toLowerCase());
       if (!found) {
-        if (targetId === '1' || targetId === 'volume-1' || targetId === 'j1') found = layers[0];
-        else if (targetId === '2' || targetId === 'volume-2' || targetId === 'j2') found = layers[1] || layers[0];
+        if (searchId === '1' || searchId === 'volume-1' || searchId === 'j1') found = layers[0];
+        else if (searchId === '2' || searchId === 'volume-2' || searchId === 'j2') found = layers[1] || layers[0];
       }
       if (!found && layers.length > 0) {
         found = layers[0];
@@ -56,11 +91,31 @@ export default function VolumePage() {
         }
         getPackageSnippets(allItems as any).then((snips) => {
           if (isMounted) {
-            setSnippets((prev) => ({ ...prev, ...snips }));
+            setSnippets((prev) => {
+              const updated = { ...prev, ...snips };
+              // Update memory cache
+              volumeStateCache.set(targetId, {
+                currentLayer: found || null,
+                allLayers: layers,
+                surahs,
+                snippets: updated,
+                scrollY: volumeStateCache.get(targetId)?.scrollY || 0,
+              });
+              return updated;
+            });
           }
         });
       }
       setLoading(false);
+
+      // Update memory cache
+      volumeStateCache.set(targetId, {
+        currentLayer: found || null,
+        allLayers: layers,
+        surahs,
+        snippets,
+        scrollY: volumeStateCache.get(targetId)?.scrollY || 0,
+      });
     });
 
     return () => {
@@ -468,15 +523,36 @@ export default function VolumePage() {
                           <div>
                             {/* Card Top: Title Badge & Arabic Name */}
                             <div className="flex items-center justify-between mb-2.5">
-                              <span
-                                className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded"
-                                style={{
-                                  backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
-                                  color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
-                                }}
-                              >
-                                {item.title || `Materi ${item.order}`}
-                              </span>
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span
+                                  className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded"
+                                  style={{
+                                    backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
+                                    color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+                                  }}
+                                >
+                                  {item.title || `Materi ${item.order}`}
+                                </span>
+
+                                {item.isPinned && (
+                                  <span
+                                    className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                                    style={{
+                                      backgroundColor: isDark ? 'rgba(217, 119, 6, 0.2)' : 'rgba(217, 119, 6, 0.12)',
+                                      color: '#d97706',
+                                    }}
+                                    title="Disematkan di Beranda Utama"
+                                  >
+                                    <span
+                                      className="material-symbols-outlined text-[12px]"
+                                      style={{ fontVariationSettings: "'FILL' 1" }}
+                                    >
+                                      push_pin
+                                    </span>
+                                    <span>Disematkan</span>
+                                  </span>
+                                )}
+                              </div>
 
                               <span
                                 className="text-[19px] leading-none"

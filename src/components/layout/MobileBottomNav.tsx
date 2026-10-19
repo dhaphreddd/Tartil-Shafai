@@ -3,32 +3,43 @@
  *
  * Based on Stitch home_mobile_tartil_shafa_i design.
  * Bottom nav with: Beranda, Jilid, Cari, Pengaturan.
+ * Dynamically remembers the last opened Jilid / Reading package so switching to
+ * Settings and back does not reset or reload to Jilid 1.
  */
 
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import { useTheme } from '@/contexts/ThemeContext';
-
-interface MobileNavItem {
-  label: string;
-  path: string;
-  icon: string;
-}
-
-const NAV_ITEMS: MobileNavItem[] = [
-  { label: 'Beranda', path: '/', icon: 'auto_stories' },
-  { label: 'Jilid', path: '/jilid/1', icon: 'library_books' },
-  { label: 'Cari', path: '/search', icon: 'search' },
-  { label: 'Pengaturan', path: '/settings', icon: 'settings' },
-];
+import { setLastReadingPath, getLastReadingPath } from '@/utils/navigationHistory';
 
 export default function MobileBottomNav() {
   const { effective } = useTheme();
   const location = useLocation();
 
-  const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
+  // Track the last visited Jilid or package reading route
+  useEffect(() => {
+    if (location.pathname.startsWith('/jilid/') || location.pathname.startsWith('/paket/')) {
+      setLastReadingPath(location.pathname);
+    }
+  }, [location.pathname]);
+
+  const lastReadingPath = getLastReadingPath();
+
+  const navItems = [
+    { label: 'Beranda', path: '/', icon: 'auto_stories' },
+    { label: 'Jilid', path: lastReadingPath, icon: 'library_books' },
+    { label: 'Cari', path: '/search', icon: 'search' },
+    { label: 'Pengaturan', path: '/settings', icon: 'settings' },
+  ];
+
+  const isItemActive = (label: string) => {
+    if (label === 'Beranda') return location.pathname === '/';
+    if (label === 'Jilid') {
+      return location.pathname.startsWith('/jilid') || location.pathname.startsWith('/paket');
+    }
+    if (label === 'Cari') return location.pathname.startsWith('/search');
+    if (label === 'Pengaturan') return location.pathname.startsWith('/settings');
+    return false;
   };
 
   return (
@@ -45,13 +56,13 @@ export default function MobileBottomNav() {
       }}
     >
       <div className="flex items-center justify-around h-16 px-2 max-w-lg mx-auto">
-        {NAV_ITEMS.map((item) => {
-          const active = isActive(item.path);
+        {navItems.map((item) => {
+          const active = isItemActive(item.label);
           return (
             <Link
-              key={item.path}
+              key={item.label}
               to={item.path}
-              className="flex flex-col items-center justify-center gap-0.5 w-16 py-1.5 rounded-lg transition-colors"
+              className="flex flex-col items-center justify-center gap-0.5 w-16 py-1.5 rounded-lg transition-colors cursor-pointer"
               id={`mobile-nav-${item.label.toLowerCase()}`}
               style={{
                 color: active
@@ -78,3 +89,4 @@ export default function MobileBottomNav() {
     </nav>
   );
 }
+

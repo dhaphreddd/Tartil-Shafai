@@ -11,6 +11,17 @@ import { useAuth } from '@/contexts/AuthContext';
 import type { Layer1Card, Layer2Card, Layer3Item } from '@/core/types';
 import { formatSurahsTitle } from '@/utils/PackageTitleFormatter';
 
+interface CachedPackageState {
+  layer1: Layer1Card;
+  layer2: Layer2Card;
+  layer3: Layer3Item;
+  resolvedData: ResolvedPackage;
+  siblings: Layer3Item[];
+  scrollY?: number;
+}
+
+const packageStateCache = new Map<string, CachedPackageState>();
+
 export default function PackagePage() {
   const { packageId } = useParams<{ packageId: string }>();
   const navigate = useNavigate();
@@ -21,17 +32,24 @@ export default function PackagePage() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const [layer1, setLayer1] = useState<Layer1Card | null>(null);
-  const [layer2, setLayer2] = useState<Layer2Card | null>(null);
-  const [layer3, setLayer3] = useState<Layer3Item | null>(null);
-  const [resolvedData, setResolvedData] = useState<ResolvedPackage | null>(null);
-  const [siblings, setSiblings] = useState<Layer3Item[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Use cached state if available to eliminate reload flicker
+  const cached = packageId ? packageStateCache.get(packageId) : undefined;
+
+  const [layer1, setLayer1] = useState<Layer1Card | null>(() => cached?.layer1 || null);
+  const [layer2, setLayer2] = useState<Layer2Card | null>(() => cached?.layer2 || null);
+  const [layer3, setLayer3] = useState<Layer3Item | null>(() => cached?.layer3 || null);
+  const [resolvedData, setResolvedData] = useState<ResolvedPackage | null>(() => cached?.resolvedData || null);
+  const [siblings, setSiblings] = useState<Layer3Item[]>(() => cached?.siblings || []);
+  const [loading, setLoading] = useState(() => !cached);
   const [pinSaving, setPinSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleTogglePin = async () => {
     if (!layer3) return;
+    if (!isAdmin) {
+      alert('Hanya akun Admin yang dapat menyematkan atau melepas sematan materi ke Beranda Utama.');
+      return;
+    }
     setPinSaving(true);
     try {
       const nextState = await CurriculumService.togglePinItem(layer3.id);
@@ -43,11 +61,36 @@ export default function PackagePage() {
     }
   };
 
+  // Restore scroll position when returning from settings
+  useEffect(() => {
+    if (cached?.scrollY && cached.scrollY > 0) {
+      const targetScroll = cached.scrollY;
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: targetScroll, behavior: 'instant' });
+      });
+    }
+  }, [packageId]);
+
+  // Record scroll position before unmount
+  useEffect(() => {
+    return () => {
+      if (packageId) {
+        const item = packageStateCache.get(packageId);
+        if (item) {
+          item.scrollY = window.scrollY;
+        }
+      }
+    };
+  }, [packageId]);
+
   useEffect(() => {
     let isMounted = true;
     if (!packageId) return;
 
-    setLoading(true);
+    // Only set loading true if we don't have cached data
+    if (!packageStateCache.has(packageId)) {
+      setLoading(true);
+    }
     setError(null);
 
     const unsubscribe = CurriculumService.subscribeToLayer3Item(packageId, async (found) => {
@@ -80,6 +123,16 @@ export default function PackagePage() {
           setSiblings(found.layer2.items || []);
           setError(null);
           setLoading(false);
+
+          // Save to memory cache for zero-reload returns
+          packageStateCache.set(packageId, {
+            layer1: found.layer1,
+            layer2: found.layer2,
+            layer3: found.item,
+            resolvedData: resolved,
+            siblings: found.layer2.items || [],
+            scrollY: packageStateCache.get(packageId)?.scrollY || 0,
+          });
         }
       } catch (err: any) {
         if (isMounted) {
@@ -156,47 +209,53 @@ export default function PackagePage() {
           </span>
         </nav>
 
-        {/* Right: Actions Bar (Pin for Admin + Tampilan Settings) */}
+        {/* Right: Actions Bar (Pin Status & Tampilan Settings) */}
         <div className="flex items-center gap-2">
-          {isAdmin && (
-            <button
-              type="button"
-              onClick={handleTogglePin}
-              disabled={pinSaving}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all active:scale-95 shadow-xs cursor-pointer"
+          <button
+            type="button"
+            onClick={handleTogglePin}
+            disabled={pinSaving}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all active:scale-95 shadow-xs cursor-pointer"
+            style={{
+              borderColor: layer3.isPinned
+                ? '#d97706'
+                : isDark
+                  ? 'var(--color-dark-border)'
+                  : 'var(--color-border)',
+              backgroundColor: layer3.isPinned
+                ? isDark
+                  ? 'rgba(217, 119, 6, 0.2)'
+                  : 'rgba(217, 119, 6, 0.1)'
+                : isDark
+                  ? 'var(--color-dark-surface)'
+                  : 'var(--color-surface)',
+              color: layer3.isPinned
+                ? '#d97706'
+                : isDark
+                  ? 'var(--color-dark-text-secondary)'
+                  : 'var(--color-text-secondary)',
+            }}
+            title={
+              isAdmin
+                ? layer3.isPinned
+                  ? 'Lepas sematan dari Beranda'
+                  : 'Sematkan di Beranda Utama'
+                : layer3.isPinned
+                  ? 'Materi ini disematkan di Beranda Utama'
+                  : 'Sematkan di Beranda Utama (Khusus Admin)'
+            }
+          >
+            <span
+              className="material-symbols-outlined text-[17px] block"
               style={{
-                borderColor: layer3.isPinned
-                  ? '#d97706'
-                  : isDark
-                    ? 'var(--color-dark-border)'
-                    : 'var(--color-border)',
-                backgroundColor: layer3.isPinned
-                  ? isDark
-                    ? 'rgba(217, 119, 6, 0.2)'
-                    : 'rgba(217, 119, 6, 0.1)'
-                  : isDark
-                    ? 'var(--color-dark-surface)'
-                    : 'var(--color-surface)',
-                color: layer3.isPinned
-                  ? '#d97706'
-                  : isDark
-                    ? 'var(--color-dark-text-secondary)'
-                    : 'var(--color-text-secondary)',
+                fontVariationSettings: layer3.isPinned ? "'FILL' 1" : "'FILL' 0",
+                color: layer3.isPinned ? '#d97706' : undefined,
               }}
-              title={layer3.isPinned ? 'Lepas sematan dari Beranda' : 'Sematkan di Beranda Utama'}
             >
-              <span
-                className="material-symbols-outlined text-[17px] block"
-                style={{
-                  fontVariationSettings: layer3.isPinned ? "'FILL' 1" : "'FILL' 0",
-                  color: layer3.isPinned ? '#d97706' : undefined,
-                }}
-              >
-                push_pin
-              </span>
-              <span>{pinSaving ? 'Menyimpan...' : layer3.isPinned ? 'Disematkan' : 'Sematkan'}</span>
-            </button>
-          )}
+              push_pin
+            </span>
+            <span>{pinSaving ? 'Menyimpan...' : layer3.isPinned ? 'Disematkan' : 'Sematkan'}</span>
+          </button>
 
           <div className="relative">
             <button

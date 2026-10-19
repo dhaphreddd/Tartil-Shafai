@@ -3,10 +3,12 @@
  */
 
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useReaderSettings } from '@/hooks/useReaderSettings';
 import { QURAN_FONT_OPTIONS } from '@/core/fonts';
 import { loadQCFPageFont } from '@/utils/FontManager';
+import { getLastReadingPath } from '@/utils/navigationHistory';
 import type { ThemeMode } from '@/core/types';
 
 const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: string }[] = [
@@ -19,6 +21,8 @@ export default function SettingsPage() {
   const { mode, setMode, effective } = useTheme();
   const { settings, setFont, setFontSize, setLineHeight } = useReaderSettings();
   const isDark = effective === 'dark';
+  const lastReadingPath = getLastReadingPath();
+  const hasReadingReturn = lastReadingPath && (lastReadingPath.startsWith('/paket/') || lastReadingPath.startsWith('/jilid/'));
 
   useEffect(() => {
     loadQCFPageFont(1, 'v1');
@@ -27,6 +31,24 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 md:px-8 lg:px-12 py-12 animate-fade-in">
+      {/* Return to last reading/jilid button */}
+      {hasReadingReturn && (
+        <div className="mb-6">
+          <Link
+            to={lastReadingPath}
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all active:scale-95 shadow-xs hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+            style={{
+              borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+              backgroundColor: isDark ? 'var(--color-dark-surface)' : 'var(--color-surface)',
+              color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+            }}
+          >
+            <span className="material-symbols-outlined text-[16px]">arrow_back</span>
+            <span>Kembali ke {lastReadingPath.startsWith('/paket/') ? 'Bacaan' : 'Jilid'} yang Dibuka</span>
+          </Link>
+        </div>
+      )}
+
       <h1
         className="font-semibold mb-8"
         style={{
