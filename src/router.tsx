@@ -78,6 +78,9 @@ function PageLoader() {
           src={`${import.meta.env.BASE_URL}logo-64.png`}
           alt="Tartil Shafa'i"
           className="w-10 h-10 object-contain drop-shadow-xs"
+          width="40"
+          height="40"
+          decoding="async"
         />
       </div>
     </div>

@@ -48,7 +48,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,ttf,otf,json}'],
+        globPatterns: ['**/*.{js,css,html}', 'favicon.ico', 'icons/*.png'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -78,6 +78,34 @@ export default defineConfig({
               },
             },
           },
+          {
+            urlPattern: /\/quran\/.*\.json$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'quran-json-cache',
+              expiration: {
+                maxEntries: 114,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\/fonts\/.*\.(otf|ttf|woff2)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-fonts-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
         ],
       },
     }),
@@ -97,6 +125,33 @@ export default defineConfig({
       },
     },
   ],
+  build: {
+    target: 'es2022',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@firebase/firestore') || id.includes('firebase/firestore')) {
+              return 'vendor-firestore';
+            }
+            if (id.includes('@firebase/auth') || id.includes('firebase/auth')) {
+              return 'vendor-firebase-auth';
+            }
+            if (id.includes('firebase')) {
+              return 'vendor-firebase-core';
+            }
+            if (id.includes('react') || id.includes('scheduler')) {
+              return 'vendor-react';
+            }
+          }
+          if (id.includes('tartil-packages-fixture.json')) {
+            return 'curriculum-fixture';
+          }
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),

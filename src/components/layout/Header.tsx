@@ -52,6 +52,7 @@ export default function Header() {
             width="36"
             height="36"
             loading="eager"
+            decoding="async"
           />
           <span
             className="font-semibold text-[17px] md:text-[18px] leading-none tracking-tight transition-colors"

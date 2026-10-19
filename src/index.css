@@ -46,7 +46,7 @@
 
   /* ---------- Typography ---------- */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-arabic: "KFGQPC_Hafs", "Noto Naskh Arabic", serif;
+  --font-arabic: "Noto Naskh Arabic", "KFGQPC_Hafs", serif;
 
   /* ---------- Font sizes ---------- */
   --text-display-hero: 40px;

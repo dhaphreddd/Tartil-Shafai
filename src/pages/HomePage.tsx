@@ -46,11 +46,24 @@ export default function HomePage() {
       setAllPackages(allItems);
       setPinnedPackages(pinned);
 
-      // Muat potongan ayat pertama untuk seluruh paket secara paralel
-      getPackageSnippets(allItems as any).then((snips) => {
-        if (isMounted) {
-          setSnippets((prev) => ({ ...prev, ...snips }));
-        }
+      // Muat potongan ayat pertama hanya untuk paket yang dipin terlebih dahulu
+      if (pinned.length > 0) {
+        getPackageSnippets(pinned as any).then((snips) => {
+          if (isMounted) {
+            setSnippets((prev) => ({ ...prev, ...snips }));
+          }
+        });
+      }
+
+      // Defer pemuatan snippet untuk seluruh paket sampai browser idle
+      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2000));
+      idleFn(() => {
+        if (!isMounted) return;
+        getPackageSnippets(allItems as any).then((snips) => {
+          if (isMounted) {
+            setSnippets((prev) => ({ ...prev, ...snips }));
+          }
+        });
       });
     });
 
