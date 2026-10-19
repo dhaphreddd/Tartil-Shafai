@@ -25,35 +25,52 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setLoading(true);
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        try {
-          const docRef = doc(db, 'admins', firebaseUser.uid);
-          const snap = await getDoc(docRef);
-          if (snap.exists() && snap.data().active === true) {
-            setIsAdmin(true);
-          } else if (firebaseUser.email === 'arset.saklawase@gmail.com') {
-            setIsAdmin(true);
-          } else {
-            setIsAdmin(false);
-          }
-        } catch (error) {
-          console.warn("Firestore admin check error:", error);
-          if (firebaseUser.email === 'arset.saklawase@gmail.com') {
-            setIsAdmin(true);
-          } else {
-            setIsAdmin(false);
-          }
-        }
-      } else {
-        setIsAdmin(false);
-      }
-      setLoading(false);
-    });
+    let unsubscribe: (() => void) | null = null;
+    const isAdminPath = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin');
 
-    return () => unsubscribe();
+    const initAuth = () => {
+      unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        setLoading(true);
+        setUser(firebaseUser);
+        if (firebaseUser) {
+          try {
+            const docRef = doc(db, 'admins', firebaseUser.uid);
+            const snap = await getDoc(docRef);
+            if (snap.exists() && snap.data().active === true) {
+              setIsAdmin(true);
+            } else if (firebaseUser.email === 'arset.saklawase@gmail.com') {
+              setIsAdmin(true);
+            } else {
+              setIsAdmin(false);
+            }
+          } catch (error) {
+            console.warn("Firestore admin check error:", error);
+            if (firebaseUser.email === 'arset.saklawase@gmail.com') {
+              setIsAdmin(true);
+            } else {
+              setIsAdmin(false);
+            }
+          }
+        } else {
+          setIsAdmin(false);
+        }
+        setLoading(false);
+      });
+    };
+
+    if (isAdminPath) {
+      initAuth();
+    } else {
+      setLoading(false);
+      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
+      idleFn(() => {
+        initAuth();
+      });
+    }
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
 
   const logout = async () => {

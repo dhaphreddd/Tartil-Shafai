@@ -359,7 +359,10 @@ export class SurahNameService {
   }
 }
 
-// Inisialisasi otomatis jika di lingkungan browser
+// Inisialisasi otomatis jika di lingkungan browser saat idle
 if (typeof window !== 'undefined') {
-  SurahNameService.initRealtime();
+  const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
+  idleFn(() => {
+    SurahNameService.initRealtime();
+  });
 }

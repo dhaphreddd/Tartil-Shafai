@@ -206,7 +206,6 @@ export class CurriculumService {
    * Callback is invoked immediately with the current state and whenever data changes.
    */
   static subscribeToAllLayers(callback: (layers: Layer1Card[]) => void): () => void {
-    this.initRealtime();
     this.listeners.add(callback);
 
     // Initial immediate call with current state
@@ -215,6 +214,16 @@ export class CurriculumService {
       callback(current);
     } catch (err) {
       console.error(err);
+    }
+
+    // Defer persistent Firestore streaming connection until browser idle
+    if (typeof window !== 'undefined') {
+      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2500));
+      idleFn(() => {
+        this.initRealtime();
+      });
+    } else {
+      this.initRealtime();
     }
 
     return () => {
