@@ -16,8 +16,9 @@ import { createBrowserRouter, RouterProvider, Outlet, Navigate, useRouteError, L
 import MainLayout from '@/layouts/MainLayout';
 import AdminGuard from '@/components/AdminGuard';
 
-// Lazy-loaded pages for route-based code splitting
-const HomePage = lazy(() => import('@/pages/HomePage'));
+import HomePage from '@/pages/HomePage';
+
+// Lazy-loaded pages for other routes
 const VolumePage = lazy(() => import('@/pages/VolumePage'));
 const PackagePage = lazy(() => import('@/pages/PackagePage'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
@@ -95,11 +96,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <HomePage />
-          </Suspense>
-        ),
+        element: <HomePage />,
       },
       {
         path: 'jilid/:volumeId',
