@@ -146,7 +146,7 @@ export default defineConfig({
               return 'vendor-react';
             }
           }
-          if (id.includes('tartil-packages-fixture.json')) {
+          if (id.includes('tartil-packages-fixture.json') || id.includes('surahs.json')) {
             return 'curriculum-fixture';
           }
         },

@@ -7,6 +7,7 @@
 
 import type { Ayah, SurahData, SurahMetadata } from '@/core/types';
 import { SurahNameService } from './SurahNameService';
+import defaultSurahsData from '../data/surahs.json';
 
 const QURAN_API_BASE = 'https://api.quran.com/api/v4';
 
@@ -23,50 +24,31 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * Mendapatkan metadata seluruh 114 surat langsung dari Quran.com API (dengan transliterasi standar Indonesia / kustom).
+ * Mendapatkan metadata seluruh 114 surat secara sinkron dari basis data lokal,
+ * digabungkan dengan transliterasi standar Indonesia dan penyesuaian kustom admin.
  */
-export async function getSurahsMetadata(): Promise<SurahMetadata[]> {
+export function getSurahsMetadataSync(): SurahMetadata[] {
   if (surahsMetadataCache && surahsMetadataCache.length > 0) {
     return surahsMetadataCache;
   }
 
-  try {
-    const res = await fetch(`${QURAN_API_BASE}/chapters?language=id`);
-    if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com chapters API`);
-    const data = await res.json();
-    
-    if (Array.isArray(data.chapters)) {
-      const metadata: SurahMetadata[] = data.chapters.map((c: any) => ({
-        id: c.id,
-        name: SurahNameService.getSurahName(c.id, c.name_simple),
-        nameArabic: SurahNameService.getSurahArabic(c.id, c.name_arabic),
-        ayahCount: c.verses_count,
-      }));
-      surahsMetadataCache = metadata;
-      return metadata;
-    }
-  } catch (err) {
-    console.warn('[QuranService] Gagal fetch chapters dari Quran.com, mencoba fallback lokal:', err);
-  }
+  const metadata: SurahMetadata[] = (defaultSurahsData as any[]).map((s) => ({
+    id: s.id,
+    name: SurahNameService.getSurahName(s.id, s.name),
+    nameArabic: SurahNameService.getSurahArabic(s.id, s.nameArabic),
+    ayahCount: s.ayahCount,
+    revelationType: s.revelationType,
+  }));
 
-  // Fallback lokal jika internet terputus
-  try {
-    const response = await fetch(`${import.meta.env.BASE_URL}quran/metadata/surahs.json`);
-    if (response.ok) {
-      const rawMeta: SurahMetadata[] = await response.json();
-      const metadata: SurahMetadata[] = rawMeta.map((s) => ({
-        ...s,
-        name: SurahNameService.getSurahName(s.id, s.name),
-        nameArabic: SurahNameService.getSurahArabic(s.id, s.nameArabic),
-      }));
-      surahsMetadataCache = metadata;
-      return metadata;
-    }
-  } catch (e) {
-    console.error('Local fallback failed:', e);
-  }
+  surahsMetadataCache = metadata;
+  return metadata;
+}
 
-  return [];
+/**
+ * Async wrapper untuk kompatibilitas ke belakang.
+ */
+export async function getSurahsMetadata(): Promise<SurahMetadata[]> {
+  return getSurahsMetadataSync();
 }
 
 /**

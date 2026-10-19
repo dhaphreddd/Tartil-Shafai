@@ -11,7 +11,7 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 import { CurriculumService } from '@/services/CurriculumService';
-import { getSurahsMetadata, getPackageSnippets } from '@/services/QuranService';
+import { getSurahsMetadataSync, getPackageSnippets } from '@/services/QuranService';
 import type { Layer1Card, Layer3Item, SurahMetadata } from '@/core/types';
 import { formatSurahsTitle, formatSurahsArabic } from '@/utils/PackageTitleFormatter';
 
@@ -24,10 +24,11 @@ export default function HomePage() {
   const initialLayers = useMemo(() => CurriculumService.getInitialPublishedLayers(), []);
   const initialAllPackages = useMemo(() => CurriculumService.flattenPublishedItems(initialLayers), [initialLayers]);
   const initialPinned = useMemo(() => CurriculumService.filterPinnedItems(initialLayers), [initialLayers]);
+  const initialSurahs = useMemo(() => getSurahsMetadataSync(), []);
 
   const [layers, setLayers] = useState<Layer1Card[]>(initialLayers);
   const [pinnedPackages, setPinnedPackages] = useState<Layer3Item[]>(initialPinned);
-  const [surahs, setSurahs] = useState<SurahMetadata[]>([]);
+  const [surahs, setSurahs] = useState<SurahMetadata[]>(initialSurahs);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
   const [allPackages, setAllPackages] = useState<Layer3Item[]>(initialAllPackages);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -37,9 +38,11 @@ export default function HomePage() {
 
   useEffect(() => {
     let isMounted = true;
-    getSurahsMetadata().then((meta) => {
-      if (isMounted) setSurahs(meta);
-    });
+
+    const handleSurahNamesChange = () => {
+      if (isMounted) setSurahs(getSurahsMetadataSync());
+    };
+    window.addEventListener('tartil_surah_names_change', handleSurahNamesChange);
 
     const unsubscribe = CurriculumService.subscribeToPublishedLayers((publishedLayers) => {
       if (!isMounted) return;
@@ -49,33 +52,36 @@ export default function HomePage() {
       setLayers(publishedLayers);
       setAllPackages(allItems);
       setPinnedPackages(pinned);
-
-      // Muat potongan ayat pertama hanya untuk paket yang dipin terlebih dahulu
-      if (pinned.length > 0) {
-        getPackageSnippets(pinned as any).then((snips) => {
-          if (isMounted) {
-            setSnippets((prev) => ({ ...prev, ...snips }));
-          }
-        });
-      }
-
-      // Defer pemuatan snippet untuk seluruh paket sampai browser idle
-      const idleFn = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 2000));
-      idleFn(() => {
-        if (!isMounted) return;
-        getPackageSnippets(allItems as any).then((snips) => {
-          if (isMounted) {
-            setSnippets((prev) => ({ ...prev, ...snips }));
-          }
-        });
-      });
     });
 
     return () => {
       isMounted = false;
+      window.removeEventListener('tartil_surah_names_change', handleSurahNamesChange);
       unsubscribe();
     };
   }, []);
+
+  // Ambil potongan ayat untuk paket yang dipin secara asinkron saat idle
+  useEffect(() => {
+    if (pinnedPackages.length > 0) {
+      const needed = pinnedPackages.filter((p) => !snippets[p.id]);
+      if (needed.length > 0) {
+        const idle = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 3000));
+        const handle = idle(() => {
+          getPackageSnippets(needed as any).then((snips) => {
+            setSnippets((prev) => ({ ...prev, ...snips }));
+          });
+        });
+        return () => {
+          if ((window as any).cancelIdleCallback && typeof handle === 'number') {
+            (window as any).cancelIdleCallback(handle);
+          }
+        };
+      }
+    }
+  }, [pinnedPackages, snippets]);
+
+
 
   // Tutup dropdown saat klik di luar container pencarian
   useEffect(() => {
@@ -132,6 +138,18 @@ export default function HomePage() {
       );
     });
   }, [allPackages, surahs, snippets, searchQuery]);
+
+  // Ambil potongan ayat untuk hasil pencarian hanya saat pengguna mengetik kata kunci
+  useEffect(() => {
+    if (searchQuery.trim().length > 0 && liveSearchResults.length > 0) {
+      const needed = liveSearchResults.filter((p) => !snippets[p.id]);
+      if (needed.length > 0) {
+        getPackageSnippets(needed as any).then((snips) => {
+          setSnippets((prev) => ({ ...prev, ...snips }));
+        });
+      }
+    }
+  }, [searchQuery, liveSearchResults, snippets]);
 
   return (
     <div className="flex flex-col w-full">
