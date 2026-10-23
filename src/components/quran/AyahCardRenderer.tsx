@@ -148,6 +148,25 @@ export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
 
             {/* Content Body without any labels */}
             <div className="space-y-3.5">
+              {/* Nomor Ayat terpisah (Khusus ketika Arab dinonaktifkan: Latin saja, Terjemah saja, atau Latin + Terjemah) */}
+              {!showArabic && (showTransliteration || showTranslation) && (
+                <div className="flex items-center justify-between pr-8 sm:pr-10">
+                  <span
+                    className="inline-flex items-center justify-center min-w-[26px] h-[26px] px-2.5 rounded-lg text-xs font-semibold font-mono tracking-tight select-none"
+                    style={{
+                      backgroundColor: isDark
+                        ? 'rgba(198, 161, 91, 0.15)'
+                        : 'rgba(198, 161, 91, 0.12)',
+                      color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+                      border: `1px solid ${isDark ? 'rgba(198, 161, 91, 0.3)' : 'rgba(198, 161, 91, 0.25)'}`,
+                    }}
+                    title={`Ayat ${ayah.ayahNumber}`}
+                  >
+                    Ayat {ayah.ayahNumber}
+                  </span>
+                </div>
+              )}
+
               {/* Element 1: Arabic Text */}
               {showArabic && (
                 <div
