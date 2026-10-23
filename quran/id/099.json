@@ -1,0 +1,48 @@
+{
+  "surahId": 99,
+  "name": "Az-Zalzalah",
+  "nameArabic": "الزلزلة",
+  "ayahCount": 8,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Iżā zulzilatil-arḍu zilzālahā.",
+      "translation": "Apabila bumi diguncangkan dengan guncangan yang dahsyat,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wa akhrajatil-arḍu aṡqālahā.",
+      "translation": "bumi mengeluarkan isi perutnya,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa qālal-insānu mā lahā.",
+      "translation": "dan manusia bertanya, “Apa yang terjadi dengannya (bumi)?”"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Yauma'iżin tuḥaddiṡu akhbārahā.",
+      "translation": "Pada hari itu (bumi) menyampaikan berita (tentang apa yang diperbuat manusia di atasnya)"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Bi'anna rabbaka auḥā lahā.",
+      "translation": "karena sesungguhnya Tuhanmu telah memerintahkan (yang demikian itu) kepadanya."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Yauma'iżiy yaṣdurun-nāsu asytātā(n), liyurau a‘mālahum.",
+      "translation": "Pada hari itu manusia keluar (dari kuburnya) dalam keadaan terpencar untuk diperlihatkan kepada mereka (balasan) semua perbuatan mereka."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Famay ya‘mal miṡqāla żarratin khairay yarah(ū).",
+      "translation": "Siapa yang mengerjakan kebaikan seberat zarah, dia akan melihat (balasan)-nya."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa may ya‘mal miṡqāla żarratin syarray yarah(ū).",
+      "translation": "Siapa yang mengerjakan kejahatan seberat zarah, dia akan melihat (balasan)-nya."
+    }
+  ]
+}

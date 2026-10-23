@@ -1,0 +1,23 @@
+{
+  "surahId": 108,
+  "name": "Al-Kausar",
+  "nameArabic": "الكوثر",
+  "ayahCount": 3,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Innā a‘ṭainākal-kauṡar(a).",
+      "translation": "Sesungguhnya Kami telah memberimu (Nabi Muhammad) nikmat yang banyak."
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Faṣalli lirabbika wanḥar.",
+      "translation": "Maka, laksanakanlah salat karena Tuhanmu dan berkurbanlah!"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Inna syāni'aka huwal-abtar(u).",
+      "translation": "Sesungguhnya orang yang membencimu, dialah yang terputus (dari rahmat Allah)."
+    }
+  ]
+}

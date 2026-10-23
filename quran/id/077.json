@@ -1,0 +1,258 @@
+{
+  "surahId": 77,
+  "name": "Al-Mursalat",
+  "nameArabic": "المرسلٰت",
+  "ayahCount": 50,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Wal-mursalāti ‘urfā(n).",
+      "translation": "Demi (malaikat-malaikat) yang diutus untuk membawa kebaikan"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Fal-‘āṣifāti ‘aṣfā(n).",
+      "translation": "dan (malaikat-malaikat) yang terbang dengan kencang;"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wan-nāsyirāti nasyrā(n).",
+      "translation": "demi (malaikat-malaikat) yang menyebarkan (rahmat Allah) dengan seluas-luasnya,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Fal-fāriqāti farqā(n).",
+      "translation": "dan (malaikat-malaikat) yang membedakan (antara yang baik dan yang buruk) dengan sejelas-jelasnya,"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Fal-mulqiyāti żikrā(n).",
+      "translation": "serta (malaikat-malaikat) yang menyampaikan wahyu"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "‘Użran au nużrā(n).",
+      "translation": "untuk (menolak) alasan atau (memberi) peringatan,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Innamā tū‘adūna lawāqi‘(un).",
+      "translation": "sesungguhnya apa yang dijanjikan kepadamu pasti terjadi."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Fa iżan-nujūmu ṭumisat.",
+      "translation": "Apabila bintang-bintang dihapuskan (cahayanya),"
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Wa iżas-samā'u furijat.",
+      "translation": "apabila langit dibelah,"
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa iżal-jibālu nusifat.",
+      "translation": "apabila gunung-gunung dihancurleburkan,"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Wa iżar-rusulu uqqitat.",
+      "translation": "dan apabila rasul-rasul telah ditetapkan waktunya,"
+    },
+    {
+      "ayahNumber": 12,
+      "latin": "Li'ayyi yaumin ujjilat.",
+      "translation": "(niscaya dikatakan kepada mereka,) “Sampai hari apakah ditangguhkan (azab orang kafir itu)?”"
+    },
+    {
+      "ayahNumber": 13,
+      "latin": "Liyaumil-faṣl(i).",
+      "translation": "Sampai hari Keputusan."
+    },
+    {
+      "ayahNumber": 14,
+      "latin": "Wa mā adrāka mā yaumul-faṣl(i).",
+      "translation": "Tahukah kamu apakah hari Keputusan itu?"
+    },
+    {
+      "ayahNumber": 15,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 16,
+      "latin": "Alam nuhlikil-awwalīn(a).",
+      "translation": "Bukankah Kami telah membinasakan orang-orang dahulu?"
+    },
+    {
+      "ayahNumber": 17,
+      "latin": "Ṡumma nutbi‘uhumul-ākhirīn(a).",
+      "translation": "Lalu, Kami susuli mereka dengan (mengazab) orang-orang yang datang kemudian."
+    },
+    {
+      "ayahNumber": 18,
+      "latin": "Każālika naf‘alu bil-mujrimīn(a).",
+      "translation": "Demikianlah Kami memperlakukan para pendurhaka."
+    },
+    {
+      "ayahNumber": 19,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 20,
+      "latin": "Alam nakhluqkum mim mā'im mahīn(in).",
+      "translation": "Bukankah Kami menciptakanmu dari air yang hina (mani)?"
+    },
+    {
+      "ayahNumber": 21,
+      "latin": "Fa ja‘alnāhu fī qarārim makīn(in).",
+      "translation": "Kemudian, Kami meletakkannya di dalam tempat yang kukuh (rahim)"
+    },
+    {
+      "ayahNumber": 22,
+      "latin": "Ilā qadarim ma‘lūm(in).",
+      "translation": "sampai waktu yang ditentukan."
+    },
+    {
+      "ayahNumber": 23,
+      "latin": "Fa qadarnā, fani‘mal-qādirūn(a).",
+      "translation": "Lalu, Kami tentukan (bentuk dan waktu lahirnya). Maka, (Kamilah) sebaik-baik penentu."
+    },
+    {
+      "ayahNumber": 24,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 25,
+      "latin": "Alam naj‘alil-arḍa kifātā(n).",
+      "translation": "Bukankah Kami menjadikan bumi sebagai (tempat) berkumpul"
+    },
+    {
+      "ayahNumber": 26,
+      "latin": "Aḥyā'aw wa amwātā(n).",
+      "translation": "bagi yang (masih) hidup dan yang (sudah) mati?"
+    },
+    {
+      "ayahNumber": 27,
+      "latin": "Wa ja‘alnā fīhā rawāsiya syāmikhātiw wa asqainākum mā'an furātā(n).",
+      "translation": "Kami menjadikan padanya gunung-gunung yang tinggi dan memberi minum kamu air yang tawar?"
+    },
+    {
+      "ayahNumber": 28,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 29,
+      "latin": "Inṭaliqū ilā mā kuntum bihī tukażżibūn(a).",
+      "translation": "(Dikatakan kepada orang-orang kafir,) “Pergilah menuju apa (neraka) yang selalu kamu dustakan."
+    },
+    {
+      "ayahNumber": 30,
+      "latin": "Inṭaliqū ilā ẓillin żī ṡalāṡi syu‘ab(in).",
+      "translation": "Pergilah menuju naungan (asap api neraka) yang mempunyai tiga cabang"
+    },
+    {
+      "ayahNumber": 31,
+      "latin": "Lā ẓalīliw wa lā yugnī minal-lahab(i).",
+      "translation": "yang tidak melindungi dan tidak menahan (panasnya) nyala api neraka.”"
+    },
+    {
+      "ayahNumber": 32,
+      "latin": "Innahā tarmī bisyararin kal-qaṣr(i).",
+      "translation": "Sesungguhnya ia (neraka) menyemburkan bunga api bagaikan istana (yang besar dan tinggi),"
+    },
+    {
+      "ayahNumber": 33,
+      "latin": "Ka'annahū jimālatun ṣufr(un).",
+      "translation": "seakan-akan iringan unta (hitam) kekuning-kuningan."
+    },
+    {
+      "ayahNumber": 34,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 35,
+      "latin": "Hāżā yaumu lā yanṭiqūn(a).",
+      "translation": "Inilah hari ketika mereka tidak dapat berbicara."
+    },
+    {
+      "ayahNumber": 36,
+      "latin": "Wa lā yu'żanu lahum fa ya‘tażirūn(a).",
+      "translation": "Mereka tidak diizinkan (berbicara) sehingga (dapat) meminta maaf."
+    },
+    {
+      "ayahNumber": 37,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 38,
+      "latin": "Hāżā yaumul-faṣli jama‘nākum wal-awwalīn(a).",
+      "translation": "(Dikatakan kepada mereka,) “Inilah hari Keputusan. Kami kumpulkan kamu dan orang-orang terdahulu."
+    },
+    {
+      "ayahNumber": 39,
+      "latin": "Fa'in kāna lakum kaidun fakīdūn(i).",
+      "translation": "Jika kamu punya tipu daya, lakukanlah terhadap-Ku.”"
+    },
+    {
+      "ayahNumber": 40,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 41,
+      "latin": "Innal-muttaqīna fī ẓilāliw wa ‘uyūn(in).",
+      "translation": "Sesungguhnya orang-orang yang bertakwa berada dalam naungan (pepohonan surga yang teduh) dan (ada di sekitar) mata air"
+    },
+    {
+      "ayahNumber": 42,
+      "latin": "Wa fawākiha mimmā yasytahūn(a).",
+      "translation": "serta buah-buahan yang mereka sukai."
+    },
+    {
+      "ayahNumber": 43,
+      "latin": "Kulū wasyrabū hanī'am bimā kuntum ta‘malūn(a).",
+      "translation": "(Dikatakan kepada mereka,) “Makan dan minumlah dengan nikmat karena apa yang selalu kamu kerjakan.”"
+    },
+    {
+      "ayahNumber": 44,
+      "latin": "Innā każālika najzil-muḥsinīn(a).",
+      "translation": "Sesungguhnya demikianlah Kami beri balasan kepada orang-orang yang berbuat baik."
+    },
+    {
+      "ayahNumber": 45,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 46,
+      "latin": "Kulū wa tamatta‘ū qalīlan innakum mujrimūn(a).",
+      "translation": "(Dikatakan kepada orang-orang kafir,) “Makan dan bersenang-senanglah kamu (di dunia) sebentar. Sesungguhnya kamu adalah para pendurhaka!”"
+    },
+    {
+      "ayahNumber": 47,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 48,
+      "latin": "Wa iżā qīla lahumurka‘ū lā yarka‘ūn(a).",
+      "translation": "Apabila dikatakan kepada mereka, “Rukuklah,” mereka tidak mau rukuk."
+    },
+    {
+      "ayahNumber": 49,
+      "latin": "Wailuy yauma'iżil lil-mukażżibīn(a).",
+      "translation": "Celakalah pada hari itu para pendusta (kebenaran)."
+    },
+    {
+      "ayahNumber": 50,
+      "latin": "Fa bi'ayyi ḥadīṡim ba‘dahū yu'minūn(a).",
+      "translation": "Maka, pada perkataan manakah sesudahnya (Al-Qur’an) mereka akan beriman?"
+    }
+  ]
+}

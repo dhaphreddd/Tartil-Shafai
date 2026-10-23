@@ -1,0 +1,28 @@
+{
+  "surahId": 106,
+  "name": "Quraisy",
+  "nameArabic": "قريش",
+  "ayahCount": 4,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Li'īlāfi quraisy(in).",
+      "translation": "Disebabkan oleh kebiasaan orang-orang Quraisy,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "´lāfihim riḥlatasy-syitā'i waṣ-ṣaif(i).",
+      "translation": "(yaitu) kebiasaan mereka bepergian pada musim dingin dan musim panas (sehingga mendapatkan banyak keuntungan),"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Falya‘budū rabba hāżal-bait(i).",
+      "translation": "maka hendaklah mereka menyembah Tuhan (pemilik) rumah ini (Ka‘bah)"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Allażī aṭ‘amahum min jū‘(in), wa āmanahum min khauf(in).",
+      "translation": "yang telah memberi mereka makanan untuk menghilangkan lapar dan mengamankan mereka dari rasa takut."
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "surahId": 55,
+  "name": "Ar-Rahman",
+  "nameArabic": "الرحمن",
+  "ayahCount": 78,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Ar-raḥmān(u).",
+      "translation": "(Allah) Yang Maha Pengasih,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "‘Allamal-qur'ān(a).",
+      "translation": "telah mengajarkan Al-Qur’an."
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Khalaqal-insān(a).",
+      "translation": "Dia menciptakan manusia."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "‘Allamahul-bayān(a).",
+      "translation": "Dia mengajarinya pandai menjelaskan."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Asy-syamsu wal-qamaru biḥusbān(in).",
+      "translation": "Matahari dan bulan (beredar) sesuai dengan perhitungan."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Wan-najmu wasy-syajaru yasjudān(i).",
+      "translation": "Tetumbuhan dan pepohonan tunduk (kepada-Nya)."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Was-samā'a rafa‘ahā wa waḍa‘al-mīzān(a).",
+      "translation": "Langit telah Dia tinggikan dan Dia telah menciptakan timbangan (keadilan dan keseimbangan)"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Allā taṭgau fil-mīzān(i).",
+      "translation": "agar kamu tidak melampaui batas dalam timbangan itu."
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Wa aqīmul-wazna  bil-qisṭi wa lā tukhsirul-mīzān(a).",
+      "translation": "Tegakkanlah timbangan itu dengan adil dan janganlah kamu mengurangi timbangan itu."
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wal-arḍa waḍa‘ahā lil-anām(i).",
+      "translation": "Bumi telah Dia bentangkan untuk makhluk(-Nya)."
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Fīhā fākihatuw wan-nakhlu żātul-akmām(i).",
+      "translation": "Padanya terdapat buah-buahan dan pohon kurma yang mempunyai kelopak mayang,"
+    },
+    {
+      "ayahNumber": 12,
+      "latin": "Wal-ḥabbu żul-‘aṣfi war-raiḥān(u).",
+      "translation": "biji-bijian yang berkulit, dan bunga-bunga yang harum baunya."
+    },
+    {
+      "ayahNumber": 13,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 14,
+      "latin": "Khalaqal-insāna min ṣalṣālin kal-fakhkhār(i).",
+      "translation": "Dia telah menciptakan manusia dari tanah kering seperti tembikar."
+    },
+    {
+      "ayahNumber": 15,
+      "latin": "Wa khalaqal-jānna mim mārijim min nār(in).",
+      "translation": "Dia juga telah menciptakan jin dari nyala api tanpa asap."
+    },
+    {
+      "ayahNumber": 16,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 17,
+      "latin": "Rabbul-masyriqaini wa rabbul-magribain(i).",
+      "translation": "(Dialah) Tuhan kedua tempat terbit (matahari pada musim panas dan musim dingin) dan Tuhan kedua tempat terbenam (matahari pada kedua musim itu)."
+    },
+    {
+      "ayahNumber": 18,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": ".Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 19,
+      "latin": "Marajal-baḥraini yaltaqiyān(i).",
+      "translation": "Dia membiarkan dua laut (tawar dan asin) bertemu."
+    },
+    {
+      "ayahNumber": 20,
+      "latin": "Bainahumā barzakhul lā yabgiyān(i).",
+      "translation": "Di antara keduanya ada pembatas yang tidak dilampaui oleh masing-masing."
+    },
+    {
+      "ayahNumber": 21,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 22,
+      "latin": "Yakhruju minhumal-lu'lu'u wal-marjān(u).",
+      "translation": "Dari keduanya keluar mutiara dan marjan."
+    },
+    {
+      "ayahNumber": 23,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 24,
+      "latin": "Wa lahul-jawāril-munsya'ātu fil-baḥri kal-a‘lām(i).",
+      "translation": "Milik-Nyalah (bahtera) buatan manusia yang berlayar di laut laksana gunung-gunung."
+    },
+    {
+      "ayahNumber": 25,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 26,
+      "latin": "Kullu man ‘alaihā fān(in).",
+      "translation": "Semua yang ada di atasnya (bumi) itu akan binasa."
+    },
+    {
+      "ayahNumber": 27,
+      "latin": "Wa yabqā wajhu rabbika żul-jalāli wal-ikrām(i).",
+      "translation": "(Akan tetapi,) wajah (zat) Tuhanmu yang memiliki kebesaran dan kemuliaan tetap kekal."
+    },
+    {
+      "ayahNumber": 28,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 29,
+      "latin": "Yas'aluhū man fis-samāwāti wal-arḍ(i), kulla yaumin huwa fī sya'n(in).",
+      "translation": "Siapa yang ada di langit dan bumi selalu meminta kepada-Nya. Setiap hari Dia menangani urusan."
+    },
+    {
+      "ayahNumber": 30,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 31,
+      "latin": "Sanafrugu lakum ayyuhaṡ-ṡaqalān(i).",
+      "translation": "Kami akan mencurahkan perhatian kepadamu, wahai manusia dan jin."
+    },
+    {
+      "ayahNumber": 32,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 33,
+      "latin": "Yā ma‘syaral-jinni wal-insi inistaṭa‘tum an tanfużū min aqṭāris-samāwāti wal-arḍi fanfużū, lā tanfużūna illā bisulṭān(in).",
+      "translation": "Wahai segenap jin dan manusia, jika kamu sanggup menembus (melintasi) penjuru langit dan bumi, tembuslah. Kamu tidak akan mampu menembusnya, kecuali dengan kekuatan (dari Allah)."
+    },
+    {
+      "ayahNumber": 34,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 35,
+      "latin": "Yursalu ‘alaikumā syuwāẓum min nār(in), wa nuḥāsun falā tantaṣirān(i).",
+      "translation": "Kepadamu, (wahai jin dan manusia,) disemburkan nyala api dan (ditumpahkan) cairan tembaga panas sehingga kamu tidak dapat menyelamatkan diri."
+    },
+    {
+      "ayahNumber": 36,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 37,
+      "latin": "Fa iżansyaqqatis-samā'u fa kānat wardatan kad-dihān(i).",
+      "translation": "Maka, apabila langit terbelah, lalu (warnanya) menjadi merah mawar seperti (kilauan) minyak, (terjadilah kengerian yang hebat)."
+    },
+    {
+      "ayahNumber": 38,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 39,
+      "latin": "Fa yauma'iżil lā yus'alu ‘an żambihī insuw wa lā jānn(un).",
+      "translation": "Maka, pada hari itu manusia dan jin tidak ditanya tentang dosanya"
+    },
+    {
+      "ayahNumber": 40,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 41,
+      "latin": "Yu‘raful-mujrimūna bisīmāhum fa yu'khażu bin-nawāṣī wal-aqdām(i).",
+      "translation": "Para pendosa dikenali dengan tanda-tandanya, lalu direnggut ubun-ubun dan kakinya."
+    },
+    {
+      "ayahNumber": 42,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 43,
+      "latin": "Hāżihī jahannamul-latī yukażżibu bihal-mujrimūn(a).",
+      "translation": "Inilah (neraka) Jahanam yang didustakan oleh para pendosa."
+    },
+    {
+      "ayahNumber": 44,
+      "latin": "Yaṭūfūna bainahā wa baina ḥamīmin ān(in).",
+      "translation": "Mereka bolak-balik di antaranya (api neraka) dan air mendidih yang sangat panas."
+    },
+    {
+      "ayahNumber": 45,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 46,
+      "latin": "Wa liman khāfa maqāma rabbihī jannatān(i).",
+      "translation": "Bagi siapa yang takut pada keagungan Tuhannya disediakan dua surga."
+    },
+    {
+      "ayahNumber": 47,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 48,
+      "latin": "Żawātā afnān(in).",
+      "translation": "Kedua surga itu mempunyai (pepohonan) yang bercabang-cabang."
+    },
+    {
+      "ayahNumber": 49,
+      "latin": "Fabi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 50,
+      "latin": "Fīhimā ‘aināni tajriyān(i).",
+      "translation": "Di dalam kedua (surga) itu terdapat dua mata air yang memancar."
+    },
+    {
+      "ayahNumber": 51,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 52,
+      "latin": "Fīhimā min kulli fākihatin zaujān(i).",
+      "translation": "Di dalam kedua (surga) itu terdapat aneka buah-buahan yang berpasang-pasangan."
+    },
+    {
+      "ayahNumber": 53,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 54,
+      "latin": "Muttaki'īna ‘alā furusyim baṭā'inuhā min istabraq(in), wa janal-jannataini  dān(in).",
+      "translation": "Mereka berbaring di atas permadani yang bagian dalamnya (terbuat) dari sutera tebal. Buah-buahan di kedua surga itu (dapat) dipetik dari dekat."
+    },
+    {
+      "ayahNumber": 55,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 56,
+      "latin": "Fīhinna qāṣirātuṭ-ṭarf(i), lam yaṭmiṡhunna insun qablahum wa lā jānn(un).",
+      "translation": "Di dalamnya ada (bidadari) yang membatasi pandangan (hanya untuk pasangannya) yang tidak pernah disentuh oleh manusia sebelum mereka dan tidak (pula) oleh jin."
+    },
+    {
+      "ayahNumber": 57,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 58,
+      "latin": "Ka'annahunnal-yāqūtu wal-marjān(u).",
+      "translation": "Seakan-akan mereka itu permata yakut dan marjan."
+    },
+    {
+      "ayahNumber": 59,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 60,
+      "latin": "Hal jazā'ul-iḥsāni illal-iḥsān(u).",
+      "translation": "Adakah balasan kebaikan selain kebaikan (pula)?"
+    },
+    {
+      "ayahNumber": 61,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 62,
+      "latin": "Wa min dūnihimā jannatān(i).",
+      "translation": "Selain dari kedua (surga) itu ada dua surga (lagi)."
+    },
+    {
+      "ayahNumber": 63,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 64,
+      "latin": "Mudhāmmatān(i).",
+      "translation": "Kedua surga itu (terlihat warnanya) hijau tua."
+    },
+    {
+      "ayahNumber": 65,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 66,
+      "latin": "Fīhimā ‘aināni naḍḍākhatān(i).",
+      "translation": "Di dalam keduanya ada dua mata air yang memancar tanpa henti."
+    },
+    {
+      "ayahNumber": 67,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 68,
+      "latin": "Fīhimā fākihatuw wa nakhluw wa rummān(un).",
+      "translation": "Di dalam keduanya ada buah-buahan (antara lain) kurma dan delima."
+    },
+    {
+      "ayahNumber": 69,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 70,
+      "latin": "Fīhinna khairātun ḥisān(un).",
+      "translation": "Di dalamnya ada (bidadari) yang mulia (akhlaknya) lagi jelita."
+    },
+    {
+      "ayahNumber": 71,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 72,
+      "latin": "Ḥūrum maqṣūrātun fil-khiyām(i).",
+      "translation": "Bidadari-bidadari yang dipingit dalam kemah-kemah."
+    },
+    {
+      "ayahNumber": 73,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 74,
+      "latin": "Lam yaṭmiṡhunna insun qablahum wa lā jānn(un).",
+      "translation": "Mereka tidak pernah disentuh oleh manusia sebelum mereka dan tidak (pula) oleh jin."
+    },
+    {
+      "ayahNumber": 75,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 76,
+      "latin": "Muttaki'īna ‘alā rafrafin khuḍriw wa ‘abqariyyin ḥisān(in).",
+      "translation": "Mereka bertelekan pada bantal-bantal yang hijau dan permadani-permadani yang indah."
+    },
+    {
+      "ayahNumber": 77,
+      "latin": "Fa bi'ayyi ālā'i rabbikumā tukażżibān(i).",
+      "translation": "Maka, nikmat Tuhanmu manakah yang kamu dustakan (wahai jin dan manusia)?"
+    },
+    {
+      "ayahNumber": 78,
+      "latin": "Tabārakasmu rabbika żil-jalāli wal-ikrām(i).",
+      "translation": "Maha Berkah nama Tuhanmu Pemilik keagungan dan kemuliaan."
+    }
+  ]
+}

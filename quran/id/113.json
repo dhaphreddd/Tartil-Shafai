@@ -1,0 +1,33 @@
+{
+  "surahId": 113,
+  "name": "Al-Falaq",
+  "nameArabic": "الفلق",
+  "ayahCount": 5,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Qul a‘ūżu birabbil-falaq(i).",
+      "translation": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan yang (menjaga) fajar (subuh)"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Min syarri mā khalaq(a).",
+      "translation": "dari kejahatan (makhluk yang) Dia ciptakan,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa min syarri gāsiqin iżā waqab(a).",
+      "translation": "dari kejahatan malam apabila telah gelap gulita,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+      "translation": "dari kejahatan perempuan-perempuan (penyihir) yang meniup pada buhul-buhul (talinya),"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+      "translation": "dan dari kejahatan orang yang dengki apabila dia dengki.”"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "surahId": 107,
+  "name": "Al-Ma'un",
+  "nameArabic": "الماعون",
+  "ayahCount": 7,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Ara'aital-lażī yukażżibu bid-dīn(i).",
+      "translation": "Tahukah kamu (orang) yang mendustakan agama?"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Fa żālikal-lażī yadu‘‘ul-yatīm(a).",
+      "translation": "Itulah orang yang menghardik anak yatim"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa lā yaḥuḍḍu ‘alā ṭa‘āmil-miskīn(i).",
+      "translation": "dan tidak menganjurkan untuk memberi makan orang miskin."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Fawailul lil-muṣallīn(a).",
+      "translation": "Celakalah orang-orang yang melaksanakan salat,"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Allażīna hum ‘an ṣalātihim sāhūn(a).",
+      "translation": "(yaitu) yang lalai terhadap salatnya,"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Allażīna hum yurā'ūn(a).",
+      "translation": "yang berbuat riya,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Wa yamna‘ūnal-mā‘ūn(a).",
+      "translation": "dan enggan (memberi) bantuan."
+    }
+  ]
+}

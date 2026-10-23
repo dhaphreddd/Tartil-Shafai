@@ -1,0 +1,38 @@
+{
+  "surahId": 109,
+  "name": "Al-Kafirun",
+  "nameArabic": "الكٰفرون",
+  "ayahCount": 6,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Qul yā ayyuhal-kāfirūn(a).",
+      "translation": "Katakanlah (Nabi Muhammad), “Wahai orang-orang kafir,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Lā a‘budu mā ta‘budūn(a).",
+      "translation": "aku tidak akan menyembah apa yang kamu sembah."
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa lā antum ‘ābidūna mā a‘bud(u).",
+      "translation": "Kamu juga bukan penyembah apa yang aku sembah."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa lā ana ‘ābidum mā ‘abattum.",
+      "translation": "Aku juga tidak pernah menjadi penyembah apa yang kamu sembah."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa lā antum ‘ābidūna mā a‘bud(u).",
+      "translation": "Kamu tidak pernah (pula) menjadi penyembah apa yang aku sembah."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Lakum dīnukum wa liya dīn(i).",
+      "translation": "Untukmu agamamu dan untukku agamaku.”"
+    }
+  ]
+}

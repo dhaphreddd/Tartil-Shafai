@@ -1,0 +1,38 @@
+{
+  "surahId": 114,
+  "name": "An-Nas",
+  "nameArabic": "الناس",
+  "ayahCount": 6,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Qul a‘ūżu birabbin-nās(i).",
+      "translation": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan manusia,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Malikin-nās(i).",
+      "translation": "raja manusia,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Ilāhin-nās(i).",
+      "translation": "sembahan manusia"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Min syarril-waswāsil-khannās(i).",
+      "translation": "dari kejahatan (setan) pembisik yang bersembunyi"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+      "translation": "yang membisikkan (kejahatan) ke dalam dada manusia,"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Minal jinnati wan-nās(i).",
+      "translation": "dari (golongan) jin dan manusia.”"
+    }
+  ]
+}

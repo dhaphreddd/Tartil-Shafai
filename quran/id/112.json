@@ -1,0 +1,28 @@
+{
+  "surahId": 112,
+  "name": "Al-Ikhlas",
+  "nameArabic": "الاخلاص",
+  "ayahCount": 4,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Qul huwallāhu aḥad(un).",
+      "translation": "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa."
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Allāhuṣ-ṣamad(u).",
+      "translation": "Allah tempat meminta segala sesuatu."
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Lam yalid wa lam yūlad.",
+      "translation": "Dia tidak beranak dan tidak pula diperanakkan"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa lam yakul lahū kufuwan aḥad(un).",
+      "translation": "serta tidak ada sesuatu pun yang setara dengan-Nya.”"
+    }
+  ]
+}

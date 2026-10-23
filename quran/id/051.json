@@ -1,0 +1,308 @@
+{
+  "surahId": 51,
+  "name": "Az-Zariyat",
+  "nameArabic": "الذّٰريٰت",
+  "ayahCount": 60,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Waż-żāriyāti żarwā(n).",
+      "translation": "Demi (angin) yang menerbangkan debu,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Fal-ḥāmilāti wiqrā(n).",
+      "translation": "demi (awan) yang mengandung muatan (hujan),"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Fal-jāriyāti yusrā(n).",
+      "translation": "demi (kapal-kapal) yang melaju (di atas air) dengan mudah,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Fal-muqassimāti amrā(n).",
+      "translation": "dan demi (malaikat-malaikat) yang membagi-bagi segala urusan,"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Innamā tū‘adūna laṣādiq(un).",
+      "translation": "sesungguhnya apa yang dijanjikan kepadamu pasti benar"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Wa innad-dīna lawāqi‘(un).",
+      "translation": "dan sesungguhnya pembalasan pasti terjadi."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Was-samā'i żātil-ḥubuk(i).",
+      "translation": "Demi langit yang mempunyai jalan-jalan yang kukuh,"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Innakum lafī qaulim mukhtalif(in).",
+      "translation": "sesungguhnya kamu benar-benar dalam keadaan berselisih."
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Yu'faku ‘anhu man ufik(a).",
+      "translation": "Telah dijauhkan darinya (Al-Qur’an dan Rasul) orang yang dipalingkan."
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Qutilal-kharrāṣūn(a).",
+      "translation": "Terkutuklah orang-orang yang banyak berdusta,"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Allażīna hum fī gamratin sāhūn(a).",
+      "translation": "(yaitu) orang-orang yang terbenam (dalam kebodohan) lagi lalai (dari urusan akhirat)!"
+    },
+    {
+      "ayahNumber": 12,
+      "latin": "Yas'alūna ayyāna yaumud-dīn(i).",
+      "translation": "Mereka bertanya, “Kapankah hari Pembalasan itu?”"
+    },
+    {
+      "ayahNumber": 13,
+      "latin": "Yauma hum ‘alan-nāri yuftanūn(a).",
+      "translation": "(Hari Pembalasan terjadi) pada hari (ketika) mereka diazab dalam api neraka."
+    },
+    {
+      "ayahNumber": 14,
+      "latin": "Żūqū fitnatakum, hāżal-lażī kuntum bihī tasta‘jilūn(a).",
+      "translation": "(Dikatakan kepada mereka,) “Rasakanlah azabmu! Inilah azab yang dahulu kamu minta agar disegerakan.”"
+    },
+    {
+      "ayahNumber": 15,
+      "latin": "Innal-muttaqīna fī jannātiw wa ‘uyūn(in).",
+      "translation": "Sesungguhnya orang-orang yang bertakwa berada dalam (surga yang penuh) taman-taman dan mata air."
+    },
+    {
+      "ayahNumber": 16,
+      "latin": "Ākhiżīna mā ātāhum rabbuhum, innahum kānū qabla żālika muḥsinīn(a).",
+      "translation": "(Di surga) mereka dapat mengambil apa saja yang dianugerahkan Tuhan kepada mereka. Sesungguhnya mereka sebelum itu (di dunia) adalah orang-orang yang berbuat kebaikan."
+    },
+    {
+      "ayahNumber": 17,
+      "latin": "Kānū qalīlam minal-laili mā yahja‘ūn(a).",
+      "translation": "Mereka sedikit sekali tidur pada waktu malam;"
+    },
+    {
+      "ayahNumber": 18,
+      "latin": "Wa bil-asḥāri hum yastagfirūn(a).",
+      "translation": "dan pada akhir malam mereka memohon ampunan (kepada Allah)."
+    },
+    {
+      "ayahNumber": 19,
+      "latin": "Wa fī amwālihim ḥaqqul lis-sā'ili wal-maḥrūm(i).",
+      "translation": "Pada harta benda mereka ada hak bagi orang miskin yang meminta dan yang tidak meminta."
+    },
+    {
+      "ayahNumber": 20,
+      "latin": "Wa fil-arḍi āyātul lil-mūqinīn(a).",
+      "translation": "Di bumi terdapat tanda-tanda (kebesaran Allah) bagi orang-orang yang yakin."
+    },
+    {
+      "ayahNumber": 21,
+      "latin": "Wa fī anfusikum, afalā tubṣirūn(a).",
+      "translation": "(Begitu juga ada tanda-tanda kebesaran-Nya) pada dirimu sendiri. Maka, apakah kamu tidak memperhatikan?"
+    },
+    {
+      "ayahNumber": 22,
+      "latin": "Wa fis-samā'i rizqukum wa mā tū‘adūn(a).",
+      "translation": "Di langit terdapat pula (hujan yang menjadi sebab) rezekimu dan apa yang dijanjikan kepadamu."
+    },
+    {
+      "ayahNumber": 23,
+      "latin": "Fa wa rabbis-samā'i wal-arḍi innahū laḥaqqum miṡla mā annakum tanṭiqūn(a).",
+      "translation": "Maka, demi Tuhan langit dan bumi, sesungguhnya (apa yang dijanjikan kepadamu itu) pasti akan nyata seperti (halnya) kamu berucap."
+    },
+    {
+      "ayahNumber": 24,
+      "latin": "Hal atāka ḥadīṡu ḍaifi ibrāhīmal-mukramīn(a).",
+      "translation": "Sudahkah sampai kepadamu (Nabi Muhammad) cerita tentang tamu Ibrahim (malaikat-malaikat) yang dimuliakan?"
+    },
+    {
+      "ayahNumber": 25,
+      "latin": "Iż dakhalū ‘alaihi fa qālū salāmā(n), qāla salām(un), qaumum munkarūn(a).",
+      "translation": "(Cerita itu bermula) ketika mereka masuk (bertamu) kepadanya, lalu mengucapkan, “Salam.” Ibrahim menjawab, “Salam.” (Mereka) adalah orang-orang yang belum dikenal."
+    },
+    {
+      "ayahNumber": 26,
+      "latin": "Farāga ilā ahlihī fa jā'a bi‘ijlin samīn(in).",
+      "translation": "Kemudian, dia (Ibrahim) pergi diam-diam menemui keluarganya, lalu datang (kembali) membawa (daging) anak sapi gemuk (yang dibakar)."
+    },
+    {
+      "ayahNumber": 27,
+      "latin": "Fa qarrabahū ilaihim, qāla alā ta'kulūn(a).",
+      "translation": "Dia lalu menghidangkannya kepada mereka, (tetapi mereka tidak mau makan). Ibrahim berkata, “Mengapa kamu tidak makan?”"
+    },
+    {
+      "ayahNumber": 28,
+      "latin": "Fa aujasa minhum khīfah(tan), qālū lā takhaf, wa basysyarūhu bigulāmin ‘alīm(in).",
+      "translation": "Dia (Ibrahim) menyimpan rasa takut terhadap mereka. Mereka berkata, “Janganlah takut!” Mereka memberi kabar gembira kepadanya dengan (akan kelahiran) seorang anak yang sangat berilmu (Ishaq)."
+    },
+    {
+      "ayahNumber": 29,
+      "latin": "Fa aqbalatimra'atuhū fī ṣarratin fa ṣakkat wajhahā wa qālat ‘ajūzun ‘aqīm(un).",
+      "translation": "Istrinya datang sambil berteriak (terperanjat) lalu menepuk-nepuk wajahnya sendiri dan berkata, “(Aku ini) seorang perempuan tua yang mandul.”"
+    },
+    {
+      "ayahNumber": 30,
+      "latin": "Qālū każālik(i), qāla rabbuk(i), innahū huwal-ḥakīmul-‘alīm(u).",
+      "translation": "Mereka berkata, “Demikianlah Tuhanmu berfirman. Sesungguhnya Dialah Yang Maha Bijaksana lagi Maha Mengetahui.”"
+    },
+    {
+      "ayahNumber": 31,
+      "latin": "Qāla famā khaṭbukum ayyuhal-mursalūn(a).",
+      "translation": "Dia (Ibrahim) bertanya, “Apa urusan pentingmu, wahai para utusan?”"
+    },
+    {
+      "ayahNumber": 32,
+      "latin": "Qālū innā ursilnā ilā qaumim mujrimīn(a).",
+      "translation": "Mereka menjawab, “Sesungguhnya kami diutus kepada kaum yang berdosa (kaum Lut untuk menyiksanya)"
+    },
+    {
+      "ayahNumber": 33,
+      "latin": "Linursila ‘alaihim ḥijāratam min ṭīn(in).",
+      "translation": "agar kami menimpa mereka dengan batu-batu yang berasal dari tanah liat"
+    },
+    {
+      "ayahNumber": 34,
+      "latin": "Musawwamatan ‘inda rabbika lil-musrifīn(a).",
+      "translation": "yang ditandai oleh Tuhanmu untuk (membinasakan) orang-orang yang melampaui batas.”"
+    },
+    {
+      "ayahNumber": 35,
+      "latin": "Fa akhrajnā man kāna fīhā minal-mu'minīn(a).",
+      "translation": "Kami mengeluarkan orang-orang mukmin yang berada di dalamnya (negeri kaum Lut)."
+    },
+    {
+      "ayahNumber": 36,
+      "latin": "Famā wajadnā fīhā gaira baitim minal-muslimīn(a).",
+      "translation": "Kami tidak mendapati di dalamnya, kecuali sebuah rumah dari orang-orang muslim (Lut dan keluarganya)."
+    },
+    {
+      "ayahNumber": 37,
+      "latin": "Wa taraknā fīhā āyatal lil-lażīna yakhāfūnal-‘ażābal-alīm(a).",
+      "translation": "Kami meninggalkan suatu tanda (kebesaran-Nya di (negeri) itu bagi orang-orang yang takut pada azab yang pedih."
+    },
+    {
+      "ayahNumber": 38,
+      "latin": "Wa fī mūsā iż arsalnāhu ilā fir‘auna bisulṭānim mubīn(in).",
+      "translation": "(Begitu pula Kami meninggalkan) pada Musa (tanda-tanda kekuasaan Allah) ketika Kami mengutusnya kepada Fir‘aun dengan membawa mukjizat yang nyata."
+    },
+    {
+      "ayahNumber": 39,
+      "latin": "Fa tawallā biruknihī wa qāla sāḥirun au majnūn(un).",
+      "translation": "Kemudian, dia (Fir‘aun) bersama bala tentaranya berpaling dan (Fir‘aun) berkata, “(Dia adalah) seorang penyihir atau orang gila.”"
+    },
+    {
+      "ayahNumber": 40,
+      "latin": "Fa akhażnāhu wa junūdahū fanabażnāhum fil-yammi wa huwa mulīm(un).",
+      "translation": "Maka, Kami menghukumnya beserta bala tentaranya, lalu Kami menenggelamkan mereka ke dalam laut dalam keadaan melakukan perbuatan yang tercela."
+    },
+    {
+      "ayahNumber": 41,
+      "latin": "Wa fī ‘ādin iż arsalnā ‘alaihimur-rīḥal-‘aqīm(a).",
+      "translation": "(Begitu pula Kami meninggalkan) pada (kaum) ‘Ad (tanda-tanda kekuasaan Allah) ketika Kami mengirim kepada mereka angin yang membinasakan."
+    },
+    {
+      "ayahNumber": 42,
+      "latin": "Mā tażaru min syai'in atat ‘alaihi illā ja‘alathu kar-ramīm(i).",
+      "translation": "(Angin) itu tidak meninggalkan apa pun pada semua yang dilandanya, kecuali menjadikannya bagai tulang yang hancur."
+    },
+    {
+      "ayahNumber": 43,
+      "latin": "Wa fī ṡamūda iż qīla lahum tamatta‘ū ḥattā ḥīn(in).",
+      "translation": "(Begitu pula Kami meninggalkan) pada (kaum) Samud (tanda-tanda kekuasaan Allah) ketika dikatakan kepada mereka, “Bersenang-senanglah kamu sampai waktu yang ditentukan!”"
+    },
+    {
+      "ayahNumber": 44,
+      "latin": "Fa‘atau ‘an amri rabbihim fa akhażathumuṣ-ṣā‘iqatu wa hum yanẓurūn(a).",
+      "translation": "Lalu, mereka bersikap angkuh terhadap perintah Tuhannya. Maka, mereka disambar petir sementara mereka menyaksikan(-nya)."
+    },
+    {
+      "ayahNumber": 45,
+      "latin": "Famastaṭā‘ū min qiyāmiw wa mā kānū muntaṣirīn(a).",
+      "translation": "Mereka sama sekali tidak mampu bangun dan tidak pula mendapat pertolongan."
+    },
+    {
+      "ayahNumber": 46,
+      "latin": "Wa qauma nūḥim min qabl(u), innahum kānū qauman fāsiqīn(a).",
+      "translation": "Sebelum itu (Kami telah membinasakan) kaum Nuh. Sesungguhnya mereka adalah kaum fasik."
+    },
+    {
+      "ayahNumber": 47,
+      "latin": "Was-samā'a banaināhā bi'aidiw wa innā lamūsi‘ūn(a).",
+      "translation": "Langit Kami bangun dengan tangan (kekuatan Kami) dan sesungguhnya Kami benar-benar meluaskan(-nya)."
+    },
+    {
+      "ayahNumber": 48,
+      "latin": "Wal-arḍa farasynāhā fa ni‘mal-māhidūn(a).",
+      "translation": "Bumi Kami hamparkan. (Kami adalah) sebaik-baik Zat yang menghamparkan."
+    },
+    {
+      "ayahNumber": 49,
+      "latin": "Wa min kulli syai'in khalaqnā zaujaini la‘allakum tażakkarūn(a).",
+      "translation": "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."
+    },
+    {
+      "ayahNumber": 50,
+      "latin": "Fa firrū ilallāh(i), innī lakum minhu nażīrum mubīn(un).",
+      "translation": "Maka, (katakanlah kepada mereka, wahai Nabi Muhammad,) “Bersegeralah kembali (taat) kepada Allah. Sesungguhnya aku adalah seorang pemberi peringatan yang jelas dari-Nya untukmu."
+    },
+    {
+      "ayahNumber": 51,
+      "latin": "Wa lā taj‘alū ma‘allāhi ilāhan ākhar(a), innī lakum minhu nażīrum mubīn(un).",
+      "translation": "Janganlah kamu mengadakan tuhan lain bersama Allah. Sesungguhnya aku adalah seorang pemberi peringatan yang jelas dari Allah untukmu.”"
+    },
+    {
+      "ayahNumber": 52,
+      "latin": "Każālika mā atal-lażīna min qablihim mir rasūlin illā qālū sāḥirun au majnūn(un).",
+      "translation": "Demikianlah setiap kali seorang rasul datang kepada orang-orang sebelumnya, mereka pasti mengatakan, “(Dia itu adalah) penyihir atau orang gila.”"
+    },
+    {
+      "ayahNumber": 53,
+      "latin": "Atawāṣau bih(ī), bal hum qaumun ṭāgūn(a).",
+      "translation": "Apakah mereka saling menasihati tentang (apa yang dikatakan) itu? (Tidak!) Sebaliknya, mereka adalah kaum yang melampaui batas."
+    },
+    {
+      "ayahNumber": 54,
+      "latin": "Fa tawalla ‘anhum famā anta bimalūm(in).",
+      "translation": "Berpalinglah dari mereka, maka engkau sama sekali bukan orang yang tercela."
+    },
+    {
+      "ayahNumber": 55,
+      "latin": "Wa żakkir fa innaż-żikra  tanfa‘ul-mu'minīn(a).",
+      "translation": "Teruslah memberi peringatan karena sesungguhnya peringatan itu bermanfaat bagi orang-orang mukmin."
+    },
+    {
+      "ayahNumber": 56,
+      "latin": "Wa mā khalaqtul-jinna wal-insa illā liya‘budūn(i).",
+      "translation": "Tidaklah Aku menciptakan jin dan manusia kecuali untuk beribadah kepada-Ku."
+    },
+    {
+      "ayahNumber": 57,
+      "latin": "Mā urīdu minhum mir rizqiw wa mā urīdu ay yuṭ‘imūn(i).",
+      "translation": "Aku tidak menghendaki rezeki sedikit pun dari mereka dan tidak menghendaki agar mereka memberi makan kepada-Ku."
+    },
+    {
+      "ayahNumber": 58,
+      "latin": "Innallāha huwar-razzāqu żul-quwwatil-matīn(u).",
+      "translation": "Sesungguhnya Allahlah Maha Pemberi Rezeki yang mempunyai kekuatan lagi sangat kukuh."
+    },
+    {
+      "ayahNumber": 59,
+      "latin": "Fa inna lil-lażīna ẓalamū żanūbam miṡla żanūbi aṣḥābihim falā yasta‘jilūn(i).",
+      "translation": "Sesungguhnya orang-orang yang zalim mendapatkan bagian (azab) seperti bagian teman-teman mereka (dahulu). Maka, janganlah mereka meminta kepada-Ku untuk menyegerakan(-nya)."
+    },
+    {
+      "ayahNumber": 60,
+      "latin": "Fa wailul lil-lażīna kafarū miy yaumihimul-lażī yū‘adūn(a).",
+      "translation": "Celakalah orang-orang yang kufur pada hari yang telah dijanjikan kepada mereka (hari Kiamat)."
+    }
+  ]
+}

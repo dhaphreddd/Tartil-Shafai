@@ -1,0 +1,48 @@
+{
+  "surahId": 98,
+  "name": "Al-Bayyinah",
+  "nameArabic": "البيّنة",
+  "ayahCount": 8,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Lam yakunil-lażīna kafarū min ahlil-kitābi wal-musyrikīna munfakkīna ḥattā ta'tiyahumul-bayyinah(tu).",
+      "translation": "Orang-orang yang kufur dari golongan Ahlulkitab dan orang-orang musyrik tidak akan meninggalkan (kekufuran mereka) sampai datang kepada mereka bukti yang nyata,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Rasūlum minallāhi yatlū ṣuḥufam muṭahharah(tan).",
+      "translation": "(yaitu) seorang Rasul dari Allah (Nabi Muhammad) yang membacakan lembaran-lembaran suci (Al-Qur’an)"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Fīhā kutubun qayyimah(tun).",
+      "translation": "yang di dalamnya terdapat (isi) kitab-kitab yang lurus (benar)."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa mā tafarraqal-lażīna ūtul-kitāba illā mim ba‘di mā jā'athumul-bayyinah(tu).",
+      "translation": "Tidaklah terpecah-belah orang-orang Ahlulkitab, melainkan setelah datang kepada mereka bukti yang nyata."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa mā umirū illā liya‘budullāha mukhliṣīna lahud-dīn(a), ḥunafā'a wa yuqīmuṣ-ṣalāta wa yu'tuz-zakāta  wa żālika dīnul-qayyimah(ti).",
+      "translation": "Mereka tidak diperintah, kecuali untuk menyembah Allah dengan mengikhlaskan ketaatan kepada-Nya lagi hanif (istikamah), melaksanakan salat, dan menunaikan zakat. Itulah agama yang lurus (benar)."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Innal-lażīna kafarū min ahlil-kitābi wal-musyrikīna fī nāri jahannama khālidīna fīhā, ulā'ika hum syarrul-bariyyah(ti).",
+      "translation": "Sesungguhnya orang-orang yang kufur dari golongan Ahlulkitab dan orang-orang musyrik (akan masuk) neraka Jahanam. Mereka kekal di dalamnya. Mereka itulah seburuk-buruk makhluk."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Innal-lażīna āmanū wa ‘amiluṣ-ṣāliḥāti ulā'ika hum khairul-bariyyah(ti).",
+      "translation": "Sesungguhnya orang-orang yang beriman dan mengerjakan kebajikan, mereka itulah sebaik-baik makhluk."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Jazā'uhum ‘inda rabbihim jannātu ‘adnin tajrī min taḥtihal-anhāru khālidīna fīhā abadā(n), raḍiyallāhu ‘anhum wa raḍū ‘anh(u), żālika liman khasyiya rabbah(ū).",
+      "translation": "Balasan mereka di sisi Tuhannya adalah surga ‘Adn yang mengalir di bawahnya sungai-sungai. Mereka kekal di dalamnya selama-lamanya. Allah rida terhadap mereka dan mereka pun rida kepada-Nya. Itu adalah (balasan) bagi orang yang takut kepada Tuhannya."
+    }
+  ]
+}
