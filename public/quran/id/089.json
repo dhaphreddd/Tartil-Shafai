@@ -1,0 +1,158 @@
+{
+  "surahId": 89,
+  "name": "Al-Fajr",
+  "nameArabic": "الفجر",
+  "ayahCount": 30,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Wal-fajr(i).",
+      "translation": "Demi waktu fajar,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wa layālin ‘asyr(in).",
+      "translation": "demi malam yang sepuluh,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wasy-syaf‘i wal-watr(i).",
+      "translation": "demi yang genap dan yang ganjil,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wal-laili iżā yasr(i).",
+      "translation": "dan demi malam apabila berlalu."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Hal fī żālika qasamul liżī ḥijr(in).",
+      "translation": "Apakah pada yang demikian itu terdapat sumpah (yang dapat diterima) oleh (orang) yang berakal?"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Alam tara kaifa fa‘ala rabbuka bi‘ād(in).",
+      "translation": "Tidakkah engkau (Nabi Muhammad) memperhatikan bagaimana Tuhanmu berbuat terhadap (kaum) ‘Ad,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Irama żātil-‘imād(i).",
+      "translation": "(yaitu) penduduk Iram (ibu kota kaum ‘Ad) yang mempunyai bangunan-bangunan yang tinggi"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Allatī lam yukhlaq miṡluhā fil-bilād(i).",
+      "translation": "yang sebelumnya tidak pernah dibangun (suatu kota pun) seperti itu di negeri-negeri (lain)?"
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Wa ṡamūdal-lażīna jābuṣ-ṣakhra bil-wād(i).",
+      "translation": "(Tidakkah engkau perhatikan pula kaum) Samud yang memotong batu-batu besar di lembah"
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa fir‘auna żil-autād(i).",
+      "translation": "dan Fir‘aun yang mempunyai pasak-pasak (bangunan yang besar)"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Allażīna ṭagau fil-bilād(i).",
+      "translation": "yang berbuat sewenang-wenang dalam negeri,"
+    },
+    {
+      "ayahNumber": 12,
+      "latin": "Fa akṡarū fīhal-fasād(a).",
+      "translation": "lalu banyak berbuat kerusakan di dalamnya (negeri itu),"
+    },
+    {
+      "ayahNumber": 13,
+      "latin": "Fa ṣabba ‘alaihim rabbuka sauṭa ‘ażāb(in).",
+      "translation": "maka Tuhanmu menimpakan cemeti azab (yang dahsyat) kepada mereka?"
+    },
+    {
+      "ayahNumber": 14,
+      "latin": "Inna rabbaka labil-mirṣād(i).",
+      "translation": "Sesungguhnya Tuhanmu benar-benar mengawasi."
+    },
+    {
+      "ayahNumber": 15,
+      "latin": "Fa ammal-insānu iżā mabtalāhu rabbuhū fa akramahū wa na‘‘amah(ū), fa yaqūlu rabbī akraman(i).",
+      "translation": "Adapun manusia, apabila Tuhan mengujinya lalu memuliakannya dan memberinya kenikmatan, berkatalah dia, “Tuhanku telah memuliakanku.”"
+    },
+    {
+      "ayahNumber": 16,
+      "latin": "Wa ammā iżā mabtalāhu fa qadara ‘alaihi rizqah(ū), fa yaqūlu rabbī ahānan(i).",
+      "translation": "Sementara itu, apabila Dia mengujinya lalu membatasi rezekinya, berkatalah dia, “Tuhanku telah menghinaku.”"
+    },
+    {
+      "ayahNumber": 17,
+      "latin": "Kallā bal lā tukrimūnal-yatīm(a).",
+      "translation": "Sekali-kali tidak! Sebaliknya, kamu tidak memuliakan anak yatim,"
+    },
+    {
+      "ayahNumber": 18,
+      "latin": "Wa lā taḥāḍḍūna ‘alā ṭa‘āmil-miskīn(i).",
+      "translation": "tidak saling mengajak memberi makan orang miskin,"
+    },
+    {
+      "ayahNumber": 19,
+      "latin": "Wa ta'kulūnat-turāṡa aklal lammā(n).",
+      "translation": "memakan harta warisan dengan cara mencampurbaurkan (yang halal dan yang haram),"
+    },
+    {
+      "ayahNumber": 20,
+      "latin": "Wa tuḥibbūnal-māla ḥubban jammā(n).",
+      "translation": "dan mencintai harta dengan kecintaan yang berlebihan."
+    },
+    {
+      "ayahNumber": 21,
+      "latin": "Kallā iżā dukkatil-arḍu dakkan dakkā(n).",
+      "translation": "Jangan sekali-kali begitu! Apabila bumi diguncangkan berturut-turut (berbenturan),"
+    },
+    {
+      "ayahNumber": 22,
+      "latin": "Wa jā'a rabbuka wal-malaku ṣaffan ṣaffā(n).",
+      "translation": "Tuhanmu datang, begitu pula para malaikat (yang datang) berbaris-baris,"
+    },
+    {
+      "ayahNumber": 23,
+      "latin": "Wa jī'a yauma'iżim bijahannam(a), yauma'iżiy yatażakkarul-insānu wa annā lahuż-żikrā.",
+      "translation": "dan pada hari itu (neraka) Jahanam didatangkan, sadarlah manusia pada hari itu juga. Akan tetapi, bagaimana bisa kesadaran itu bermanfaat baginya?"
+    },
+    {
+      "ayahNumber": 24,
+      "latin": "Yaqūlu yā laitanī qaddamtu liḥayātī.",
+      "translation": "Dia berkata, “Oh, seandainya dahulu aku mengerjakan (kebajikan) untuk hidupku ini!”"
+    },
+    {
+      "ayahNumber": 25,
+      "latin": "Fa yauma'iżil lā yu‘ażżibu ‘ażābahū aḥad(un).",
+      "translation": "Pada hari itu tidak ada seorang pun yang mampu mengazab (seadil) azab-Nya."
+    },
+    {
+      "ayahNumber": 26,
+      "latin": "Wa lā yūṡiqu waṡāqahū aḥad(un).",
+      "translation": "Tidak ada seorang pun juga yang mampu mengikat (sekuat) ikatan-Nya."
+    },
+    {
+      "ayahNumber": 27,
+      "latin": "Yā ayyatuhan-nafsul-muṭma'innah(tu).",
+      "translation": "Wahai jiwa yang tenang,"
+    },
+    {
+      "ayahNumber": 28,
+      "latin": "Irji‘ī ilā rabbiki rāḍiyatam marḍiyyah(tan).",
+      "translation": "kembalilah kepada Tuhanmu dengan rida dan diridai."
+    },
+    {
+      "ayahNumber": 29,
+      "latin": "Fadkhuli fī ‘ibādī.",
+      "translation": "Lalu, masuklah ke dalam golongan hamba-hamba-Ku"
+    },
+    {
+      "ayahNumber": 30,
+      "latin": "Wadkhulī jannatī.",
+      "translation": "dan masuklah ke dalam surga-Ku!"
+    }
+  ]
+}

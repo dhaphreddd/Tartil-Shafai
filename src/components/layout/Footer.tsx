@@ -42,7 +42,7 @@ export default function Footer() {
                 : 'var(--color-text-secondary)',
             }}
           >
-            Platform digital Tartil Shafa'i
+            Platform Digital Tartil Shafa'i
           </p>
         </div>
 

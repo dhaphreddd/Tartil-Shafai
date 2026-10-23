@@ -103,6 +103,8 @@ export class PackageResolver {
             // Default active fields (V2 is default)
             glyphCode: enriched?.glyphCodeV2 || a.glyphCodeV2 || enriched?.glyphCode || a.glyphCode,
             pageNumber: rawV2Page,
+            latin: a.latin || enriched?.latin || '',
+            translation: a.translation || enriched?.translation || '',
           };
         });
       } else {

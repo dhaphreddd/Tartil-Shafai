@@ -1,0 +1,23 @@
+{
+  "surahId": 103,
+  "name": "Al-'Asr",
+  "nameArabic": "العصر",
+  "ayahCount": 3,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Wal-‘aṣr(i).",
+      "translation": "Demi masa,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Innal-insāna lafī khusr(in).",
+      "translation": "sesungguhnya manusia benar-benar berada dalam kerugian,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Illal-lażīna āmanū wa ‘amiluṣ-ṣāliḥāti wa tawāṣau bil-ḥaqq(i), wa tawāṣau biṣ-ṣabr(i).",
+      "translation": "kecuali orang-orang yang beriman dan beramal saleh serta saling menasihati untuk kebenaran dan kesabaran."
+    }
+  ]
+}

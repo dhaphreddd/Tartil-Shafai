@@ -1,0 +1,6 @@
+Kemenag Quran Transliterasi Latin & Terjemahan Bahasa Indonesia
+Sumber: Kementerian Agama Republik Indonesia (Kemenag RI) / LPMQ
+Standar: SKB Menteri Agama dan Menteri Pendidikan dan Kebudayaan RI No. 158 Tahun 1987 / No. 0543b/U/1987 (Transliterasi Arab-Latin)
+Format: Terjemahan Standar Kemenag RI
+Distribusi: Tartil Shafa'i Local Dataset
+Diunduh: 2026-10-23T15:10:36.715Z

@@ -1,7 +1,8 @@
 import React from 'react';
-import type { Ayah, QuranFont } from '@/core/types';
+import type { Ayah, QuranFont, ReadingViewMode } from '@/core/types';
 import { UnicodeRenderer } from './UnicodeRenderer';
 import { QCFRenderer } from './QCFRenderer';
+import { AyahCardRenderer } from './AyahCardRenderer';
 import { useQuranFont } from '@/hooks/useQuranFont';
 
 interface QuranRendererProps {
@@ -9,6 +10,12 @@ interface QuranRendererProps {
   font: QuranFont;
   fontSize?: number;
   lineHeight?: number;
+  viewMode?: ReadingViewMode;
+  showArabic?: boolean;
+  showTransliteration?: boolean;
+  showTranslation?: boolean;
+  surahName?: string;
+  surahId?: number;
 }
 
 export const QuranRenderer: React.FC<QuranRendererProps> = ({
@@ -16,6 +23,12 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
   font,
   fontSize = 32,
   lineHeight = 2.2,
+  viewMode = 'mushaf',
+  showArabic = true,
+  showTransliteration = false,
+  showTranslation = false,
+  surahName,
+  surahId,
 }) => {
   const { activeFont, activeFontFamily, loading, error } = useQuranFont(font);
 
@@ -23,6 +36,28 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
     return <div className="text-center p-8 opacity-60">Tidak ada ayat untuk ditampilkan.</div>;
   }
 
+  // Jika user memilih mode per-ayat ATAU mengaktifkan transliterasi/terjemahan ATAU mematikan teks Arab,
+  // gunakan tampilan per-ayat (AyahCardRenderer)
+  const isAyahMode =
+    viewMode === 'ayah' || showTransliteration || showTranslation || !showArabic;
+
+  if (isAyahMode) {
+    return (
+      <AyahCardRenderer
+        ayahs={ayahs}
+        font={font}
+        fontSize={fontSize}
+        lineHeight={lineHeight}
+        showArabic={showArabic}
+        showTransliteration={showTransliteration}
+        showTranslation={showTranslation}
+        surahName={surahName}
+        surahId={surahId}
+      />
+    );
+  }
+
+  // Mode Baca Mushaf Mengalir (Default View)
   // If font is QCF glyph font, use QCFRenderer
   if (activeFont === 'qcf-v2' || activeFont === 'qcf-v1' || activeFont === 'qcf') {
     const version = activeFont === 'qcf-v1' ? 'v1' : 'v2';

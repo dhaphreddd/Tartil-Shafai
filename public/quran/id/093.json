@@ -1,0 +1,63 @@
+{
+  "surahId": 93,
+  "name": "Ad-Duha",
+  "nameArabic": "الضحى",
+  "ayahCount": 11,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Waḍ-ḍuḥā.",
+      "translation": "Demi waktu duha"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wal-laili iżā sajā.",
+      "translation": "dan demi waktu malam apabila telah sunyi,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Mā wadda‘aka rabbuka wa mā qalā.",
+      "translation": "Tuhanmu (Nabi Muhammad) tidak meninggalkan dan tidak (pula) membencimu."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa lal-ākhiratu khairul laka minal-ūlā.",
+      "translation": "Sungguh, akhirat itu lebih baik bagimu daripada yang permulaan (dunia)."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa lasaufa yu‘ṭīka rabbuka fa tarḍā.",
+      "translation": "Sungguh, kelak (di akhirat nanti) Tuhanmu pasti memberikan karunia-Nya kepadamu sehingga engkau rida."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Alam yajidka yatīman fa āwā.",
+      "translation": "Bukankah Dia mendapatimu sebagai seorang yatim, lalu Dia melindungi(-mu);"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Wa wajadaka ḍāllan fa hadā.",
+      "translation": "mendapatimu sebagai seorang yang tidak tahu (tentang syariat), lalu Dia memberimu petunjuk (wahyu);"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa wajadaka ‘ā'ilan fa agnā.",
+      "translation": "dan mendapatimu sebagai seorang yang fakir, lalu Dia memberimu kecukupan?"
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Fa ammal-yatīma falā taqhar.",
+      "translation": "Terhadap anak yatim, janganlah engkau berlaku sewenang-wenang."
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa ammas-sā'ila falā tanhar.",
+      "translation": "Terhadap orang yang meminta-minta, janganlah engkau menghardik."
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Wa ammā bini‘mati rabbika fa ḥaddiṡ.",
+      "translation": "Terhadap nikmat Tuhanmu, nyatakanlah (dengan bersyukur)."
+    }
+  ]
+}

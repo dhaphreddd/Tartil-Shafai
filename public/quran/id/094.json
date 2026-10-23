@@ -1,0 +1,48 @@
+{
+  "surahId": 94,
+  "name": "Al-Insyirah",
+  "nameArabic": "الشرح",
+  "ayahCount": 8,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Alam nasyraḥ laka ṣadrak(a).",
+      "translation": "Bukankah Kami telah melapangkan dadamu (Nabi Muhammad),"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wa waḍa‘nā ‘anka wizrak(a).",
+      "translation": "meringankan beban (tugas-tugas kenabian) darimu"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Allażī anqaḍa ẓahrak(a).",
+      "translation": "yang memberatkan punggungmu,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa rafa‘nā laka żikrak(a).",
+      "translation": "dan meninggikan (derajat)-mu (dengan selalu) menyebut-nyebut (nama)-mu?"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Fa'inna ma‘al-‘usri yusrā(n).",
+      "translation": "Maka, sesungguhnya beserta kesulitan ada kemudahan."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Inna ma‘al-‘usri yusrā(n).",
+      "translation": "Sesungguhnya beserta kesulitan ada kemudahan."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Fa iżā faragta fanṣab.",
+      "translation": "Apabila engkau telah selesai (dengan suatu kebajikan), teruslah bekerja keras (untuk kebajikan yang lain)"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa ilā rabbika fargab.",
+      "translation": "dan hanya kepada Tuhanmu berharaplah!"
+    }
+  ]
+}

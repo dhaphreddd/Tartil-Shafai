@@ -1,0 +1,48 @@
+{
+  "surahId": 95,
+  "name": "At-Tin",
+  "nameArabic": "التين",
+  "ayahCount": 8,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Wat-tīni waz-zaitūn(i).",
+      "translation": "Demi (buah) tin dan (buah) zaitun,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wa ṭūri sīnīn(a).",
+      "translation": "demi gunung Sinai,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa hāżal-baladil-amīn(i).",
+      "translation": "dan demi negeri (Makkah) yang aman ini,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Laqad khalaqnal-insāna fī aḥsani taqwīm(in).",
+      "translation": "sungguh, Kami benar-benar telah menciptakan manusia dalam bentuk yang sebaik-baiknya."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Ṡumma radadnāhu asfala sāfilīn(a).",
+      "translation": "Kemudian, kami kembalikan dia ke tempat yang serendah-rendahnya,"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Illal-lażīna āmanū wa ‘amiluṣ-ṣāliḥāti falahum ajrun gairu mamnūn(in).",
+      "translation": "kecuali orang-orang yang beriman dan mengerjakan kebajikan. Maka, mereka akan mendapat pahala yang tidak putus-putusnya."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Famā yukażżibuka ba‘du bid-dīn(i).",
+      "translation": "Maka, apa alasanmu (wahai orang kafir) mendustakan hari Pembalasan setelah (adanya bukti-bukti) itu?"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Alaisallāhu bi'aḥkamil-ḥākimīn(a).",
+      "translation": "Bukankah Allah hakim yang paling adil?"
+    }
+  ]
+}

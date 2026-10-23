@@ -1,0 +1,63 @@
+{
+  "surahId": 100,
+  "name": "Al-'Adiyat",
+  "nameArabic": "العٰديٰت",
+  "ayahCount": 11,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Wal-‘ādiyāti ḍabḥā(n).",
+      "translation": "Demi kuda-kuda perang yang berlari kencang terengah-engah,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Fal-mūriyāti qadḥā(n).",
+      "translation": "yang memercikkan bunga api (dengan entakan kakinya),"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Fal-mugīrāti ṣubḥā(n).",
+      "translation": "yang menyerang (dengan tiba-tiba) pada waktu pagi"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Fa'aṡarna bihī naq‘ā(n).",
+      "translation": "sehingga menerbangkan debu,"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Fawasaṭna bihī jam‘ā(n).",
+      "translation": "lalu menyerbu ke tengah-tengah kumpulan musuh,"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Innal-insāna lirabbihī lakanūd(un).",
+      "translation": "sesungguhnya manusia itu sangatlah ingkar kepada Tuhannya."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Wa innahū ‘alā żālika lasyahīd(un).",
+      "translation": "Sesungguhnya dia benar-benar menjadi saksi atas hal itu (keingkarannya)."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa innahū liḥubbil-khairi lasyadīd(un).",
+      "translation": "Sesungguhnya cintanya pada harta benar-benar berlebihan."
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Afalā ya‘lamu iżā bu‘ṡira mā fil-qubūr(i).",
+      "translation": "Maka, tidakkah dia mengetahui (apa yang akan dialaminya) apabila dikeluarkan apa yang ada di dalam kubur"
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa ḥuṣṣila mā fiṣ-ṣudūr(i).",
+      "translation": "dan ditampakkan apa yang tersimpan di dalam dada?"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Inna rabbahum bihim yauma'iżil lakhabīr(un).",
+      "translation": "Sesungguhnya Tuhan mereka pada hari itu benar-benar Maha Teliti terhadap (keadaan) mereka."
+    }
+  ]
+}

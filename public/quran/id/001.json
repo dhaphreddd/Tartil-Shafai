@@ -1,0 +1,43 @@
+{
+  "surahId": 1,
+  "name": "Al-Fatihah",
+  "nameArabic": "الفاتحة",
+  "ayahCount": 7,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "translation": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a).",
+      "translation": "Segala puji bagi Allah, Tuhan semesta alam"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Ar-raḥmānir-raḥīm(i).",
+      "translation": "Yang Maha Pengasih lagi Maha Penyayang,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Māliki yaumid-dīn(i).",
+      "translation": "Pemilik hari Pembalasan."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Iyyāka na‘budu wa iyyāka nasta‘īn(u),",
+      "translation": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Ihdinaṣ-ṣirāṭal-mustaqīm(a).",
+      "translation": "Bimbinglah kami ke jalan yang lurus,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a).",
+      "translation": "(yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) orang-orang yang sesat."
+    }
+  ]
+}

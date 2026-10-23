@@ -1,0 +1,153 @@
+{
+  "surahId": 81,
+  "name": "At-Takwir",
+  "nameArabic": "التكوير",
+  "ayahCount": 29,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Iżasy-syamsu kuwwirat.",
+      "translation": "Apabila matahari digulung,"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Wa iżan-nujūmunkadarat.",
+      "translation": "apabila bintang-bintang berjatuhan,"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa iżal-jibālu suyyirat.",
+      "translation": "apabila gunung-gunung dihancurkan,"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Wa iżal-‘isyāru ‘uṭṭilat.",
+      "translation": "apabila unta-unta yang bunting ditinggalkan (tidak terurus),"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa iżal-wuḥūsy ḥusyirat.",
+      "translation": "apabila binatang-binatang liar dikumpulkan,"
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Wa iżal-biḥāru sujjirat.",
+      "translation": "apabila lautan dipanaskan,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Wa iżan-nufūsu zuwwijat.",
+      "translation": "apabila roh-roh dipertemukan (dengan tubuh),"
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa iżal-mau'ūdatu su'ilat.",
+      "translation": "apabila bayi-bayi perempuan yang dikubur hidup-hidup ditanya,"
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Bi'ayyi żambin qutilat.",
+      "translation": "“Karena dosa apa dia dibunuh,”"
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa iżaṣ-ṣuḥufu nusyirat.",
+      "translation": "apabila lembaran-lembaran (catatan amal) telah dibuka lebar-lebar,"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Wa iżas-samā'u kusyiṭat.",
+      "translation": "apabila langit dilenyapkan,"
+    },
+    {
+      "ayahNumber": 12,
+      "latin": "Wa iżal-jaḥīmu su‘‘irat.",
+      "translation": "apabila (neraka) Jahim dinyalakan,"
+    },
+    {
+      "ayahNumber": 13,
+      "latin": "Wa iżal-jannatu uzlifat.",
+      "translation": "dan apabila surga didekatkan,"
+    },
+    {
+      "ayahNumber": 14,
+      "latin": "‘Alimat nafsum mā aḥḍarat.",
+      "translation": "setiap jiwa akan mengetahui apa yang telah dikerjakannya."
+    },
+    {
+      "ayahNumber": 15,
+      "latin": "Falā uqsimu bil-khunnas(i).",
+      "translation": "Aku bersumpah demi bintang-bintang"
+    },
+    {
+      "ayahNumber": 16,
+      "latin": "Al-jawāril-kunnas(i).",
+      "translation": "yang beredar lagi terbenam,"
+    },
+    {
+      "ayahNumber": 17,
+      "latin": "Wal-laili iżā ‘as‘as(a).",
+      "translation": "demi malam apabila telah larut,"
+    },
+    {
+      "ayahNumber": 18,
+      "latin": "Waṣ-ṣubḥi iżā tanaffas(a).",
+      "translation": "demi subuh apabila (fajar) telah menyingsing,"
+    },
+    {
+      "ayahNumber": 19,
+      "latin": "Innahū laqaulu rasūlin karīm(in).",
+      "translation": "sesungguhnya (Al-Qur’an) itu benar-benar firman (Allah yang dibawa oleh) utusan yang mulia (Jibril)"
+    },
+    {
+      "ayahNumber": 20,
+      "latin": "Żī quwwatin ‘inda żil-‘arsyi makīn(in).",
+      "translation": "yang memiliki kekuatan dan kedudukan tinggi di sisi (Allah) yang memiliki ʻArasy,"
+    },
+    {
+      "ayahNumber": 21,
+      "latin": "Muṭā‘in ṡamma amīn(in).",
+      "translation": "yang di sana (Jibril) ditaati lagi dipercaya."
+    },
+    {
+      "ayahNumber": 22,
+      "latin": "Wa mā ṣāḥibukum bimajnūn(in).",
+      "translation": "Temanmu (Nabi Muhammad) itu bukanlah orang gila."
+    },
+    {
+      "ayahNumber": 23,
+      "latin": "Wa laqad ra'āhu bil-ufuqil-mubīn(i).",
+      "translation": "Sungguh, dia (Nabi Muhammad) benar-benar telah melihatnya (Jibril) di ufuk yang terang."
+    },
+    {
+      "ayahNumber": 24,
+      "latin": "Wa mā huwa ‘alal-gaibi biḍanīn(in).",
+      "translation": "Dia (Nabi Muhammad) bukanlah seorang yang kikir (enggan) untuk menerangkan yang gaib."
+    },
+    {
+      "ayahNumber": 25,
+      "latin": "Wa mā huwa biqauli syaiṭānir rajīm(in).",
+      "translation": "(Al-Qur’an) itu bukanlah perkataan setan yang terkutuk."
+    },
+    {
+      "ayahNumber": 26,
+      "latin": "Fa aina tażhabūn(a).",
+      "translation": "Maka, ke manakah kamu akan pergi?"
+    },
+    {
+      "ayahNumber": 27,
+      "latin": "In huwa illā żikrul lil-‘ālamīn(a).",
+      "translation": "(Al-Qur’an) itu tidak lain, kecuali peringatan bagi semesta alam,"
+    },
+    {
+      "ayahNumber": 28,
+      "latin": "Liman syā'a minkum ay yastaqīm(a).",
+      "translation": "(yaitu) bagi siapa di antaramu yang hendak menempuh jalan yang lurus."
+    },
+    {
+      "ayahNumber": 29,
+      "latin": "Wa mā tasyā'ūna illā ay yasyā'allāhu rabbul-‘ālamīn(a).",
+      "translation": "Kamu tidak dapat berkehendak, kecuali apabila dikehendaki Allah, Tuhan semesta alam."
+    }
+  ]
+}

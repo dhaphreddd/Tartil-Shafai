@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 import { CurriculumService } from '@/services/CurriculumService';
 import { getSurahsMetadataSync, getPackageSnippets } from '@/services/QuranService';
+import { searchPackages, preloadPackageSurahs, subscribeSearchCache, type SearchResultItem } from '@/services/SearchService';
 import type { Layer1Card, Layer3Item, SurahMetadata } from '@/core/types';
 import { formatSurahsTitle, formatSurahsArabic } from '@/utils/PackageTitleFormatter';
 
@@ -33,8 +34,21 @@ export default function HomePage() {
   const [allPackages, setAllPackages] = useState<Layer3Item[]>(initialAllPackages);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [cacheTick, setCacheTick] = useState(0);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return subscribeSearchCache(() => {
+      setCacheTick((t) => t + 1);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (initialAllPackages.length > 0) {
+      preloadPackageSurahs(initialAllPackages);
+    }
+  }, [initialAllPackages]);
 
   useEffect(() => {
     let isMounted = true;
@@ -52,6 +66,7 @@ export default function HomePage() {
       setLayers(publishedLayers);
       setAllPackages(allItems);
       setPinnedPackages(pinned);
+      preloadPackageSurahs(allItems);
     });
 
     return () => {
@@ -104,45 +119,16 @@ export default function HomePage() {
   const textSecondary = isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)';
   const textMuted = isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)';
 
-  // Filter paket secara langsung saat pengguna mengetik (Instant Live Search)
-  const liveSearchResults = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
-    if (!q) return [];
-
-    return allPackages.filter((pkg) => {
-      const meta = surahs.find((s) => s.id === pkg.surahId);
-      const surahName = meta?.name.toLowerCase() || '';
-      const surahNameArabic = meta?.nameArabic || '';
-      const pkgTitle = pkg.title?.toLowerCase() || '';
-      const ayahRangeStr = `${pkg.startAyah}-${pkg.endAyah}`;
-      const snippetText = snippets[pkg.id]?.toLowerCase() || '';
-
-      const matchSections = (pkg.sections || []).some((sec) => {
-        const sMeta = surahs.find((s) => s.id === sec.surahId);
-        return (
-          sMeta?.name.toLowerCase().includes(q) ||
-          sMeta?.nameArabic.includes(q) ||
-          `${sec.startAyah}-${sec.endAyah}`.includes(q)
-        );
-      });
-
-      return (
-        surahName.includes(q) ||
-        surahNameArabic.includes(q) ||
-        pkgTitle.includes(q) ||
-        `paket ${pkg.order}`.includes(q) ||
-        ayahRangeStr.includes(q) ||
-        (q.includes('ayat') && q.includes(String(pkg.startAyah))) ||
-        snippetText.includes(q) ||
-        matchSections
-      );
-    });
-  }, [allPackages, surahs, snippets, searchQuery]);
+  // Filter paket secara cerdas ke seluruh isi paket (Arab tanpa harakat, transliterasi fonetik, terjemahan, judul/surat)
+  const liveSearchResults: SearchResultItem[] = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return searchPackages(searchQuery, allPackages, surahs);
+  }, [allPackages, surahs, searchQuery, cacheTick]);
 
   // Ambil potongan ayat untuk hasil pencarian hanya saat pengguna mengetik kata kunci
   useEffect(() => {
     if (searchQuery.trim().length > 0 && liveSearchResults.length > 0) {
-      const needed = liveSearchResults.filter((p) => !snippets[p.id]);
+      const needed = liveSearchResults.map((r) => r.item).filter((p) => !snippets[p.id]);
       if (needed.length > 0) {
         getPackageSnippets(needed as any).then((snips) => {
           setSnippets((prev) => ({ ...prev, ...snips }));
@@ -184,7 +170,7 @@ export default function HomePage() {
               className="mt-3 text-[17px] leading-relaxed"
               style={{ color: textSecondary, width: '100%', maxWidth: 576 }}
             >
-              Platform digital pembelajaran Tartil Shafa'i
+              Platform Digital Tartil Shafa'i
             </p>
 
             {/* Search Bar with Instant Live Autocomplete */}
@@ -247,7 +233,7 @@ export default function HomePage() {
                     if (e.key === 'Enter') {
                       e.preventDefault();
                       if (selectedIndex >= 0 && selectedIndex < liveSearchResults.length) {
-                        navigate(`/paket/${liveSearchResults[selectedIndex].id}`);
+                        navigate(`/paket/${liveSearchResults[selectedIndex].item.id}`);
                         setIsDropdownOpen(false);
                       } else {
                         const trimmed = searchQuery.trim();
@@ -325,8 +311,9 @@ export default function HomePage() {
                   {/* List Hasil Pencarian */}
                   {liveSearchResults.length > 0 ? (
                     <div className="max-h-[380px] overflow-y-auto scrollbar-thin divide-y divide-black/5 dark:divide-white/5">
-                      {liveSearchResults.slice(0, 6).map((pkg, idx) => {
-                        const meta = surahs.find((s) => s.id === pkg.surahId);
+                      {liveSearchResults.slice(0, 6).map((res, idx) => {
+                        const pkg = res.item;
+                        const meta = res.surahMetadata || surahs.find((s) => s.id === pkg.surahId);
                         const isSelected = selectedIndex === idx;
                         const snippet = snippets[pkg.id];
                         const parentL1 = layers.find((l) => l.id === pkg.layer1Id);
@@ -380,12 +367,54 @@ export default function HomePage() {
                                     ? formatSurahsTitle(pkg.sections, (id) => surahs.find((sm) => sm.id === id)?.name || `Surat ${id}`)
                                     : `QS. ${meta?.name || `Surat ${pkg.surahId}`} (${pkg.startAyah}–${pkg.endAyah})`}
                                 </span>
+
+                                {/* Match indicator pill */}
+                                {res.matchType === 'arab' && res.matchedAyahNumber && (
+                                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                                    Ayat {res.matchedAyahNumber} (Arab)
+                                  </span>
+                                )}
+                                {res.matchType === 'transliterasi' && res.matchedAyahNumber && (
+                                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-400">
+                                    Ayat {res.matchedAyahNumber} (Transliterasi)
+                                  </span>
+                                )}
+                                {res.matchType === 'terjemah' && res.matchedAyahNumber && (
+                                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-700 dark:text-sky-400">
+                                    Ayat {res.matchedAyahNumber} (Terjemahan)
+                                  </span>
+                                )}
                               </div>
 
-                              {/* Potongan ayat pertama (Arab font) */}
-                              {snippet && (
+                              {/* Snippet teks yang cocok */}
+                              {res.matchType === 'arab' && res.snippetText ? (
                                 <div
-                                  className="text-right text-[15px] leading-snug mt-1 opacity-90 truncate"
+                                  className="text-right text-[15px] leading-snug mt-1 font-arabic truncate"
+                                  style={{
+                                    fontFamily: '"Noto Naskh Arabic", "Amiri", serif',
+                                    color: isDark ? '#34d399' : '#059669',
+                                    direction: 'rtl',
+                                  }}
+                                >
+                                  {res.snippetText}
+                                </div>
+                              ) : res.matchType === 'transliterasi' && res.snippetText ? (
+                                <div
+                                  className="text-left text-[13px] leading-snug mt-1 italic truncate"
+                                  style={{ color: textSecondary }}
+                                >
+                                  "{res.snippetText}"
+                                </div>
+                              ) : res.matchType === 'terjemah' && res.snippetText ? (
+                                <div
+                                  className="text-left text-[13px] leading-snug mt-1 truncate"
+                                  style={{ color: textSecondary }}
+                                >
+                                  "{res.snippetText}"
+                                </div>
+                              ) : snippet ? (
+                                <div
+                                  className="text-right text-[15px] leading-snug mt-1 opacity-90 truncate font-arabic"
                                   style={{
                                     fontFamily: '"Noto Naskh Arabic", "Amiri", serif',
                                     color: textSecondary,
@@ -394,7 +423,7 @@ export default function HomePage() {
                                 >
                                   {snippet}
                                 </div>
-                              )}
+                              ) : null}
                             </div>
 
                             {/* Arrow icon */}

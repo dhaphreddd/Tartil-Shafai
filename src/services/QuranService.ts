@@ -51,9 +51,65 @@ export async function getSurahsMetadata(): Promise<SurahMetadata[]> {
   return getSurahsMetadataSync();
 }
 
+const kemenagSurahCache = new Map<number, Map<number, { latin: string; translation: string }>>();
+
 /**
- * Mengambil rentang ayat tertentu langsung dari Quran.com API.
- * Menyertakan nomor ayat, nomor halaman mushaf, teks Uthmani resmi, dan kode glyph V1.
+ * Mengambil transliterasi latin dan terjemahan resmi standar Kemenag RI
+ * dari dataset statis lokal publik (atau fallback online jika offline/hilang).
+ */
+export async function getKemenagSurahData(
+  surahId: number
+): Promise<Map<number, { latin: string; translation: string }>> {
+  if (kemenagSurahCache.has(surahId)) {
+    return kemenagSurahCache.get(surahId)!;
+  }
+
+  const map = new Map<number, { latin: string; translation: string }>();
+  try {
+    const padded = String(surahId).padStart(3, '0');
+    const res = await fetch(`${import.meta.env.BASE_URL}quran/id/${padded}.json`);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.ayahs)) {
+        for (const a of data.ayahs) {
+          map.set(a.ayahNumber, {
+            latin: a.latin || '',
+            translation: a.translation || '',
+          });
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`[getKemenagSurahData] Gagal memuat data lokal kemenag surah ${surahId}:`, err);
+  }
+
+  // Fallback ke equran.id jika dataset lokal belum tersedia
+  if (map.size === 0) {
+    try {
+      const res = await fetch(`https://equran.id/api/v2/surat/${surahId}`);
+      if (res.ok) {
+        const json = await res.json();
+        if (json?.data?.ayat) {
+          for (const a of json.data.ayat) {
+            map.set(a.nomorAyat, {
+              latin: (a.teksLatin || '').trim(),
+              translation: (a.teksIndonesia || '').trim(),
+            });
+          }
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  kemenagSurahCache.set(surahId, map);
+  return map;
+}
+
+/**
+ * Mengambil rentang ayat tertentu langsung dari Quran.com API
+ * serta menggabungkan transliterasi latin dan terjemahan standar Kemenag RI.
  */
 export async function resolveAyahRange(
   surahId: number,
@@ -64,6 +120,9 @@ export async function resolveAyahRange(
   if (rangeCache.has(cacheKey)) {
     return rangeCache.get(cacheKey)!;
   }
+
+  // Fetch data Kemenag (transliterasi & terjemah) secara paralel
+  const kemenagPromise = getKemenagSurahData(surahId);
 
   const expectedCount = endAyah - startAyah + 1;
   const perPage = Math.min(300, Math.max(expectedCount, 50));
@@ -91,6 +150,8 @@ export async function resolveAyahRange(
       }
     }
 
+    const kemenagMap = await kemenagPromise;
+
     if (allVerses.length > 0) {
       const ayahs: Ayah[] = allVerses.map((v: any) => {
         const glyphV1 =
@@ -115,6 +176,8 @@ export async function resolveAyahRange(
           (Array.isArray(v.words) && v.words[0]?.v2_page) ||
           v.page_number;
 
+        const kemenagInfo = kemenagMap.get(v.verse_number);
+
         return {
           ayahNumber: v.verse_number,
           text: cleanText,
@@ -125,6 +188,8 @@ export async function resolveAyahRange(
           pageNumberV2: pageV2,
           glyphCodeV1: glyphV1,
           glyphCodeV2: glyphV2,
+          latin: kemenagInfo?.latin || '',
+          translation: kemenagInfo?.translation || '',
         };
       });
 
@@ -137,14 +202,23 @@ export async function resolveAyahRange(
 
   // Fallback ke dataset lokal jika sedang offline
   try {
-    const surahData = await getSurahData(surahId);
+    const [surahData, kemenagMap] = await Promise.all([
+      getSurahData(surahId),
+      kemenagPromise,
+    ]);
+
     if (surahData) {
       const filtered = surahData.ayahs
         .filter((a) => a.ayahNumber >= startAyah && a.ayahNumber <= endAyah)
-        .map((a) => ({
-          ...a,
-          text: a.ayahNumber === 1 && surahId !== 1 ? stripLeadingBasmalah(a.text) : a.text,
-        }));
+        .map((a) => {
+          const kemenagInfo = kemenagMap.get(a.ayahNumber);
+          return {
+            ...a,
+            text: a.ayahNumber === 1 && surahId !== 1 ? stripLeadingBasmalah(a.text) : a.text,
+            latin: a.latin || kemenagInfo?.latin || '',
+            translation: a.translation || kemenagInfo?.translation || '',
+          };
+        });
       rangeCache.set(cacheKey, filtered);
       return filtered;
     }
@@ -165,7 +239,10 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
   try {
     // Quran.com API pagination (max per_page=300 mencakup seluruh surat)
     const url = `${QURAN_API_BASE}/verses/by_chapter/${surahId}?per_page=300&words=true&word_fields=code_v1,code_v2,text_uthmani,v1_page,v2_page&fields=text_uthmani,verse_number,page_number,code_v1,code_v2,v1_page,v2_page`;
-    const res = await fetch(url);
+    const [res, kemenagMap] = await Promise.all([
+      fetch(url),
+      getKemenagSurahData(surahId),
+    ]);
     if (!res.ok) throw new Error(`HTTP ${res.status} from Quran.com API`);
     const data = await res.json();
 
@@ -188,6 +265,8 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
           (Array.isArray(v.words) && v.words[0]?.v2_page) ||
           v.page_number;
 
+        const kemenagInfo = kemenagMap.get(v.verse_number);
+
         return {
           ayahNumber: v.verse_number,
           text: v.text_uthmani,
@@ -197,6 +276,8 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
           pageNumberV2: pageV2,
           glyphCodeV1: glyphV1,
           glyphCodeV2: glyphV2,
+          latin: kemenagInfo?.latin || '',
+          translation: kemenagInfo?.translation || '',
         };
       });
 
@@ -219,39 +300,38 @@ export async function getSurahData(surahId: number): Promise<SurahData | null> {
   try {
     const unicodePromise = fetch(`${import.meta.env.BASE_URL}quran/unicode/${paddedId}.json`).then((r) => (r.ok ? r.json() : null));
     const qcfPromise = fetch(`${import.meta.env.BASE_URL}quran/qcf/${paddedId}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    const kemenagPromise = getKemenagSurahData(surahId);
 
-    const [unicodeData, qcfData] = await Promise.all([unicodePromise, qcfPromise]);
+    const [unicodeData, qcfData, kemenagMap] = await Promise.all([unicodePromise, qcfPromise, kemenagPromise]);
     if (!unicodeData) return null;
 
+    const qcfMap = new Map<number, { pageNumber?: number; glyphCode?: string }>();
     if (qcfData && Array.isArray(qcfData.ayahs)) {
-      const qcfMap = new Map<number, { pageNumber?: number; glyphCode?: string }>();
       for (const qAyah of qcfData.ayahs) {
         qcfMap.set(qAyah.ayahNumber, {
           pageNumber: qAyah.pageNumber,
           glyphCode: qAyah.glyphCode,
         });
       }
-
-      unicodeData.ayahs = unicodeData.ayahs.map((ayah: Ayah) => {
-        const qcfInfo = qcfMap.get(ayah.ayahNumber);
-        const cleanText =
-          ayah.ayahNumber === 1 && surahId !== 1
-            ? stripLeadingBasmalah(ayah.text)
-            : ayah.text;
-        if (qcfInfo) {
-          return {
-            ...ayah,
-            text: cleanText,
-            pageNumber: qcfInfo.pageNumber,
-            glyphCode: qcfInfo.glyphCode,
-          };
-        }
-        return {
-          ...ayah,
-          text: cleanText,
-        };
-      });
     }
+
+    unicodeData.ayahs = unicodeData.ayahs.map((ayah: Ayah) => {
+      const qcfInfo = qcfMap.get(ayah.ayahNumber);
+      const kemenagInfo = kemenagMap.get(ayah.ayahNumber);
+      const cleanText =
+        ayah.ayahNumber === 1 && surahId !== 1
+          ? stripLeadingBasmalah(ayah.text)
+          : ayah.text;
+
+      return {
+        ...ayah,
+        text: cleanText,
+        pageNumber: qcfInfo?.pageNumber || ayah.pageNumber,
+        glyphCode: qcfInfo?.glyphCode || ayah.glyphCode,
+        latin: ayah.latin || kemenagInfo?.latin || '',
+        translation: ayah.translation || kemenagInfo?.translation || '',
+      };
+    });
 
     surahCache.set(surahId, unicodeData);
     return unicodeData;

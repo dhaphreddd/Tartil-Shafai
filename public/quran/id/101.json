@@ -1,0 +1,63 @@
+{
+  "surahId": 101,
+  "name": "Al-Qari'ah",
+  "nameArabic": "القارعة",
+  "ayahCount": 11,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Al-qāri‘ah(tu).",
+      "translation": "Al-Qāri‘ah (hari Kiamat yang menggetarkan)."
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Mal-qāri‘ah(tu).",
+      "translation": "Apakah al-Qāri‘ah itu?"
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Wa mā adrāka mal-qāri‘ah(tu).",
+      "translation": "Tahukah kamu apakah al-Qāri‘ah itu?"
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Yauma yakūnun-nāsu kal-farāsyil-mabṡūṡ(i).",
+      "translation": "Pada hari itu manusia seperti laron yang beterbangan"
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Wa takūnul-jibālu kal-‘ihnil-manfūsy(i).",
+      "translation": "dan gunung-gunung seperti bulu yang berhamburan."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Fa ammā man ṡaqulat mawāzīnuh(ū).",
+      "translation": "Siapa yang berat timbangan (kebaikan)-nya,"
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Fa huwa fī ‘īsyatir rāḍiyah(tin).",
+      "translation": "dia berada dalam kehidupan yang menyenangkan."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Wa ammā man khaffat mawāzīnuh(ū).",
+      "translation": "Adapun orang yang ringan timbangan (kebaikan)-nya,"
+    },
+    {
+      "ayahNumber": 9,
+      "latin": "Fa ummuhū hāwiyah(tun).",
+      "translation": "tempat kembalinya adalah (neraka) Hawiyah."
+    },
+    {
+      "ayahNumber": 10,
+      "latin": "Wa mā adrāka mā hiyah.",
+      "translation": "Tahukah kamu apakah (neraka Hawiyah) itu?"
+    },
+    {
+      "ayahNumber": 11,
+      "latin": "Nārun ḥāmiyah(tun).",
+      "translation": "(Ia adalah) api yang sangat panas."
+    }
+  ]
+}

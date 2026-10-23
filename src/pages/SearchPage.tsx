@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
 import { CurriculumService } from '@/services/CurriculumService';
 import { getSurahsMetadata, getPackageSnippets } from '@/services/QuranService';
+import { searchPackages, preloadPackageSurahs, subscribeSearchCache, type SearchResultItem } from '@/services/SearchService';
 import type { Layer1Card, Layer3Item, SurahMetadata } from '@/core/types';
 import { formatSurahsTitle, formatSurahsArabic } from '@/utils/PackageTitleFormatter';
 
@@ -20,6 +21,13 @@ export default function SearchPage() {
   const [surahs, setSurahs] = useState<SurahMetadata[]>([]);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const [cacheTick, setCacheTick] = useState(0);
+
+  useEffect(() => {
+    return subscribeSearchCache(() => {
+      setCacheTick((t) => t + 1);
+    });
+  }, []);
 
   // Sync state if URL search query changes
   useEffect(() => {
@@ -42,6 +50,7 @@ export default function SearchPage() {
 
       setLayers(publishedLayers);
       setAllItems(items);
+      preloadPackageSurahs(items);
 
       getPackageSnippets(items as any).then((snips) => {
         if (isMounted) {
@@ -66,44 +75,10 @@ export default function SearchPage() {
     }
   };
 
-  // Filter items based on query and layer filter
-  const searchResults = useMemo(() => {
-    const q = query.toLowerCase().trim();
-
-    return allItems.filter((item) => {
-      // Filter Layer 1
-      if (selectedLayer1Id !== 'all' && item.layer1Id !== selectedLayer1Id) return false;
-
-      if (!q) return true;
-
-      const meta = surahs.find((s) => s.id === item.surahId);
-      const surahName = meta?.name.toLowerCase() || '';
-      const surahNameArabic = meta?.nameArabic || '';
-      const title = item.title?.toLowerCase() || '';
-      const ayahRangeStr = `${item.startAyah}-${item.endAyah}`;
-      const snippetText = snippets[item.id]?.toLowerCase() || '';
-
-      const matchSections = (item.sections || []).some((sec) => {
-        const sMeta = surahs.find((s) => s.id === sec.surahId);
-        return (
-          sMeta?.name.toLowerCase().includes(q) ||
-          sMeta?.nameArabic.includes(q) ||
-          `${sec.startAyah}-${sec.endAyah}`.includes(q)
-        );
-      });
-
-      return (
-        surahName.includes(q) ||
-        surahNameArabic.includes(q) ||
-        title.includes(q) ||
-        `paket ${item.order}`.includes(q) ||
-        ayahRangeStr.includes(q) ||
-        (q.includes('ayat') && q.includes(String(item.startAyah))) ||
-        snippetText.includes(q) ||
-        matchSections
-      );
-    });
-  }, [allItems, surahs, snippets, query, selectedLayer1Id]);
+  // Filter items based on query and layer filter (menggunakan SearchService cerdas)
+  const searchResults: SearchResultItem[] = useMemo(() => {
+    return searchPackages(query, allItems, surahs, { layer1Id: selectedLayer1Id });
+  }, [allItems, surahs, query, selectedLayer1Id, cacheTick]);
 
   return (
     <div className="max-w-[896px] w-full mx-auto px-4 md:px-8 lg:px-12 py-10 animate-fade-in">
@@ -119,7 +94,7 @@ export default function SearchPage() {
           className="text-sm mt-1"
           style={{ color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)' }}
         >
-          Cari berdasarkan nama card materi, nama surat, ayat, atau lafaz awal ayat.
+          Cari berdasarkan teks Arab (dengan/tanpa harakat), transliterasi Latin & ejaan bacaan, terjemahan Kemenag, atau nama surat.
         </p>
       </div>
 
@@ -140,7 +115,7 @@ export default function SearchPage() {
         <input
           className="w-full h-13 pl-3 pr-4 bg-transparent text-[15px] placeholder:opacity-60 focus:outline-none"
           id="search-page-input"
-          placeholder="Ketik judul materi, nama surat, atau ayat (misal: Al-Baqarah, Paket 01, 153)..."
+          placeholder="Cari materi, teks Arab, transliterasi bunyi ayat, terjemahan, atau surat..."
           type="text"
           value={query}
           onChange={(e) => handleQueryChange(e.target.value)}
@@ -268,8 +243,9 @@ export default function SearchPage() {
       {/* Search Result Cards Grid */}
       {!loading && searchResults.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {searchResults.map((item) => {
-            const meta = surahs.find((s) => s.id === item.surahId);
+          {searchResults.map((res) => {
+            const item = res.item;
+            const meta = res.surahMetadata || surahs.find((s) => s.id === item.surahId);
             const ayahCount = item.endAyah - item.startAyah + 1;
             const parentLayer = layers.find((l) => l.id === item.layer1Id);
 
@@ -369,8 +345,39 @@ export default function SearchPage() {
                       : `Ayat ${item.startAyah} – ${item.endAyah}`}
                   </p>
 
-                  {/* Potongan ayat pertama (1 baris / beberapa kata) */}
-                  {snippets[item.id] && (
+                  {/* Highlight Snippet yang Cocok */}
+                  {res.matchType === 'arab' && res.snippetText ? (
+                    <div className="mt-3 p-2.5 rounded-xl border bg-emerald-500/5 dark:bg-emerald-400/5 border-emerald-500/20">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
+                        Cocok Teks Arab {res.matchedAyahNumber ? `• Ayat ${res.matchedAyahNumber}` : ''}
+                      </span>
+                      <div
+                        dir="rtl"
+                        className="text-right text-[16px] leading-relaxed font-arabic text-emerald-800 dark:text-emerald-300"
+                        style={{ fontFamily: '"Noto Naskh Arabic", "Amiri", serif' }}
+                      >
+                        {res.snippetText}
+                      </div>
+                    </div>
+                  ) : res.matchType === 'transliterasi' && res.snippetText ? (
+                    <div className="mt-3 p-2.5 rounded-xl border bg-amber-500/5 dark:bg-amber-400/5 border-amber-500/20">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 block mb-0.5">
+                        Cocok Transliterasi {res.matchedAyahNumber ? `• Ayat ${res.matchedAyahNumber}` : ''}
+                      </span>
+                      <p className="text-xs italic leading-relaxed" style={{ color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)' }}>
+                        "{res.snippetText}"
+                      </p>
+                    </div>
+                  ) : res.matchType === 'terjemah' && res.snippetText ? (
+                    <div className="mt-3 p-2.5 rounded-xl border bg-sky-500/5 dark:bg-sky-400/5 border-sky-500/20">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400 block mb-0.5">
+                        Cocok Terjemahan Kemenag {res.matchedAyahNumber ? `• Ayat ${res.matchedAyahNumber}` : ''}
+                      </span>
+                      <p className="text-xs leading-relaxed" style={{ color: isDark ? 'var(--color-dark-text-secondary)' : 'var(--color-text-secondary)' }}>
+                        "{res.snippetText}"
+                      </p>
+                    </div>
+                  ) : snippets[item.id] ? (
                     <div
                       dir="rtl"
                       className="mt-2.5 text-[15px] leading-relaxed truncate font-arabic select-none tracking-normal"
@@ -382,7 +389,7 @@ export default function SearchPage() {
                     >
                       {snippets[item.id]}
                     </div>
-                  )}
+                  ) : null}
                 </div>
 
                 {/* Footer of Card */}

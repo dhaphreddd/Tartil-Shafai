@@ -28,7 +28,15 @@ export default function PackagePage() {
   const { effective } = useTheme();
   const isDark = effective === 'dark';
   const { isAdmin } = useAuth();
-  const { settings, setFont, setFontSize, setLineHeight, resetDefaults } = useReaderSettings();
+  const {
+    settings,
+    setFont,
+    setFontSize,
+    setLineHeight,
+    setViewMode,
+    toggleElement,
+    resetDefaults,
+  } = useReaderSettings();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -308,13 +316,19 @@ export default function PackagePage() {
               onReset={resetDefaults}
               currentFont={settings.quranFont}
               setFont={setFont}
+              showArabic={settings.showArabic}
+              showTransliteration={settings.showTransliteration}
+              showTranslation={settings.showTranslation}
+              viewMode={settings.viewMode}
+              toggleElement={toggleElement}
+              setViewMode={setViewMode}
             />
           </div>
         </div>
       </div>
 
       {/* Surah & Package Identification */}
-      <div className="mb-8 text-center sm:text-left">
+      <div className="mb-6 text-center sm:text-left">
         <div className="inline-flex items-center gap-2 mb-1.5 flex-wrap">
           <span
             className="text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded"
@@ -379,7 +393,221 @@ export default function PackagePage() {
         </p>
       </div>
 
-      {/* Quran Mushaf Reader Canvas */}
+      {/* Quick View Mode & 3-Element Toggles Toolbar */}
+      <div
+        className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 mb-8 p-2.5 sm:p-3 rounded-2xl border transition-colors shadow-xs"
+        style={{
+          borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.02)' : 'var(--color-surface-subtle)',
+        }}
+      >
+        {/* Left: View Mode Segmented Control */}
+        <div
+          className="flex items-center gap-1 p-1 rounded-xl border shrink-0"
+          style={{
+            borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+            backgroundColor: isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.03)',
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setViewMode('mushaf')}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              backgroundColor:
+                settings.viewMode === 'mushaf' && !settings.showTransliteration && !settings.showTranslation && settings.showArabic
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : 'transparent',
+              color:
+                settings.viewMode === 'mushaf' && !settings.showTransliteration && !settings.showTranslation && settings.showArabic
+                  ? 'var(--color-on-primary)'
+                  : isDark
+                    ? 'var(--color-dark-text-secondary)'
+                    : 'var(--color-text-secondary)',
+            }}
+            title="Mode baca mushaf mengalir tanpa jeda (tampilan bawaan)"
+          >
+            <span className="material-symbols-outlined text-[16px]">menu_book</span>
+            <span>Mode Baca</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setViewMode('ayah')}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              backgroundColor:
+                settings.viewMode === 'ayah' || settings.showTransliteration || settings.showTranslation || !settings.showArabic
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : 'transparent',
+              color:
+                settings.viewMode === 'ayah' || settings.showTransliteration || settings.showTranslation || !settings.showArabic
+                  ? 'var(--color-on-primary)'
+                  : isDark
+                    ? 'var(--color-dark-text-secondary)'
+                    : 'var(--color-text-secondary)',
+            }}
+            title="Mode per ayat dengan pemisahan kartu rapi"
+          >
+            <span className="material-symbols-outlined text-[16px]">view_agenda</span>
+            <span>Per Ayat</span>
+          </button>
+        </div>
+
+        {/* Right: 3 Elemen Toggles (Arab, Latin, Terjemah) */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span
+            className="text-[11px] font-medium mr-1 hidden sm:inline"
+            style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+          >
+            Tampilkan:
+          </span>
+
+          {/* Toggle Arab */}
+          <button
+            type="button"
+            onClick={() => toggleElement('arabic')}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer active:scale-95 shadow-2xs"
+            style={{
+              borderColor: settings.showArabic
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-border)'
+                  : 'var(--color-border)',
+              backgroundColor: settings.showArabic
+                ? isDark
+                  ? 'rgba(198, 161, 91, 0.18)'
+                  : 'rgba(154, 119, 56, 0.12)'
+                : 'transparent',
+              color: settings.showArabic
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-text-muted)'
+                  : 'var(--color-text-muted)',
+            }}
+            title="Aktifkan / nonaktifkan teks Arab asli"
+          >
+            <span
+              className="w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold"
+              style={{
+                backgroundColor: settings.showArabic
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'rgba(255,255,255,0.1)'
+                    : 'rgba(0,0,0,0.08)',
+                color: settings.showArabic ? '#ffffff' : 'inherit',
+              }}
+            >
+              {settings.showArabic ? '✓' : ''}
+            </span>
+            <span>Arab</span>
+          </button>
+
+          {/* Toggle Transliterasi Latin */}
+          <button
+            type="button"
+            onClick={() => toggleElement('transliteration')}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer active:scale-95 shadow-2xs"
+            style={{
+              borderColor: settings.showTransliteration
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-border)'
+                  : 'var(--color-border)',
+              backgroundColor: settings.showTransliteration
+                ? isDark
+                  ? 'rgba(198, 161, 91, 0.18)'
+                  : 'rgba(154, 119, 56, 0.12)'
+                : 'transparent',
+              color: settings.showTransliteration
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-text-muted)'
+                  : 'var(--color-text-muted)',
+            }}
+            title="Aktifkan / nonaktifkan transliterasi latin standar Kemenag RI"
+          >
+            <span
+              className="w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold"
+              style={{
+                backgroundColor: settings.showTransliteration
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'rgba(255,255,255,0.1)'
+                    : 'rgba(0,0,0,0.08)',
+                color: settings.showTransliteration ? '#ffffff' : 'inherit',
+              }}
+            >
+              {settings.showTransliteration ? '✓' : ''}
+            </span>
+            <span>Latin</span>
+          </button>
+
+          {/* Toggle Terjemahan Indonesia */}
+          <button
+            type="button"
+            onClick={() => toggleElement('translation')}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer active:scale-95 shadow-2xs"
+            style={{
+              borderColor: settings.showTranslation
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-border)'
+                  : 'var(--color-border)',
+              backgroundColor: settings.showTranslation
+                ? isDark
+                  ? 'rgba(198, 161, 91, 0.18)'
+                  : 'rgba(154, 119, 56, 0.12)'
+                : 'transparent',
+              color: settings.showTranslation
+                ? isDark
+                  ? 'var(--color-dark-primary)'
+                  : 'var(--color-primary)'
+                : isDark
+                  ? 'var(--color-dark-text-muted)'
+                  : 'var(--color-text-muted)',
+            }}
+            title="Aktifkan / nonaktifkan terjemahan Indonesia standar Kemenag RI"
+          >
+            <span
+              className="w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold"
+              style={{
+                backgroundColor: settings.showTranslation
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'rgba(255,255,255,0.1)'
+                    : 'rgba(0,0,0,0.08)',
+                color: settings.showTranslation ? '#ffffff' : 'inherit',
+              }}
+            >
+              {settings.showTranslation ? '✓' : ''}
+            </span>
+            <span>Terjemah</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Quran Reader Canvas */}
       <div className="mb-14 dark:text-white transition-colors">
         {isMultiSurah ? (
           <div className="space-y-12">
@@ -420,14 +648,31 @@ export default function PackagePage() {
 
                   {/* Basmalah for surah starting at ayah 1 (except Al-Fatihah 1 and At-Tawbah 9) */}
                   {section.surahId !== 1 && section.surahId !== 9 && section.startAyah === 1 && (
-                    <div
-                      className="mt-3.5 pt-3.5 border-t font-arabic text-xl sm:text-2xl"
-                      style={{
-                        borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
-                        color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)',
-                      }}
-                    >
-                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    <div className="mt-3.5 pt-3.5 border-t" style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}>
+                      {settings.showArabic && (
+                        <div
+                          className="font-arabic text-xl sm:text-2xl"
+                          style={{ color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)' }}
+                        >
+                          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                        </div>
+                      )}
+                      {settings.showTransliteration && (
+                        <p
+                          className="text-xs sm:text-[13px] italic font-serif mt-1 tracking-wide"
+                          style={{ color: isDark ? '#fef3c7' : '#78350f' }}
+                        >
+                          Bismillāhir-raḥmānir-raḥīm
+                        </p>
+                      )}
+                      {settings.showTranslation && (
+                        <p
+                          className="text-xs sm:text-[12px] mt-0.5 opacity-80"
+                          style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                        >
+                          Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -438,6 +683,12 @@ export default function PackagePage() {
                   font={settings.quranFont}
                   fontSize={settings.arabicFontSize}
                   lineHeight={settings.arabicLineHeight}
+                  viewMode={settings.viewMode}
+                  showArabic={settings.showArabic}
+                  showTransliteration={settings.showTransliteration}
+                  showTranslation={settings.showTranslation}
+                  surahName={section.surahMetadata.name}
+                  surahId={section.surahId}
                 />
               </div>
             ))}
@@ -449,10 +700,36 @@ export default function PackagePage() {
               sections[0]?.surahId !== 9 &&
               sections[0]?.startAyah === 1 && (
                 <div
-                  className="text-center mb-6 font-arabic text-2xl sm:text-3xl"
-                  style={{ color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)' }}
+                  className="text-center mb-6 py-4 px-3 rounded-2xl border transition-colors shadow-xs"
+                  style={{
+                    borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)',
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'var(--color-surface-subtle)',
+                  }}
                 >
-                  بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                  {settings.showArabic && (
+                    <div
+                      className="font-arabic text-2xl sm:text-3xl"
+                      style={{ color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)' }}
+                    >
+                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    </div>
+                  )}
+                  {settings.showTransliteration && (
+                    <p
+                      className="text-xs sm:text-[13px] italic font-serif mt-1 tracking-wide"
+                      style={{ color: isDark ? '#fef3c7' : '#78350f' }}
+                    >
+                      Bismillāhir-raḥmānir-raḥīm
+                    </p>
+                  )}
+                  {settings.showTranslation && (
+                    <p
+                      className="text-xs sm:text-[12px] mt-0.5 opacity-80"
+                      style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                    >
+                      Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang
+                    </p>
+                  )}
                 </div>
               )}
             <QuranRenderer
@@ -460,6 +737,12 @@ export default function PackagePage() {
               font={settings.quranFont}
               fontSize={settings.arabicFontSize}
               lineHeight={settings.arabicLineHeight}
+              viewMode={settings.viewMode}
+              showArabic={settings.showArabic}
+              showTransliteration={settings.showTransliteration}
+              showTranslation={settings.showTranslation}
+              surahName={resolvedData.surahMetadata.name}
+              surahId={resolvedData.pkg.surahId}
             />
           </>
         )}

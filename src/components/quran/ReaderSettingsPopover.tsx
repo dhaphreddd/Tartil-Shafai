@@ -4,15 +4,16 @@
  * Modeled after Quran.com's reader settings:
  * - Desktop: Clean floating dropdown popover anchored directly below the "Tampilan" button
  * - Mobile: True bottom-sheet modal rendered via React Portal directly into document.body
- *   (bypasses any parent transform, animation, or clipping issues)
- * - Live real-time adjustment of font (Mushaf V1 vs V2), font size, line height, and theme
+ * - Element toggles: Teks Arab, Transliterasi Latin, Terjemahan Indonesia (Standar Kemenag RI)
+ * - View mode toggle: Mode Baca (Mushaf) vs Mode Per Ayat
+ * - Font (Mushaf V1 vs V2), font size, line height, and theme
  * - Click-outside and Escape key detection
  */
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from '@/contexts/ThemeContext';
-import type { ThemeMode, QuranFont } from '@/core/types';
+import type { ThemeMode, QuranFont, ReadingViewMode } from '@/core/types';
 
 interface ReaderSettingsPopoverProps {
   isOpen: boolean;
@@ -25,6 +26,12 @@ interface ReaderSettingsPopoverProps {
   onReset: () => void;
   currentFont?: QuranFont;
   setFont?: (font: QuranFont) => void;
+  showArabic?: boolean;
+  showTransliteration?: boolean;
+  showTranslation?: boolean;
+  viewMode?: ReadingViewMode;
+  toggleElement?: (elem: 'arabic' | 'transliteration' | 'translation') => void;
+  setViewMode?: (mode: ReadingViewMode) => void;
 }
 
 const LINE_HEIGHT_OPTIONS = [
@@ -57,6 +64,12 @@ export default function ReaderSettingsPopover({
   onReset,
   currentFont,
   setFont,
+  showArabic = true,
+  showTransliteration = false,
+  showTranslation = false,
+  viewMode = 'mushaf',
+  toggleElement,
+  setViewMode,
 }: ReaderSettingsPopoverProps) {
   const { mode, setMode, effective } = useTheme();
   const isDark = effective === 'dark';
@@ -121,6 +134,8 @@ export default function ReaderSettingsPopover({
 
   if (!isOpen) return null;
 
+  const isCurrentMushaf = viewMode === 'mushaf' && !showTransliteration && !showTranslation && showArabic;
+
   const renderHeader = () => (
     <div
       className="px-4 py-3 border-b flex items-center justify-between shrink-0"
@@ -133,7 +148,7 @@ export default function ReaderSettingsPopover({
         >
           tune
         </span>
-        <span className="font-semibold text-sm">Tampilan Bacaan</span>
+        <span className="font-semibold text-sm">Pengaturan Tampilan</span>
       </div>
 
       <button
@@ -149,7 +164,275 @@ export default function ReaderSettingsPopover({
 
   const renderBody = () => (
     <div className="p-4 space-y-5">
-      {/* Versi Font Mushaf */}
+      {/* 1. Mode Tata Letak (Mode Baca Mushaf vs Per Ayat) */}
+      {setViewMode && (
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-xs font-semibold">Tata Letak Bacaan</label>
+            <span
+              className="text-[11px] font-semibold px-2 py-0.5 rounded"
+              style={{
+                backgroundColor: isDark ? 'rgba(198, 161, 91, 0.15)' : 'rgba(154, 119, 56, 0.12)',
+                color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
+              }}
+            >
+              {isCurrentMushaf ? 'Mode Baca' : 'Per Ayat'}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => setViewMode('mushaf')}
+              className="p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between"
+              style={{
+                backgroundColor: isCurrentMushaf
+                  ? isDark
+                    ? 'var(--color-dark-surface-elevated)'
+                    : 'var(--color-surface-subtle)'
+                  : 'transparent',
+                borderColor: isCurrentMushaf
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'var(--color-dark-border)'
+                    : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[16px]">menu_book</span>
+                  <span className="text-xs font-bold">Mode Baca</span>
+                </div>
+                {isCurrentMushaf && (
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                  />
+                )}
+              </div>
+              <p
+                className="text-[11px] leading-tight"
+                style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+              >
+                Mushaf mengalir (bawaan)
+              </p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setViewMode('ayah')}
+              className="p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between"
+              style={{
+                backgroundColor: !isCurrentMushaf
+                  ? isDark
+                    ? 'var(--color-dark-surface-elevated)'
+                    : 'var(--color-surface-subtle)'
+                  : 'transparent',
+                borderColor: !isCurrentMushaf
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'var(--color-dark-border)'
+                    : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[16px]">view_agenda</span>
+                  <span className="text-xs font-bold">Per Ayat</span>
+                </div>
+                {!isCurrentMushaf && (
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)' }}
+                  />
+                )}
+              </div>
+              <p
+                className="text-[11px] leading-tight"
+                style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+              >
+                Pemisahan kartu per nomor ayat
+              </p>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 2. Tiga Elemen Teks (Arab, Transliterasi, Terjemahan) */}
+      {toggleElement && (
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-xs font-semibold">Elemen Teks (Aktif / Nonaktif)</label>
+            <span
+              className="text-[10px] font-medium"
+              style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+            >
+              Standar Kemenag RI
+            </span>
+          </div>
+
+          <div className="space-y-1.5">
+            {/* Elemen 1: Teks Arab */}
+            <div
+              onClick={() => toggleElement('arabic')}
+              className="p-2.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-colors"
+              style={{
+                backgroundColor: showArabic
+                  ? isDark
+                    ? 'rgba(198, 161, 91, 0.08)'
+                    : 'rgba(154, 119, 56, 0.05)'
+                  : isDark
+                    ? 'rgba(255, 255, 255, 0.02)'
+                    : 'rgba(0, 0, 0, 0.02)',
+                borderColor: showArabic
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'var(--color-dark-border)'
+                    : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="w-5 h-5 rounded flex items-center justify-center transition-colors"
+                  style={{
+                    backgroundColor: showArabic
+                      ? isDark
+                        ? 'var(--color-dark-primary)'
+                        : 'var(--color-primary)'
+                      : 'transparent',
+                    border: showArabic ? 'none' : '1.5px solid currentColor',
+                    color: showArabic ? '#ffffff' : isDark ? '#6b7280' : '#9ca3af',
+                  }}
+                >
+                  {showArabic && <span className="material-symbols-outlined text-[14px]">check</span>}
+                </div>
+                <div>
+                  <span className="text-xs font-bold block">Teks Arab (Ayat Asli)</span>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                  >
+                    Mushaf Madinah / Uthmani
+                  </span>
+                </div>
+              </div>
+              <span className="text-[15px] font-arabic opacity-80" dir="rtl">
+                عَرَبِيّ
+              </span>
+            </div>
+
+            {/* Elemen 2: Transliterasi Latin */}
+            <div
+              onClick={() => toggleElement('transliteration')}
+              className="p-2.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-colors"
+              style={{
+                backgroundColor: showTransliteration
+                  ? isDark
+                    ? 'rgba(198, 161, 91, 0.08)'
+                    : 'rgba(154, 119, 56, 0.05)'
+                  : isDark
+                    ? 'rgba(255, 255, 255, 0.02)'
+                    : 'rgba(0, 0, 0, 0.02)',
+                borderColor: showTransliteration
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'var(--color-dark-border)'
+                    : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="w-5 h-5 rounded flex items-center justify-center transition-colors"
+                  style={{
+                    backgroundColor: showTransliteration
+                      ? isDark
+                        ? 'var(--color-dark-primary)'
+                        : 'var(--color-primary)'
+                      : 'transparent',
+                    border: showTransliteration ? 'none' : '1.5px solid currentColor',
+                    color: showTransliteration ? '#ffffff' : isDark ? '#6b7280' : '#9ca3af',
+                  }}
+                >
+                  {showTransliteration && <span className="material-symbols-outlined text-[14px]">check</span>}
+                </div>
+                <div>
+                  <span className="text-xs font-bold block">Transliterasi Latin</span>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                  >
+                    Standar Kemenag RI
+                  </span>
+                </div>
+              </div>
+              <span className="text-[11px] font-serif italic opacity-80">
+                ā, ī, ū, ḥ
+              </span>
+            </div>
+
+            {/* Elemen 3: Terjemahan Indonesia */}
+            <div
+              onClick={() => toggleElement('translation')}
+              className="p-2.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-colors"
+              style={{
+                backgroundColor: showTranslation
+                  ? isDark
+                    ? 'rgba(198, 161, 91, 0.08)'
+                    : 'rgba(154, 119, 56, 0.05)'
+                  : isDark
+                    ? 'rgba(255, 255, 255, 0.02)'
+                    : 'rgba(0, 0, 0, 0.02)',
+                borderColor: showTranslation
+                  ? isDark
+                    ? 'var(--color-dark-primary)'
+                    : 'var(--color-primary)'
+                  : isDark
+                    ? 'var(--color-dark-border)'
+                    : 'var(--color-border)',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="w-5 h-5 rounded flex items-center justify-center transition-colors"
+                  style={{
+                    backgroundColor: showTranslation
+                      ? isDark
+                        ? 'var(--color-dark-primary)'
+                        : 'var(--color-primary)'
+                      : 'transparent',
+                    border: showTranslation ? 'none' : '1.5px solid currentColor',
+                    color: showTranslation ? '#ffffff' : isDark ? '#6b7280' : '#9ca3af',
+                  }}
+                >
+                  {showTranslation && <span className="material-symbols-outlined text-[14px]">check</span>}
+                </div>
+                <div>
+                  <span className="text-xs font-bold block">Terjemahan Indonesia</span>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
+                  >
+                    Standar Kemenag RI
+                  </span>
+                </div>
+              </div>
+              <span className="text-[11px] font-medium opacity-80">
+                Arti
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Versi Font Mushaf */}
       {setFont && (
         <div>
           <div className="flex items-center justify-between mb-2">
@@ -244,7 +527,7 @@ export default function ReaderSettingsPopover({
         </div>
       )}
 
-      {/* Font Size */}
+      {/* 4. Font Size */}
       <div>
         <div className="flex items-center justify-between mb-2">
           <label className="text-xs font-semibold">Ukuran Huruf Al-Qur'an</label>
@@ -327,7 +610,7 @@ export default function ReaderSettingsPopover({
         </div>
       </div>
 
-      {/* Line Height */}
+      {/* 5. Line Height */}
       <div>
         <div className="flex items-center justify-between mb-2">
           <label className="text-xs font-semibold">Jarak Baris</label>
@@ -390,7 +673,7 @@ export default function ReaderSettingsPopover({
         </div>
       </div>
 
-      {/* Visual Theme Selection */}
+      {/* 6. Visual Theme Selection */}
       <div>
         <label className="text-xs font-semibold block mb-2">Tema Tampilan</label>
         <div className="grid grid-cols-3 gap-1.5">

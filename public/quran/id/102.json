@@ -1,0 +1,48 @@
+{
+  "surahId": 102,
+  "name": "At-Takasur",
+  "nameArabic": "التكاثر",
+  "ayahCount": 8,
+  "ayahs": [
+    {
+      "ayahNumber": 1,
+      "latin": "Alhākumut-takāṡur(u).",
+      "translation": "Berbangga-bangga dalam memperbanyak (dunia) telah melalaikanmu"
+    },
+    {
+      "ayahNumber": 2,
+      "latin": "Ḥattā zurtumul-maqābir(a).",
+      "translation": "sampai kamu masuk ke dalam kubur."
+    },
+    {
+      "ayahNumber": 3,
+      "latin": "Kallā saufa ta‘lamūn(a).",
+      "translation": "Sekali-kali tidak! Kelak kamu akan mengetahui (akibat perbuatanmu itu)."
+    },
+    {
+      "ayahNumber": 4,
+      "latin": "Ṡumma kallā saufa ta‘lamūn(a).",
+      "translation": "Sekali-kali tidak (jangan melakukan itu)! Kelak kamu akan mengetahui (akibatnya)."
+    },
+    {
+      "ayahNumber": 5,
+      "latin": "Kallā lau ta‘lamūna ‘ilmal-yaqīn(i).",
+      "translation": "Sekali-kali tidak (jangan melakukan itu)! Sekiranya kamu mengetahui dengan pasti, (niscaya kamu tidak akan melakukannya)."
+    },
+    {
+      "ayahNumber": 6,
+      "latin": "Latarawunnal-jaḥīm(a).",
+      "translation": "Pasti kamu benar-benar akan melihat (neraka) Jahim."
+    },
+    {
+      "ayahNumber": 7,
+      "latin": "Ṡumma latarawunnahā ‘ainal-yaqīn(i).",
+      "translation": "Kemudian, kamu pasti benar-benar akan melihatnya dengan ainulyakin."
+    },
+    {
+      "ayahNumber": 8,
+      "latin": "Ṡumma latus'alunna yauma'iżin ‘anin-na‘īm(i).",
+      "translation": "Kemudian, kamu pasti benar-benar akan ditanya pada hari itu tentang kenikmatan (yang megah di dunia itu)."
+    }
+  ]
+}

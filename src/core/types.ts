@@ -21,6 +21,8 @@ export interface Ayah {
   glyphCodeV1?: string;
   glyphCodeV2?: string;
   surahId?: number;
+  latin?: string;
+  translation?: string;
 }
 
 export interface SurahData {
@@ -146,11 +148,17 @@ export interface QuranFontOption {
 
 // ---------- Reading Settings Types ----------
 
+export type ReadingViewMode = 'mushaf' | 'ayah';
+
 export interface ReadingSettings {
   theme: ThemeMode;
   quranFont: QuranFont;
   arabicFontSize: number;
   arabicLineHeight: number;
+  showArabic: boolean;
+  showTransliteration: boolean;
+  showTranslation: boolean;
+  viewMode: ReadingViewMode;
 }
 
 // ---------- Navigation Types ----------

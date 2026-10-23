@@ -8,9 +8,10 @@ const __dirname = path.dirname(__filename);
 const PUBLIC_DIR = path.join(__dirname, '..', 'public', 'quran');
 const METADATA_DIR = path.join(PUBLIC_DIR, 'metadata');
 const UNICODE_DIR = path.join(PUBLIC_DIR, 'unicode');
+const KEMENAG_DIR = path.join(PUBLIC_DIR, 'id');
 
 function validateQuranDataset() {
-  console.log('Validating Quran Dataset...');
+  console.log('Validating Quran Dataset (Unicode & Kemenag Transliterasi/Terjemahan)...');
   let hasErrors = false;
 
   // 1. Check if metadata exists
@@ -27,7 +28,7 @@ function validateQuranDataset() {
     hasErrors = true;
   }
 
-  // 2. Validate each surah file
+  // 2. Validate each surah file (Unicode)
   for (let i = 1; i <= 114; i++) {
     const paddedId = String(i).padStart(3, '0');
     const surahFilePath = path.join(UNICODE_DIR, `${paddedId}.json`);
@@ -56,13 +57,27 @@ function validateQuranDataset() {
       console.error(`❌ Surah ${i} ayah array length (${surahData.ayahs.length}) does not match ayahCount (${surahData.ayahCount})`);
       hasErrors = true;
     }
+
+    // Validate Kemenag transliteration & translation file
+    const kemenagFilePath = path.join(KEMENAG_DIR, `${paddedId}.json`);
+    if (!fs.existsSync(kemenagFilePath)) {
+      console.error(`❌ Missing Kemenag file for surah ${i}: ${paddedId}.json`);
+      hasErrors = true;
+      continue;
+    }
+
+    const kemenagData = JSON.parse(fs.readFileSync(kemenagFilePath, 'utf8'));
+    if (kemenagData.ayahs.length !== metaEntry.ayahCount) {
+      console.error(`❌ Kemenag surah ${i} ayah count mismatch: expected ${metaEntry.ayahCount}, got ${kemenagData.ayahs.length}`);
+      hasErrors = true;
+    }
   }
 
   if (hasErrors) {
     console.error('Validation failed with errors.');
     process.exit(1);
   } else {
-    console.log('✅ Quran dataset validation passed successfully! All 114 surahs and ayahs are intact.');
+    console.log('✅ Quran dataset validation passed successfully! All 114 surahs, Unicode text, and Kemenag transliteration & translation are intact.');
   }
 }
 

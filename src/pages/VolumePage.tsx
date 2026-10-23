@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CurriculumService } from '@/services/CurriculumService';
 import { getSurahsMetadata, getPackageSnippets } from '@/services/QuranService';
+import { matchItem, preloadPackageSurahs, subscribeSearchCache } from '@/services/SearchService';
 import type { Layer1Card, Layer3Item, SurahMetadata } from '@/core/types';
 import { formatSurahsTitle, formatSurahsArabic } from '@/utils/PackageTitleFormatter';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -33,6 +34,22 @@ export default function VolumePage() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLayer2Id, setSelectedLayer2Id] = useState<string>('all');
+  const [cacheTick, setCacheTick] = useState(0);
+
+  useEffect(() => {
+    return subscribeSearchCache(() => {
+      setCacheTick((t) => t + 1);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (currentLayer?.cards) {
+      const items = currentLayer.cards.flatMap((c) => c.items || []);
+      if (items.length > 0) {
+        preloadPackageSurahs(items);
+      }
+    }
+  }, [currentLayer]);
 
   // Restore scroll position when returning
   useEffect(() => {
@@ -138,30 +155,7 @@ export default function VolumePage() {
       .map((card) => {
         const filteredItems = (card.items || []).filter((item) => {
           if (!q) return true;
-          const meta = surahs.find((s) => s.id === item.surahId);
-          const sName = meta?.name.toLowerCase() || '';
-          const sNameArabic = meta?.nameArabic || '';
-          const title = item.title?.toLowerCase() || '';
-          const range = `${item.startAyah}-${item.endAyah}`;
-          const snippet = snippets[item.id]?.toLowerCase() || '';
-
-          const matchSections = (item.sections || []).some((sec) => {
-            const sMeta = surahs.find((s) => s.id === sec.surahId);
-            return (
-              sMeta?.name.toLowerCase().includes(q) ||
-              sMeta?.nameArabic.includes(q) ||
-              `${sec.startAyah}-${sec.endAyah}`.includes(q)
-            );
-          });
-
-          return (
-            sName.includes(q) ||
-            sNameArabic.includes(q) ||
-            title.includes(q) ||
-            range.includes(q) ||
-            snippet.includes(q) ||
-            matchSections
-          );
+          return matchItem(item, q, surahs) !== null;
         });
 
         return {
@@ -175,7 +169,7 @@ export default function VolumePage() {
         const cardTitleMatch = card.title.toLowerCase().includes(q);
         return cardTitleMatch || card.items.length > 0;
       });
-  }, [currentLayer, searchQuery, selectedLayer2Id, surahs, snippets]);
+  }, [currentLayer, searchQuery, selectedLayer2Id, surahs, cacheTick]);
 
   const totalItemsCount = useMemo(() => {
     if (!currentLayer) return 0;
