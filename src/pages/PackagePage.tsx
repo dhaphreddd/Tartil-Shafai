@@ -8,7 +8,7 @@ import ReaderSettingsPopover from '@/components/quran/ReaderSettingsPopover';
 import { useReaderSettings } from '@/hooks/useReaderSettings';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
-import type { Layer1Card, Layer2Card, Layer3Item } from '@/core/types';
+import type { Layer1Card, Layer2Card, Layer3Item, Ayah } from '@/core/types';
 import { formatSurahsTitle } from '@/utils/PackageTitleFormatter';
 
 interface CachedPackageState {
@@ -66,6 +66,76 @@ export default function PackagePage() {
       alert(err.message || 'Gagal mengubah status pin');
     } finally {
       setPinSaving(false);
+    }
+  };
+
+  const handleToggleWaqof = async (targetAyah: Ayah) => {
+    if (!isAdmin) {
+      alert('Hanya akun Admin yang dapat mengkustomisasi tanda waqaf.');
+      return;
+    }
+    if (!layer1 || !layer2 || !layer3 || !resolvedData) return;
+
+    try {
+      const nextIsWaqof = !targetAyah.isWaqof;
+      const targetSurahId = targetAyah.surahId || resolvedData.pkg.surahId;
+
+      const updatedAyahs = resolvedData.ayahs.map((a) => {
+        if ((a.surahId || resolvedData.pkg.surahId) === targetSurahId && a.ayahNumber === targetAyah.ayahNumber) {
+          return { ...a, isWaqof: nextIsWaqof };
+        }
+        return a;
+      });
+
+      const updatedSections = (resolvedData.sections || []).map((sec) => {
+        if (sec.surahId === targetSurahId) {
+          const secAyahs = sec.ayahs.map((a) => {
+            if (a.ayahNumber === targetAyah.ayahNumber) {
+              return { ...a, isWaqof: nextIsWaqof };
+            }
+            return a;
+          });
+          return { ...sec, ayahs: secAyahs };
+        }
+        return sec;
+      });
+
+      const newResolved: ResolvedPackage = {
+        ...resolvedData,
+        ayahs: updatedAyahs,
+        sections: updatedSections,
+      };
+
+      setResolvedData(newResolved);
+
+      if (packageId) {
+        packageStateCache.set(packageId, {
+          layer1,
+          layer2,
+          layer3,
+          resolvedData: newResolved,
+          siblings,
+          scrollY: window.scrollY,
+        });
+      }
+
+      const cleanSections = updatedSections.map((s) => ({
+        id: s.surahId ? `sec-${s.surahId}` : undefined,
+        surahId: s.surahId,
+        startAyah: s.startAyah,
+        endAyah: s.endAyah,
+        customAyahs: s.ayahs,
+      }));
+
+      const primaryCustomAyahs = cleanSections[0]?.customAyahs || updatedAyahs;
+
+      await CurriculumService.updateLayer3Item(layer1.id, layer2.id, layer3.id, {
+        customAyahs: primaryCustomAyahs,
+        sections: cleanSections,
+      });
+    } catch (err: any) {
+      console.error('Failed to toggle waqof:', err);
+      alert(err.message || 'Gagal mengubah tanda waqaf');
     }
   };
 
@@ -219,6 +289,21 @@ export default function PackagePage() {
 
         {/* Right: Actions Bar (Pin Status & Tampilan Settings) */}
         <div className="flex items-center gap-2">
+          {isAdmin && (
+            <div
+              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium border select-none"
+              style={{
+                borderColor: 'rgba(217, 119, 6, 0.35)',
+                backgroundColor: isDark ? 'rgba(217, 119, 6, 0.15)' : 'rgba(217, 119, 6, 0.08)',
+                color: isDark ? '#F59E0B' : '#B45309',
+              }}
+              title="Khusus Admin: Klik langsung pada nomor ayat untuk menandai atau membatalkan waqaf emas."
+            >
+              <span className="material-symbols-outlined text-[15px]">edit_note</span>
+              <span>Klik No. Ayat = Waqaf</span>
+            </div>
+          )}
+
           <button
             type="button"
             onClick={handleTogglePin}
@@ -689,6 +774,8 @@ export default function PackagePage() {
                   showTranslation={settings.showTranslation}
                   surahName={section.surahMetadata.name}
                   surahId={section.surahId}
+                  isAdmin={isAdmin}
+                  onToggleWaqof={handleToggleWaqof}
                 />
               </div>
             ))}
@@ -743,6 +830,8 @@ export default function PackagePage() {
               showTranslation={settings.showTranslation}
               surahName={resolvedData.surahMetadata.name}
               surahId={resolvedData.pkg.surahId}
+              isAdmin={isAdmin}
+              onToggleWaqof={handleToggleWaqof}
             />
           </>
         )}

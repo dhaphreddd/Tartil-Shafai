@@ -6,6 +6,8 @@ interface UnicodeRendererProps {
   fontFamily: string;
   fontSize?: number;
   lineHeight?: number;
+  isAdmin?: boolean;
+  onToggleWaqof?: (ayah: Ayah) => void;
 }
 
 export const UnicodeRenderer: React.FC<UnicodeRendererProps> = ({
@@ -13,7 +15,11 @@ export const UnicodeRenderer: React.FC<UnicodeRendererProps> = ({
   fontFamily,
   fontSize = 34,
   lineHeight = 2.4,
+  isAdmin = false,
+  onToggleWaqof,
 }) => {
+  const isClickable = Boolean(isAdmin && onToggleWaqof);
+
   return (
     <div
       className="w-full"
@@ -32,8 +38,32 @@ export const UnicodeRenderer: React.FC<UnicodeRendererProps> = ({
             {ayah.text}
           </span>
           <span 
-            className="ayah-end-marker inline-block mx-1.5 text-[0.75em] select-none align-middle font-medium"
+            className={`ayah-end-marker inline-block mx-1.5 text-[0.75em] select-none align-middle font-medium transition-all ${
+              ayah.isWaqof ? 'ayah-waqof' : ''
+            } ${isClickable ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
             style={{ fontFamily: '"KFGQPC_Hafs", "Noto Naskh Arabic", serif' }}
+            onClick={isClickable ? () => onToggleWaqof!(ayah) : undefined}
+            role={isClickable ? 'button' : undefined}
+            tabIndex={isClickable ? 0 : undefined}
+            onKeyDown={
+              isClickable
+                ? (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onToggleWaqof!(ayah);
+                    }
+                  }
+                : undefined
+            }
+            title={
+              isAdmin
+                ? ayah.isWaqof
+                  ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                  : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                : ayah.isWaqof
+                  ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                  : `Ayat ${ayah.ayahNumber}`
+            }
           >
             ۝{ayah.ayahNumber}
           </span>

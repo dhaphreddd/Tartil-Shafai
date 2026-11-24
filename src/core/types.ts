@@ -23,6 +23,7 @@ export interface Ayah {
   surahId?: number;
   latin?: string;
   translation?: string;
+  isWaqof?: boolean;
 }
 
 export interface SurahData {

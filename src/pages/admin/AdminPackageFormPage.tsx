@@ -118,6 +118,12 @@ export default function AdminPackageFormPage() {
     setCustomAyahs(updated);
   };
 
+  const handleToggleWaqof = (index: number) => {
+    const updated = [...customAyahs];
+    updated[index] = { ...updated[index], isWaqof: !updated[index].isWaqof };
+    setCustomAyahs(updated);
+  };
+
   // When Surah changes, reset start/end and fetch new ayahs
   const handleSurahChange = async (newSurahId: number) => {
     setSurahId(newSurahId);
@@ -428,9 +434,26 @@ export default function AdminPackageFormPage() {
                   {customAyahs.map((ayah, idx) => (
                     <div key={ayah.ayahNumber} className="flex flex-col gap-2 p-3 rounded-lg" style={{ backgroundColor: 'var(--color-surface-subtle)' }}>
                       <div className="flex items-center justify-between">
-                        <label className="text-[11px] uppercase tracking-widest font-mono font-medium" style={{ color: 'var(--color-text-muted)' }}>
-                          Ayat {ayah.ayahNumber}
-                        </label>
+                        <div className="flex items-center gap-3">
+                          <label className="text-[11px] uppercase tracking-widest font-mono font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                            Ayat {ayah.ayahNumber}
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => handleToggleWaqof(idx)}
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium transition-colors cursor-pointer ${
+                              ayah.isWaqof
+                                ? 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40 font-semibold'
+                                : 'bg-black/5 dark:bg-white/5 text-stone-500 hover:text-stone-700 dark:hover:text-stone-300'
+                            }`}
+                            title={ayah.isWaqof ? "Tanda Waqaf Aktif (Klik untuk hapus)" : "Beri Tanda Waqaf"}
+                          >
+                            <span className="material-symbols-outlined text-[13px]">
+                              {ayah.isWaqof ? 'bookmark_added' : 'bookmark_add'}
+                            </span>
+                            <span>{ayah.isWaqof ? 'Waqaf (Emas)' : 'Waqaf'}</span>
+                          </button>
+                        </div>
                         {ayah.pageNumber && (
                           <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
                             Halaman {ayah.pageNumber}

@@ -105,6 +105,7 @@ export class PackageResolver {
             pageNumber: rawV2Page,
             latin: a.latin || enriched?.latin || '',
             translation: a.translation || enriched?.translation || '',
+            isWaqof: Boolean(a.isWaqof),
           };
         });
       } else {

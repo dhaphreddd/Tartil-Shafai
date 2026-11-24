@@ -14,6 +14,8 @@ interface AyahCardRendererProps {
   showTranslation?: boolean;
   surahName?: string;
   surahId?: number;
+  isAdmin?: boolean;
+  onToggleWaqof?: (ayah: Ayah) => void;
 }
 
 export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
@@ -26,6 +28,8 @@ export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
   showTranslation = true,
   surahName,
   surahId,
+  isAdmin = false,
+  onToggleWaqof,
 }) => {
   const { effective } = useTheme();
   const isDark = effective === 'dark';
@@ -152,17 +156,63 @@ export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
               {!showArabic && (showTransliteration || showTranslation) && (
                 <div className="flex items-center justify-between pr-8 sm:pr-10">
                   <span
-                    className="inline-flex items-center justify-center min-w-[26px] h-[26px] px-2.5 rounded-lg text-xs font-semibold font-mono tracking-tight select-none"
+                    className={`inline-flex items-center justify-center min-w-[26px] h-[26px] px-2.5 rounded-lg text-xs font-semibold font-mono tracking-tight select-none transition-all ${
+                      ayah.isWaqof ? 'ayah-badge-waqof' : ''
+                    } ${isAdmin && onToggleWaqof ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
                     style={{
-                      backgroundColor: isDark
-                        ? 'rgba(198, 161, 91, 0.15)'
-                        : 'rgba(198, 161, 91, 0.12)',
-                      color: isDark ? 'var(--color-dark-primary)' : 'var(--color-primary)',
-                      border: `1px solid ${isDark ? 'rgba(198, 161, 91, 0.3)' : 'rgba(198, 161, 91, 0.25)'}`,
+                      backgroundColor: ayah.isWaqof
+                        ? isDark
+                          ? 'rgba(245, 158, 11, 0.2)'
+                          : 'rgba(180, 83, 9, 0.12)'
+                        : isDark
+                          ? 'rgba(255, 255, 255, 0.06)'
+                          : 'rgba(0, 0, 0, 0.05)',
+                      color: ayah.isWaqof
+                        ? isDark
+                          ? '#F59E0B'
+                          : '#B45309'
+                        : isDark
+                          ? 'var(--color-dark-text-secondary)'
+                          : 'var(--color-text-secondary)',
+                      border: `1px solid ${
+                        ayah.isWaqof
+                          ? isDark
+                            ? 'rgba(245, 158, 11, 0.5)'
+                            : 'rgba(180, 83, 9, 0.35)'
+                          : isDark
+                            ? 'rgba(255, 255, 255, 0.1)'
+                            : 'rgba(0, 0, 0, 0.08)'
+                      }`,
                     }}
-                    title={`Ayat ${ayah.ayahNumber}`}
+                    onClick={isAdmin && onToggleWaqof ? () => onToggleWaqof(ayah) : undefined}
+                    role={isAdmin && onToggleWaqof ? 'button' : undefined}
+                    tabIndex={isAdmin && onToggleWaqof ? 0 : undefined}
+                    onKeyDown={
+                      isAdmin && onToggleWaqof
+                        ? (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              onToggleWaqof(ayah);
+                            }
+                          }
+                        : undefined
+                    }
+                    title={
+                      isAdmin
+                        ? ayah.isWaqof
+                          ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                          : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                        : ayah.isWaqof
+                          ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                          : `Ayat ${ayah.ayahNumber}`
+                    }
                   >
                     Ayat {ayah.ayahNumber}
+                    {ayah.isWaqof && (
+                      <span className="ml-1.5 px-1 py-0.2 rounded text-[10px] uppercase font-bold tracking-wider">
+                        Waqaf
+                      </span>
+                    )}
                   </span>
                 </div>
               )}
@@ -178,21 +228,104 @@ export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
                     wordSpacing: isQcf ? '0.15em' : 'normal',
                   }}
                 >
-                  <span
-                    className="quran-ayah-text inline transition-colors select-text dark:text-white"
-                    style={{
-                      fontFamily: fontList,
-                    }}
-                  >
-                    {hasGlyph ? glyph : ayah.text}
-                  </span>
-                  {!hasGlyph && (
-                    <span
-                      className="ayah-end-marker inline-block mx-1.5 text-[0.75em] select-none align-middle font-medium"
-                      style={{ fontFamily: '"KFGQPC_Hafs", "Noto Naskh Arabic", serif' }}
-                    >
-                      ۝{ayah.ayahNumber}
-                    </span>
+                  {hasGlyph && glyph ? (
+                    (() => {
+                      const tokens = glyph.trim().split(/\s+/);
+                      const words = tokens.length > 1 ? tokens.slice(0, -1).join(' ') : glyph;
+                      const marker = tokens.length > 1 ? tokens[tokens.length - 1] : null;
+                      const isClickable = Boolean(isAdmin && onToggleWaqof);
+
+                      return (
+                        <>
+                          <span
+                            className="quran-ayah-text inline transition-colors select-text dark:text-white"
+                            style={{
+                              fontFamily: fontList,
+                            }}
+                          >
+                            {words}
+                          </span>
+                          {marker && (
+                            <>
+                              {' '}
+                              <span
+                                className={`ayah-end-marker inline select-none transition-all ${
+                                  ayah.isWaqof ? 'ayah-waqof' : ''
+                                } ${isClickable ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
+                                style={{
+                                  fontFamily: fontList,
+                                }}
+                                onClick={isClickable ? () => onToggleWaqof!(ayah) : undefined}
+                                role={isClickable ? 'button' : undefined}
+                                tabIndex={isClickable ? 0 : undefined}
+                                onKeyDown={
+                                  isClickable
+                                    ? (e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                          e.preventDefault();
+                                          onToggleWaqof!(ayah);
+                                        }
+                                      }
+                                    : undefined
+                                }
+                                title={
+                                  isAdmin
+                                    ? ayah.isWaqof
+                                      ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                                      : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                                    : ayah.isWaqof
+                                      ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                                      : `Ayat ${ayah.ayahNumber}`
+                                }
+                              >
+                                {marker}
+                              </span>
+                            </>
+                          )}
+                        </>
+                      );
+                    })()
+                  ) : (
+                    <>
+                      <span
+                        className="quran-ayah-text inline transition-colors select-text dark:text-white"
+                        style={{
+                          fontFamily: fontList,
+                        }}
+                      >
+                        {ayah.text}
+                      </span>
+                      <span
+                        className={`ayah-end-marker inline-block mx-1.5 text-[0.75em] select-none align-middle font-medium transition-all ${
+                          ayah.isWaqof ? 'ayah-waqof' : ''
+                        } ${isAdmin && onToggleWaqof ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
+                        style={{ fontFamily: '"KFGQPC_Hafs", "Noto Naskh Arabic", serif' }}
+                        onClick={isAdmin && onToggleWaqof ? () => onToggleWaqof(ayah) : undefined}
+                        role={isAdmin && onToggleWaqof ? 'button' : undefined}
+                        tabIndex={isAdmin && onToggleWaqof ? 0 : undefined}
+                        onKeyDown={
+                          isAdmin && onToggleWaqof
+                            ? (e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  onToggleWaqof(ayah);
+                                }
+                              }
+                            : undefined
+                        }
+                        title={
+                          isAdmin
+                            ? ayah.isWaqof
+                              ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                              : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                            : ayah.isWaqof
+                              ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                              : `Ayat ${ayah.ayahNumber}`
+                        }
+                      >
+                        ۝{ayah.ayahNumber}
+                      </span>
+                    </>
                   )}
                 </div>
               )}

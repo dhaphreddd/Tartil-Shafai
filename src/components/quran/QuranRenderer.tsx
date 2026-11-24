@@ -16,6 +16,8 @@ interface QuranRendererProps {
   showTranslation?: boolean;
   surahName?: string;
   surahId?: number;
+  isAdmin?: boolean;
+  onToggleWaqof?: (ayah: Ayah) => void;
 }
 
 export const QuranRenderer: React.FC<QuranRendererProps> = ({
@@ -29,6 +31,8 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
   showTranslation = false,
   surahName,
   surahId,
+  isAdmin = false,
+  onToggleWaqof,
 }) => {
   const { activeFont, activeFontFamily, loading, error } = useQuranFont(font);
 
@@ -53,6 +57,8 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
         showTranslation={showTranslation}
         surahName={surahName}
         surahId={surahId}
+        isAdmin={isAdmin}
+        onToggleWaqof={onToggleWaqof}
       />
     );
   }
@@ -67,6 +73,8 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
         fontSize={fontSize}
         lineHeight={lineHeight}
         version={version}
+        isAdmin={isAdmin}
+        onToggleWaqof={onToggleWaqof}
       />
     );
   }
@@ -97,6 +105,8 @@ export const QuranRenderer: React.FC<QuranRendererProps> = ({
           fontFamily={activeFontFamily}
           fontSize={fontSize}
           lineHeight={lineHeight}
+          isAdmin={isAdmin}
+          onToggleWaqof={onToggleWaqof}
         />
       </div>
     </div>

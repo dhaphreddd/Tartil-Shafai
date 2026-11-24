@@ -446,6 +446,22 @@ export default function AdminPackagesPage() {
     });
   };
 
+  const handleToggleAyahWaqof = (secIdx: number, ayahIdx: number) => {
+    setL3Form((prev) => {
+      const nextSecs = [...prev.sections];
+      const sec = nextSecs[secIdx];
+      if (sec && sec.customAyahs) {
+        const nextAyahs = [...sec.customAyahs];
+        nextAyahs[ayahIdx] = {
+          ...nextAyahs[ayahIdx],
+          isWaqof: !nextAyahs[ayahIdx].isWaqof,
+        };
+        nextSecs[secIdx] = { ...sec, customAyahs: nextAyahs };
+      }
+      return { ...prev, sections: nextSecs };
+    });
+  };
+
   const handleSaveL3 = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!l3Form.title.trim()) {
@@ -1570,8 +1586,27 @@ export default function AdminPackagesPage() {
                               </div>
                             ) : (
                               sec.customAyahs.map((a, aIdx) => (
-                                <div key={`${sec.surahId}-${a.ayahNumber}-${aIdx}`} className="flex flex-col gap-1 p-2 rounded bg-black/5 dark:bg-white/5">
-                                  <span className="text-[10px] font-mono text-stone-500">Ayat {a.ayahNumber}</span>
+                                <div key={`${sec.surahId}-${a.ayahNumber}-${aIdx}`} className="flex flex-col gap-1 p-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-[11px] font-mono font-medium text-stone-600 dark:text-stone-400">
+                                      Ayat {a.ayahNumber}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleToggleAyahWaqof(secIdx, aIdx)}
+                                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium transition-colors cursor-pointer ${
+                                        a.isWaqof
+                                          ? 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40 font-semibold'
+                                          : 'bg-black/5 dark:bg-white/5 text-stone-500 hover:text-stone-700 dark:hover:text-stone-300'
+                                      }`}
+                                      title={a.isWaqof ? "Tanda Waqaf Aktif (Klik untuk hapus)" : "Beri Tanda Waqaf"}
+                                    >
+                                      <span className="material-symbols-outlined text-[13px]">
+                                        {a.isWaqof ? 'bookmark_added' : 'bookmark_add'}
+                                      </span>
+                                      <span>{a.isWaqof ? 'Waqaf (Emas)' : 'Waqaf'}</span>
+                                    </button>
+                                  </div>
                                   <textarea
                                     dir="rtl"
                                     rows={2}

@@ -7,6 +7,8 @@ interface QCFRendererProps {
   fontSize?: number;
   lineHeight?: number;
   version?: 'v1' | 'v2';
+  isAdmin?: boolean;
+  onToggleWaqof?: (ayah: Ayah) => void;
 }
 
 export const QCFRenderer: React.FC<QCFRendererProps> = ({
@@ -14,6 +16,8 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
   fontSize = 34,
   lineHeight = 2.4,
   version = 'v2',
+  isAdmin = false,
+  onToggleWaqof,
 }) => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
@@ -76,6 +80,18 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
           : '"KFGQPC_Hafs", serif';
         const hasGlyph = Boolean(glyph);
 
+        let wordsGlyph = glyph || '';
+        let markerGlyph: string | null = null;
+        if (hasGlyph && glyph) {
+          const tokens = glyph.trim().split(/\s+/);
+          if (tokens.length > 1) {
+            wordsGlyph = tokens.slice(0, -1).join(' ');
+            markerGlyph = tokens[tokens.length - 1];
+          }
+        }
+
+        const isClickable = Boolean(isAdmin && onToggleWaqof);
+
         return (
           <React.Fragment key={`${ayah.surahId || 's'}-${ayah.ayahNumber}-${idx}-${version}`}>
             <span
@@ -84,8 +100,76 @@ export const QCFRenderer: React.FC<QCFRendererProps> = ({
                 fontFamily: hasGlyph ? fontList : '"KFGQPC_Hafs", "Noto Naskh Arabic", serif',
               }}
             >
-              {hasGlyph ? glyph : ayah.text}
+              {hasGlyph ? wordsGlyph : ayah.text}
             </span>
+            {hasGlyph && markerGlyph ? (
+              <>
+                {' '}
+                <span
+                  className={`ayah-end-marker inline select-none transition-all ${
+                    ayah.isWaqof ? 'ayah-waqof' : ''
+                  } ${isClickable ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
+                  style={{
+                    fontFamily: fontList,
+                  }}
+                  onClick={isClickable ? () => onToggleWaqof!(ayah) : undefined}
+                  role={isClickable ? 'button' : undefined}
+                  tabIndex={isClickable ? 0 : undefined}
+                  onKeyDown={
+                    isClickable
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onToggleWaqof!(ayah);
+                          }
+                        }
+                      : undefined
+                  }
+                  title={
+                    isAdmin
+                      ? ayah.isWaqof
+                        ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                        : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                      : ayah.isWaqof
+                        ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                        : `Ayat ${ayah.ayahNumber}`
+                  }
+                >
+                  {markerGlyph}
+                </span>
+              </>
+            ) : !hasGlyph ? (
+              <span
+                className={`ayah-end-marker inline-block mx-1.5 text-[0.75em] select-none align-middle font-medium transition-all ${
+                  ayah.isWaqof ? 'ayah-waqof' : ''
+                } ${isClickable ? 'cursor-pointer hover:opacity-80 active:scale-95' : ''}`}
+                style={{ fontFamily: '"KFGQPC_Hafs", "Noto Naskh Arabic", serif' }}
+                onClick={isClickable ? () => onToggleWaqof!(ayah) : undefined}
+                role={isClickable ? 'button' : undefined}
+                tabIndex={isClickable ? 0 : undefined}
+                onKeyDown={
+                  isClickable
+                    ? (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onToggleWaqof!(ayah);
+                        }
+                      }
+                    : undefined
+                }
+                title={
+                  isAdmin
+                    ? ayah.isWaqof
+                      ? `Ayat ${ayah.ayahNumber} (Waqaf aktif — Klik untuk hapus)`
+                      : `Ayat ${ayah.ayahNumber} (Klik untuk tandai Waqaf)`
+                    : ayah.isWaqof
+                      ? `Ayat ${ayah.ayahNumber} (Tanda Waqaf)`
+                      : `Ayat ${ayah.ayahNumber}`
+                }
+              >
+                ۝{ayah.ayahNumber}
+              </span>
+            ) : null}
             {idx < ayahs.length - 1 && ' '}
           </React.Fragment>
         );
