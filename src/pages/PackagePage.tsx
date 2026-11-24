@@ -4,6 +4,7 @@ import { CurriculumService } from '@/services/CurriculumService';
 import { PackageResolver } from '@/utils/PackageResolver';
 import type { ResolvedPackage } from '@/utils/PackageResolver';
 import { QuranRenderer } from '@/components/quran/QuranRenderer';
+import { BasmalahHeader } from '@/components/quran/BasmalahHeader';
 import ReaderSettingsPopover from '@/components/quran/ReaderSettingsPopover';
 import { useReaderSettings } from '@/hooks/useReaderSettings';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -734,30 +735,14 @@ export default function PackagePage() {
                   {/* Basmalah for surah starting at ayah 1 (except Al-Fatihah 1 and At-Tawbah 9) */}
                   {section.surahId !== 1 && section.surahId !== 9 && section.startAyah === 1 && (
                     <div className="mt-3.5 pt-3.5 border-t" style={{ borderColor: isDark ? 'var(--color-dark-border)' : 'var(--color-border)' }}>
-                      {settings.showArabic && (
-                        <div
-                          className="font-arabic text-xl sm:text-2xl"
-                          style={{ color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)' }}
-                        >
-                          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-                        </div>
-                      )}
-                      {settings.showTransliteration && (
-                        <p
-                          className="text-xs sm:text-[13px] italic font-serif mt-1 tracking-wide"
-                          style={{ color: isDark ? '#fef3c7' : '#78350f' }}
-                        >
-                          Bismillāhir-raḥmānir-raḥīm
-                        </p>
-                      )}
-                      {settings.showTranslation && (
-                        <p
-                          className="text-xs sm:text-[12px] mt-0.5 opacity-80"
-                          style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
-                        >
-                          Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang
-                        </p>
-                      )}
+                      <BasmalahHeader
+                        font={settings.quranFont}
+                        fontSize={settings.arabicFontSize}
+                        showArabic={settings.showArabic}
+                        showTransliteration={settings.showTransliteration}
+                        showTranslation={settings.showTranslation}
+                        isDark={isDark}
+                      />
                     </div>
                   )}
                 </div>
@@ -793,30 +778,14 @@ export default function PackagePage() {
                     backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'var(--color-surface-subtle)',
                   }}
                 >
-                  {settings.showArabic && (
-                    <div
-                      className="font-arabic text-2xl sm:text-3xl"
-                      style={{ color: isDark ? 'var(--color-dark-text)' : 'var(--color-text)' }}
-                    >
-                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-                    </div>
-                  )}
-                  {settings.showTransliteration && (
-                    <p
-                      className="text-xs sm:text-[13px] italic font-serif mt-1 tracking-wide"
-                      style={{ color: isDark ? '#fef3c7' : '#78350f' }}
-                    >
-                      Bismillāhir-raḥmānir-raḥīm
-                    </p>
-                  )}
-                  {settings.showTranslation && (
-                    <p
-                      className="text-xs sm:text-[12px] mt-0.5 opacity-80"
-                      style={{ color: isDark ? 'var(--color-dark-text-muted)' : 'var(--color-text-muted)' }}
-                    >
-                      Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang
-                    </p>
-                  )}
+                  <BasmalahHeader
+                    font={settings.quranFont}
+                    fontSize={settings.arabicFontSize}
+                    showArabic={settings.showArabic}
+                    showTransliteration={settings.showTransliteration}
+                    showTranslation={settings.showTranslation}
+                    isDark={isDark}
+                  />
                 </div>
               )}
             <QuranRenderer
