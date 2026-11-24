@@ -43,20 +43,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               ]);
               const docRef = doc(db, 'admins', firebaseUser.uid);
               const snap = await getDoc(docRef);
-              if (snap.exists() && snap.data().active === true) {
-                setIsAdmin(true);
-              } else if (firebaseUser.email === 'arset.saklawase@gmail.com') {
-                setIsAdmin(true);
-              } else {
-                setIsAdmin(false);
-              }
+              setIsAdmin(snap.exists() && snap.data().active === true);
             } catch (error) {
               console.warn("Firestore admin check error:", error);
-              if (firebaseUser.email === 'arset.saklawase@gmail.com') {
-                setIsAdmin(true);
-              } else {
-                setIsAdmin(false);
-              }
+              setIsAdmin(false);
             }
           } else {
             setIsAdmin(false);

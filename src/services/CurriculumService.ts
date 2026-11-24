@@ -1,5 +1,4 @@
 import type { Layer1Card, Layer2Card, Layer3Item } from '@/core/types';
-import fixtureData from '../data/tartil-packages-fixture.json';
 
 async function getFirestoreService() {
   const [{ db }, firestore] = await Promise.all([
@@ -45,16 +44,44 @@ function getLocalCache(): Record<string, Layer1Card> {
   }
 }
 
+let saveCacheTimeout: ReturnType<typeof setTimeout> | null = null;
+
 function saveLocalCache(layers: Layer1Card[]) {
-  try {
-    const record: Record<string, Layer1Card> = {};
-    for (const l of layers) {
-      record[l.id] = l;
+  if (saveCacheTimeout) clearTimeout(saveCacheTimeout);
+  saveCacheTimeout = setTimeout(() => {
+    const doWrite = () => {
+      try {
+        const record: Record<string, Layer1Card> = {};
+        for (const l of layers) {
+          record[l.id] = l;
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(record));
+      } catch (e) {
+        console.warn('[CurriculumService] Failed to cache layers locally', e);
+      }
+    };
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(doWrite, { timeout: 1000 });
+    } else {
+      doWrite();
     }
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(record));
-  } catch (e) {
-    console.warn('[CurriculumService] Failed to cache layers locally', e);
-  }
+  }, 100);
+}
+
+let dynamicFixtureLayers: Layer1Card[] = [];
+
+// Lazy load starter fixture only if local storage has no cached layers
+if (typeof window !== 'undefined' && Object.keys(getLocalCache()).length === 0) {
+  import('../data/tartil-packages-fixture.json')
+    .then((mod) => {
+      dynamicFixtureLayers = (mod.default || mod).layers || [];
+      if (!CurriculumService.hasCachedLayers()) {
+        CurriculumService.notifySubscribers();
+      }
+    })
+    .catch((err) => {
+      console.warn('[CurriculumService] Failed to load starter fixture', err);
+    });
 }
 
 function healAyahPage(surahId?: number, ayah?: { ayahNumber: number; pageNumber?: number }) {
@@ -110,15 +137,18 @@ export class CurriculumService {
   private static firestoreDocsMap = new Map<string, Layer1Card>();
   private static isInitialized = false;
 
+  static hasCachedLayers(): boolean {
+    return this.cachedLayers !== null && this.cachedLayers.length > 0;
+  }
+
   /**
    * Merge starter fixture + local cache + Firestore live data.
    */
   private static mergeLayers(): Layer1Card[] {
     const layerMap = new Map<string, Layer1Card>();
 
-    // 1. Initial Starter Fixture
-    const initialLayers = (fixtureData as any).layers || [];
-    for (const l of initialLayers) {
+    // 1. Initial Starter Fixture (lazy loaded when cache is empty)
+    for (const l of dynamicFixtureLayers) {
       layerMap.set(l.id, l);
     }
 
@@ -151,7 +181,7 @@ export class CurriculumService {
   /**
    * Notify all active subscribers in real-time.
    */
-  private static notifySubscribers(): void {
+  static notifySubscribers(): void {
     const layers = this.mergeLayers();
     for (const listener of this.listeners) {
       try {

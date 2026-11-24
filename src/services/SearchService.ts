@@ -113,7 +113,7 @@ interface CachedSurahData {
 }
 
 const surahSearchCache = new Map<number, CachedSurahData>();
-const loadingSurahs = new Set<number>();
+const loadingSurahs = new Map<number, Promise<CachedSurahData | null>>();
 const cacheListeners = new Set<() => void>();
 
 function notifyCacheUpdated(): void {
@@ -140,60 +140,59 @@ export function subscribeSearchCache(callback: () => void): () => void {
  * Memastikan dataset surat (Unicode & Kemenag) termuat dalam cache memori.
  */
 export async function ensureSurahLoaded(surahId: number): Promise<CachedSurahData | null> {
-  if (surahSearchCache.has(surahId)) {
-    return surahSearchCache.get(surahId)!;
+  const existing = surahSearchCache.get(surahId);
+  if (existing) {
+    return existing;
   }
 
-  if (loadingSurahs.has(surahId)) {
-    // Tunggu hingga selesai termuat
-    let attempts = 0;
-    while (attempts < 20 && !surahSearchCache.has(surahId)) {
-      await new Promise((r) => setTimeout(r, 50));
-      attempts++;
-    }
-    return surahSearchCache.get(surahId) || null;
+  const inFlight = loadingSurahs.get(surahId);
+  if (inFlight) {
+    return inFlight;
   }
 
-  loadingSurahs.add(surahId);
+  const loadPromise = (async () => {
+    try {
+      const padded = String(surahId).padStart(3, '0');
+      const uPromise = fetch(`${import.meta.env.BASE_URL}quran/unicode/${padded}.json`).then((r) =>
+        r.ok ? r.json() : null
+      );
+      const kPromise = fetch(`${import.meta.env.BASE_URL}quran/id/${padded}.json`).then((r) =>
+        r.ok ? r.json() : null
+      );
 
-  try {
-    const padded = String(surahId).padStart(3, '0');
-    const uPromise = fetch(`${import.meta.env.BASE_URL}quran/unicode/${padded}.json`).then((r) =>
-      r.ok ? r.json() : null
-    );
-    const kPromise = fetch(`${import.meta.env.BASE_URL}quran/id/${padded}.json`).then((r) =>
-      r.ok ? r.json() : null
-    );
+      const [uData, kData] = await Promise.all([uPromise, kPromise]);
 
-    const [uData, kData] = await Promise.all([uPromise, kPromise]);
-
-    const unicodeMap = new Map<number, string>();
-    if (uData && Array.isArray(uData.ayahs)) {
-      for (const a of uData.ayahs) {
-        unicodeMap.set(a.ayahNumber, a.text);
+      const unicodeMap = new Map<number, string>();
+      if (uData && Array.isArray(uData.ayahs)) {
+        for (const a of uData.ayahs) {
+          unicodeMap.set(a.ayahNumber, a.text);
+        }
       }
-    }
 
-    const kemenagMap = new Map<number, { latin: string; translation: string }>();
-    if (kData && Array.isArray(kData.ayahs)) {
-      for (const a of kData.ayahs) {
-        kemenagMap.set(a.ayahNumber, {
-          latin: (a.latin || '').trim(),
-          translation: (a.translation || '').trim(),
-        });
+      const kemenagMap = new Map<number, { latin: string; translation: string }>();
+      if (kData && Array.isArray(kData.ayahs)) {
+        for (const a of kData.ayahs) {
+          kemenagMap.set(a.ayahNumber, {
+            latin: (a.latin || '').trim(),
+            translation: (a.translation || '').trim(),
+          });
+        }
       }
-    }
 
-    const cached: CachedSurahData = { unicodeMap, kemenagMap };
-    surahSearchCache.set(surahId, cached);
-    notifyCacheUpdated();
-    return cached;
-  } catch (err) {
-    console.warn(`[SearchService] Gagal memuat surat ${surahId}:`, err);
-    return null;
-  } finally {
-    loadingSurahs.delete(surahId);
-  }
+      const cached: CachedSurahData = { unicodeMap, kemenagMap };
+      surahSearchCache.set(surahId, cached);
+      notifyCacheUpdated();
+      return cached;
+    } catch (err) {
+      console.warn(`[SearchService] Gagal memuat surat ${surahId}:`, err);
+      return null;
+    } finally {
+      loadingSurahs.delete(surahId);
+    }
+  })();
+
+  loadingSurahs.set(surahId, loadPromise);
+  return loadPromise;
 }
 
 /**

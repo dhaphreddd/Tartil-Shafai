@@ -15,7 +15,18 @@ interface CachedVolumeState {
   scrollY?: number;
 }
 
+const MAX_VOLUME_CACHE = 10;
 const volumeStateCache = new Map<string, CachedVolumeState>();
+
+function setVolumeCache(key: string, value: CachedVolumeState) {
+  if (volumeStateCache.has(key)) {
+    volumeStateCache.delete(key);
+  } else if (volumeStateCache.size >= MAX_VOLUME_CACHE) {
+    const oldestKey = volumeStateCache.keys().next().value;
+    if (oldestKey) volumeStateCache.delete(oldestKey);
+  }
+  volumeStateCache.set(key, value);
+}
 
 export default function VolumePage() {
   const { volumeId } = useParams<{ volumeId: string }>();
@@ -59,7 +70,7 @@ export default function VolumePage() {
         window.scrollTo({ top: targetScroll, behavior: 'instant' });
       });
     }
-  }, [targetId]);
+  }, [targetId, cached?.scrollY]);
 
   // Record scroll position before unmount
   useEffect(() => {
@@ -111,7 +122,7 @@ export default function VolumePage() {
             setSnippets((prev) => {
               const updated = { ...prev, ...snips };
               // Update memory cache
-              volumeStateCache.set(targetId, {
+              setVolumeCache(targetId, {
                 currentLayer: found || null,
                 allLayers: layers,
                 surahs,
@@ -126,7 +137,7 @@ export default function VolumePage() {
       setLoading(false);
 
       // Update memory cache
-      volumeStateCache.set(targetId, {
+      setVolumeCache(targetId, {
         currentLayer: found || null,
         allLayers: layers,
         surahs,
@@ -139,10 +150,11 @@ export default function VolumePage() {
       isMounted = false;
       unsubscribe();
     };
-  }, [volumeId]);
+  }, [volumeId, targetId]);
 
   // Filtered Layer 2 Cards and Layer 3 Items
   const filteredLayer2Cards = useMemo(() => {
+    void cacheTick;
     if (!currentLayer) return [];
 
     const q = searchQuery.toLowerCase().trim();

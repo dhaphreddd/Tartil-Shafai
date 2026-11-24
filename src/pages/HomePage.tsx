@@ -121,6 +121,7 @@ export default function HomePage() {
 
   // Filter paket secara cerdas ke seluruh isi paket (Arab tanpa harakat, transliterasi fonetik, terjemahan, judul/surat)
   const liveSearchResults: SearchResultItem[] = useMemo(() => {
+    void cacheTick;
     if (!searchQuery.trim()) return [];
     return searchPackages(searchQuery, allPackages, surahs);
   }, [allPackages, surahs, searchQuery, cacheTick]);

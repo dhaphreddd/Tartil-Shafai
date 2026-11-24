@@ -307,7 +307,7 @@ export default function AdminPackagesPage() {
     const padNum = String(count + 1).padStart(2, '0');
 
     const defaultSec: AdminFormSection = {
-      id: `sec-${Date.now()}-1`,
+      id: `sec-${crypto.randomUUID()}`,
       surahId: 1,
       startAyah: 1,
       endAyah: 7,
@@ -337,8 +337,8 @@ export default function AdminPackagesPage() {
 
     const rawSecs: AdminFormSection[] =
       item.sections && item.sections.length > 0
-        ? item.sections.map((s, idx) => ({
-            id: s.id || `sec-${idx}-${Date.now()}`,
+        ? item.sections.map((s) => ({
+            id: s.id || `sec-${crypto.randomUUID()}`,
             surahId: s.surahId,
             startAyah: s.startAyah,
             endAyah: s.endAyah,
@@ -347,7 +347,7 @@ export default function AdminPackagesPage() {
           }))
         : [
             {
-              id: `sec-0-${Date.now()}`,
+              id: `sec-${crypto.randomUUID()}`,
               surahId: item.surahId || 1,
               startAyah: item.startAyah || 1,
               endAyah: item.endAyah || 7,
@@ -375,7 +375,7 @@ export default function AdminPackagesPage() {
 
   const handleAddSection = async () => {
     const newSec: AdminFormSection = {
-      id: `sec-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+      id: `sec-${crypto.randomUUID()}`,
       surahId: 112,
       startAyah: 1,
       endAyah: 4,

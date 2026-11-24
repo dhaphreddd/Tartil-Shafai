@@ -28,7 +28,6 @@ const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 // Admin Pages
 const AdminLoginPage = lazy(() => import('@/pages/admin/AdminLoginPage'));
 const AdminPackagesPage = lazy(() => import('@/pages/admin/AdminPackagesPage'));
-const AdminPackageFormPage = lazy(() => import('@/pages/admin/AdminPackageFormPage'));
 
 function RouteErrorBoundary() {
   const error: any = useRouteError();
@@ -168,27 +167,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'packages/create',
-        element: (
-          <AdminGuard>
-            <Suspense fallback={<PageLoader />}>
-              <AdminPackageFormPage />
-            </Suspense>
-          </AdminGuard>
-        ),
+        element: <Navigate to="/admin/packages" replace />,
       },
       {
         path: 'packages/new',
-        element: <Navigate to="/admin/packages/create" replace />,
+        element: <Navigate to="/admin/packages" replace />,
       },
       {
         path: 'packages/edit/:id',
-        element: (
-          <AdminGuard>
-            <Suspense fallback={<PageLoader />}>
-              <AdminPackageFormPage />
-            </Suspense>
-          </AdminGuard>
-        ),
+        element: <Navigate to="/admin/packages" replace />,
       },
       {
         path: '*',

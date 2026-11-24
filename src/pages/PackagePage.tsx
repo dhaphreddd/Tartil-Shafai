@@ -21,7 +21,18 @@ interface CachedPackageState {
   scrollY?: number;
 }
 
+const MAX_PACKAGE_CACHE = 15;
 const packageStateCache = new Map<string, CachedPackageState>();
+
+function setPackageCache(key: string, value: CachedPackageState) {
+  if (packageStateCache.has(key)) {
+    packageStateCache.delete(key);
+  } else if (packageStateCache.size >= MAX_PACKAGE_CACHE) {
+    const oldestKey = packageStateCache.keys().next().value;
+    if (oldestKey) packageStateCache.delete(oldestKey);
+  }
+  packageStateCache.set(key, value);
+}
 
 export default function PackagePage() {
   const { packageId } = useParams<{ packageId: string }>();
@@ -110,7 +121,7 @@ export default function PackagePage() {
       setResolvedData(newResolved);
 
       if (packageId) {
-        packageStateCache.set(packageId, {
+        setPackageCache(packageId, {
           layer1,
           layer2,
           layer3,
@@ -148,7 +159,7 @@ export default function PackagePage() {
         window.scrollTo({ top: targetScroll, behavior: 'instant' });
       });
     }
-  }, [packageId]);
+  }, [packageId, cached?.scrollY]);
 
   // Record scroll position before unmount
   useEffect(() => {
@@ -204,7 +215,7 @@ export default function PackagePage() {
           setLoading(false);
 
           // Save to memory cache for zero-reload returns
-          packageStateCache.set(packageId, {
+          setPackageCache(packageId, {
             layer1: found.layer1,
             layer2: found.layer2,
             layer3: found.item,

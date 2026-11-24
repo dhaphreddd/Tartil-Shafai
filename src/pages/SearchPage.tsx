@@ -77,6 +77,7 @@ export default function SearchPage() {
 
   // Filter items based on query and layer filter (menggunakan SearchService cerdas)
   const searchResults: SearchResultItem[] = useMemo(() => {
+    void cacheTick;
     return searchPackages(query, allItems, surahs, { layer1Id: selectedLayer1Id });
   }, [allItems, surahs, query, selectedLayer1Id, cacheTick]);
 
