@@ -293,9 +293,9 @@ export default function PackagePage() {
             <div
               className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium border select-none"
               style={{
-                borderColor: 'rgba(217, 119, 6, 0.35)',
-                backgroundColor: isDark ? 'rgba(217, 119, 6, 0.15)' : 'rgba(217, 119, 6, 0.08)',
-                color: isDark ? '#F59E0B' : '#B45309',
+                borderColor: isDark ? 'rgba(212, 175, 55, 0.4)' : 'rgba(212, 175, 55, 0.3)',
+                backgroundColor: isDark ? 'rgba(212, 175, 55, 0.15)' : 'rgba(212, 175, 55, 0.08)',
+                color: isDark ? '#D4AF37' : '#B8860B',
               }}
               title="Khusus Admin: Klik langsung pada nomor ayat untuk menandai atau membatalkan waqaf emas."
             >

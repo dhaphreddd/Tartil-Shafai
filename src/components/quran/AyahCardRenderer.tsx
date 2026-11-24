@@ -162,26 +162,24 @@ export const AyahCardRenderer: React.FC<AyahCardRendererProps> = ({
                     style={{
                       backgroundColor: ayah.isWaqof
                         ? isDark
-                          ? 'rgba(245, 158, 11, 0.2)'
-                          : 'rgba(180, 83, 9, 0.12)'
+                          ? 'rgba(212, 175, 55, 0.2)'
+                          : 'rgba(212, 175, 55, 0.12)'
                         : isDark
-                          ? 'rgba(255, 255, 255, 0.06)'
+                          ? 'rgba(255, 255, 255, 0.08)'
                           : 'rgba(0, 0, 0, 0.05)',
                       color: ayah.isWaqof
-                        ? isDark
-                          ? '#F59E0B'
-                          : '#B45309'
+                        ? '#D4AF37'
                         : isDark
-                          ? 'var(--color-dark-text-secondary)'
-                          : 'var(--color-text-secondary)',
+                          ? '#FFFFFF'
+                          : 'var(--color-text)',
                       border: `1px solid ${
                         ayah.isWaqof
                           ? isDark
-                            ? 'rgba(245, 158, 11, 0.5)'
-                            : 'rgba(180, 83, 9, 0.35)'
+                            ? 'rgba(212, 175, 55, 0.55)'
+                            : 'rgba(212, 175, 55, 0.4)'
                           : isDark
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.08)'
+                            ? 'rgba(255, 255, 255, 0.2)'
+                            : 'rgba(0, 0, 0, 0.1)'
                       }`,
                     }}
                     onClick={isAdmin && onToggleWaqof ? () => onToggleWaqof(ayah) : undefined}

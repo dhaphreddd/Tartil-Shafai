@@ -232,26 +232,26 @@ html.dark .quran-ayah-text,
 }
 
 .ayah-end-marker {
-  color: var(--color-text-secondary);
-  opacity: 0.75;
+  color: var(--color-text);
+  opacity: 0.9;
   transition: color 0.2s ease, opacity 0.2s ease, text-shadow 0.2s ease, transform 0.15s ease;
 }
 
 html.dark .ayah-end-marker,
 .dark .ayah-end-marker {
-  color: #9E9E9E !important;
-  opacity: 0.75;
-  text-shadow: none !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Penanda Waqaf Khusus Warna Gold pada Nomor Ayat */
 .ayah-end-marker.ayah-waqof,
 .ayah-waqof .ayah-end-marker,
 .ayah-badge-waqof {
-  color: #B45309 !important;
+  color: #D4AF37 !important;
   font-weight: 700;
   opacity: 1 !important;
-  text-shadow: 0 0 1px rgba(180, 83, 9, 0.4);
+  text-shadow: 0 0 2px rgba(212, 175, 55, 0.4);
 }
 
 html.dark .ayah-end-marker.ayah-waqof,
@@ -260,10 +260,10 @@ html.dark .ayah-waqof .ayah-end-marker,
 .dark .ayah-waqof .ayah-end-marker,
 html.dark .ayah-badge-waqof,
 .dark .ayah-badge-waqof {
-  color: #F59E0B !important;
+  color: #D4AF37 !important;
   font-weight: 700;
   opacity: 1 !important;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.65) !important;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.65) !important;
 }
 
 /* ============================================
